@@ -5,3 +5,15 @@
 		. toString()
 		. componentN() //đối số đếm từ 1
 		. copy() // sao, sửa đổi dữ liệu
+- Nested Classes:
+	+ là cho phép lớp nằm trong lớp khác
+	+ nested không truy xuất được các thông tin của lớp chứa nó
+	+ gọi: Ong.Bo().Ham()
+- Inner classes
+	+ giống nested nhưng cho phép truy xuất thông tin lớp ngoài chứa nó
+	+ Khai báo thêm từ khóa inner ở trước
+	+ Ong().Bo().Ham() -> Class ngoài phải ở dạng đối tượng
+- enum Class:
+	+ kiểu liệt kê, lưu trữ tập là giá trị hằng, các giá trị phân cách dấu ','
+- Extensions Method:
+	+ cho phép chèn thêm phương thức vào các Lớp có sẵn mà không cần chỉnh sửa Lớp, kế thừa
