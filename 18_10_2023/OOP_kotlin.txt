@@ -1,0 +1,7 @@
+- Data Classes:
+	+ Được sử dụng khi chỉ cần lưu trữ dữ liệu mà không cần dùng đến phương thức
+	+ Tự động cung cấp :
+		. equals() / hashCode()
+		. toString()
+		. componentN() //đối số đếm từ 1
+		. copy() // sao, sửa đổi dữ liệu
