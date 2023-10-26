@@ -28,7 +28,7 @@ class ActivityB : AppCompatActivity() {
         binding.buttonA.setOnClickListener{
             val intentA = Intent(this,MainActivity::class.java)
             intentA.putExtra("position",continuePositionA)
-            startActivity(intentA)
+//            startActivity(intentA)
             finish()
         }
     }
