@@ -7,14 +7,20 @@
     tools:context=".Fragment1">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+        android:id="@+id/editTxt"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:hint="Your Name"/>
+
+    <Button
+        android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Fragment 1"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        />
+        android:layout_marginTop="60dp"
+        android:text="Submit" />
 
 </FrameLayout>
