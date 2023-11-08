@@ -13,29 +13,28 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:orientation="vertical">
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="3 + 3"
-            android:gravity="center_vertical"
-            android:paddingRight="30dp"
-            android:textSize="30sp"
             android:layout_gravity="end"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingRight="30dp"
+            android:text="3 + 3"
             android:textColor="@color/white"
-            />
+            android:textSize="30sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_gravity="right"
             android:layout_weight="1"
-            android:text="5"
             android:gravity="center_vertical"
             android:paddingRight="30dp"
-            android:textSize="40sp"
-            android:layout_gravity="right"
+            android:text="5"
             android:textColor="@color/white"
-            />
+            android:textSize="40sp" />
 
     </LinearLayout>
 
@@ -52,37 +51,19 @@
             android:layout_weight="1">
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="C"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="C" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="+/-"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="+/-" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="%"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="%" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/orange"
+                style = "@style/btnOperation"
                 android:text=":"
                 android:textColor="@color/white"
                 android:textSize="25sp" />
@@ -95,37 +76,19 @@
             android:layout_weight="1">
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="7"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="7" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="8"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="8" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="9"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="9" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/orange"
+                style = "@style/btnOperation"
                 android:text="x"
                 android:textColor="@color/white"
                 android:textSize="25sp" />
@@ -138,37 +101,19 @@
             android:layout_weight="1">
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="4"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="4" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="5"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="5" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="6"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="6" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/orange"
+                style = "@style/btnOperation"
                 android:text="-"
                 android:textColor="@color/white"
                 android:textSize="25sp" />
@@ -181,37 +126,19 @@
             android:layout_weight="1">
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="1"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="1" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="2"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="2" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="3"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="3" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/orange"
+                style = "@style/btnOperation"
                 android:text="+"
                 android:textColor="@color/white"
                 android:textSize="25sp" />
@@ -221,8 +148,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            >
+            android:layout_weight="1">
 
             <Button
 
@@ -230,27 +156,19 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:backgroundTint="@color/gray"
-                android:gravity="left|center"
-                android:paddingLeft="44dp"
+                android:gravity="start|center"
+                android:textSize="25sp"
+                android:paddingStart="44dp"
                 android:text="0"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                />
 
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="."
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                style="@style/btnNumber"
+                android:text="." />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/orange"
+                style = "@style/btnOperation"
                 android:text="="
                 android:textColor="@color/white"
                 android:textSize="25sp" />
