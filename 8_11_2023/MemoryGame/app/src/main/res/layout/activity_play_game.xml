@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_game"
+    android:weightSum="10"
+    tools:context=".PlayGameActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scores:"
+            android:textSize="25sp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="240dp"
+            android:textColor="@color/white"
+            tools:ignore="ExtraText" />
+
+        <TextView
+            android:id="@+id/scores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scores:"
+            android:textSize="25sp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@+id/string"
+            android:textColor="@color/white"
+            tools:ignore="ExtraText" />
+    </RelativeLayout>
+
+
+</LinearLayout>
