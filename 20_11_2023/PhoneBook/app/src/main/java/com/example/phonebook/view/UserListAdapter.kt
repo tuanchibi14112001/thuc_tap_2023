@@ -18,8 +18,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.phonebook.R
 import com.example.phonebook.model.UserData
 
-class UserListAdapter(val context: Context, val userList: MutableList<UserData>) :
+class UserListAdapter(val context: Context, val userList: MutableList<UserData>, val deleteClickInterface: DeleteClickInterface) :
     ListAdapter<UserData, UserListAdapter.UserViewHolder>(UserDiffUtilCallback()) {
+
+
     inner class UserViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
 
@@ -86,7 +88,7 @@ class UserListAdapter(val context: Context, val userList: MutableList<UserData>)
                             .setMessage("Are you sure?")
                             .setPositiveButton("YES") { dialog, _ ->
                                 run {
-                                    userList.removeAt(absoluteAdapterPosition)
+                                    deleteClickInterface.onDelete(absoluteAdapterPosition)
                                     notifyItemRemoved(absoluteAdapterPosition)
                                     Toast.makeText(context,"Deleted successfully",Toast.LENGTH_SHORT).show()
                                     dialog.dismiss()
@@ -147,6 +149,10 @@ class UserListAdapter(val context: Context, val userList: MutableList<UserData>)
             return areItemsTheSame(oldItem, newItem)
         }
 
+    }
+
+    interface DeleteClickInterface {
+        fun onDelete(position: Int)
     }
 
 }

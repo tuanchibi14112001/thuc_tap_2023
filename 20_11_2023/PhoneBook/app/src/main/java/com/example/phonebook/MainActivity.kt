@@ -15,7 +15,7 @@ import com.example.phonebook.view.UserAdapter
 import com.example.phonebook.view.UserListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), UserListAdapter.DeleteClickInterface {
     private lateinit var binding: ActivityMainBinding
     private lateinit var recv: RecyclerView
     private lateinit var userList: MutableList<UserData>
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         // ListAdapter
 
-        userListAdapter = UserListAdapter(this, userList)
+        userListAdapter = UserListAdapter(this, userList,this)
 
         recv.adapter = userListAdapter
         userListAdapter.submitList(userList)
@@ -80,6 +80,11 @@ class MainActivity : AppCompatActivity() {
         addDiaLog.create()
         addDiaLog.show()
 
+    }
+
+    override fun onDelete(position: Int) {
+          userList.removeAt(position)
+          userListAdapter.submitList(userList)
     }
 
 
