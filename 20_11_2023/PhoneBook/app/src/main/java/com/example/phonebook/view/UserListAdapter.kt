@@ -2,6 +2,7 @@ package com.example.phonebook.view
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,18 +12,21 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phonebook.R
 import com.example.phonebook.model.UserData
 
-
-class UserAdapter(val context: Context, val userList: ArrayList<UserData>) :
-    RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserListAdapter(val context: Context, val userList: MutableList<UserData>) :
+    ListAdapter<UserData, UserListAdapter.UserViewHolder>(UserDiffUtilCallback()) {
     inner class UserViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+
 
         var name: TextView
         var phone: TextView
         var mMenu: ImageView
+
 
         init {
             name = v.findViewById<TextView>(R.id.mTitle)
@@ -36,7 +40,7 @@ class UserAdapter(val context: Context, val userList: ArrayList<UserData>) :
         @SuppressLint("DiscouragedPrivateApi")
         private fun popupMenu(view: View) {
 
-            val position = userList[absoluteAdapterPosition]
+            val position = getItem(absoluteAdapterPosition)
 
             val popupMenu = PopupMenu(context, view)
             popupMenu.inflate(R.menu.show_menu)
@@ -55,7 +59,7 @@ class UserAdapter(val context: Context, val userList: ArrayList<UserData>) :
                                 run {
                                     position.userName = userName.text.toString()
                                     position.userPhoneNum = userNum.text.toString()
-                                    notifyDataSetChanged()
+                                    notifyItemChanged(absoluteAdapterPosition)
                                     Toast.makeText(
                                         context,
                                         "User Information is Edited",
@@ -82,8 +86,8 @@ class UserAdapter(val context: Context, val userList: ArrayList<UserData>) :
                             .setMessage("Are you sure?")
                             .setPositiveButton("YES") { dialog, _ ->
                                 run {
-                                    userList.removeAt(bindingAdapterPosition)
-                                    notifyDataSetChanged()
+                                    userList.removeAt(absoluteAdapterPosition)
+                                    notifyItemRemoved(absoluteAdapterPosition)
                                     Toast.makeText(context,"Deleted successfully",Toast.LENGTH_SHORT).show()
                                     dialog.dismiss()
 
@@ -104,6 +108,9 @@ class UserAdapter(val context: Context, val userList: ArrayList<UserData>) :
                     else -> true
                 }
             }
+
+
+
             popupMenu.show()
 
             // Them Icon vao popup menu
@@ -114,21 +121,32 @@ class UserAdapter(val context: Context, val userList: ArrayList<UserData>) :
                 .invoke(menu, true)
 
         }
+
+        fun bind(user: UserData) {
+            name.text = user.userName
+            phone.text = user.userPhoneNum
+        }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val v = inflater.inflate(R.layout.list_item, parent, false)
-        return UserViewHolder(v)
-    }
-
-    override fun getItemCount(): Int {
-        return userList.size
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+        return UserViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val currentItem = userList[position]
-        holder.name.text = currentItem.userName
-        holder.phone.text = currentItem.userPhoneNum
+        holder.bind(getItem(position))
     }
+
+    class UserDiffUtilCallback : DiffUtil.ItemCallback<UserData>() {
+        override fun areItemsTheSame(oldItem: UserData, newItem: UserData): Boolean {
+            return oldItem.userName === newItem.userName
+        }
+
+        override fun areContentsTheSame(oldItem: UserData, newItem: UserData): Boolean {
+            return areItemsTheSame(oldItem, newItem)
+        }
+
+    }
+
 }

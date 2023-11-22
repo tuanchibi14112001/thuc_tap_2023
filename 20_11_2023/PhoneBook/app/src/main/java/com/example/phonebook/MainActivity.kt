@@ -12,13 +12,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.phonebook.databinding.ActivityMainBinding
 import com.example.phonebook.model.UserData
 import com.example.phonebook.view.UserAdapter
+import com.example.phonebook.view.UserListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var recv: RecyclerView
-    private lateinit var userList: ArrayList<UserData>
+    private lateinit var userList: MutableList<UserData>
     private lateinit var userAdapter: UserAdapter
+    private lateinit var userListAdapter: UserListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -30,10 +32,18 @@ class MainActivity : AppCompatActivity() {
         recv.setHasFixedSize(true)
         recv.layoutManager = LinearLayoutManager(this)
 
-        userList = arrayListOf()
-        userAdapter = UserAdapter(this, userList)
+        // RecyclerView.adapter
+        userList = mutableListOf()
+//        userAdapter = UserAdapter(this, userList)
+//
+//        recv.adapter = userAdapter
 
-        recv.adapter = userAdapter
+        // ListAdapter
+
+        userListAdapter = UserListAdapter(this, userList)
+
+        recv.adapter = userListAdapter
+        userListAdapter.submitList(userList)
 
         creatBtn.setOnClickListener {
             addUser()
@@ -55,6 +65,9 @@ class MainActivity : AppCompatActivity() {
             val name = userName.text.toString()
             val num = userNum.text.toString()
             userList.add(UserData(name, num))
+            userListAdapter.submitList(userList)
+            userListAdapter.notifyItemInserted(userList.size -1)
+            recv.scrollToPosition(userList.size -1)
             Toast.makeText(this, "Adding User Information Success", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
@@ -68,4 +81,6 @@ class MainActivity : AppCompatActivity() {
         addDiaLog.show()
 
     }
+
+
 }
