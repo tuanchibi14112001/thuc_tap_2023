@@ -29,6 +29,9 @@
         </activity>
 
         <service android:name=".service.FirstService" />
+        <receiver android:name=".service.MyReceiver" android:exported="false">
+
+        </receiver>
         <service android:name=".service.SecondService" />
     </application>
 

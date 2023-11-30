@@ -28,6 +28,7 @@ class MyAplication : Application() {
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
                 lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+                setSound(null, null)
             }
             // Register the channel with the system.
             val notificationManager: NotificationManager =

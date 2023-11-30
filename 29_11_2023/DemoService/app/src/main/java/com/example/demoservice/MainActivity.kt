@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.demoservice.databinding.ActivityMainBinding
+import com.example.demoservice.model.Song
 import com.example.demoservice.service.FirstService
 import com.example.demoservice.service.SecondService
 
@@ -47,7 +48,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun clickStartService() {
         val intent = Intent(this, FirstService::class.java)
-        intent.putExtra("key", "Hello User")
+        val mySong = Song("Em cua ngay hom qua", "Son Tung MTP", R.drawable.img_music,R.raw.file_music)
+        val bundle = Bundle()
+        bundle.putSerializable("OBJECT_SONG", mySong)
+        intent.putExtras(bundle)
 
         startService(intent)
     }
