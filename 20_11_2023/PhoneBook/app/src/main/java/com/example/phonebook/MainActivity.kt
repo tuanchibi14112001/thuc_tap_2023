@@ -2,7 +2,6 @@ package com.example.phonebook
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.Toast
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phonebook.databinding.ActivityMainBinding
 import com.example.phonebook.model.UserData
+import com.example.phonebook.storage.MySharedPreferences
 import com.example.phonebook.view.UserAdapter
 import com.example.phonebook.view.UserListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,15 +25,16 @@ class MainActivity : AppCompatActivity(), UserListAdapter.DeleteClickInterface {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val creatBtn: FloatingActionButton = binding.addingBtn
-
         setContentView(binding.root)
+        val mySharedPreferences = MySharedPreferences(this)
+
 
         recv = binding.mRecycler
         recv.setHasFixedSize(true)
         recv.layoutManager = LinearLayoutManager(this)
 
         // RecyclerView.adapter
-        userList = mutableListOf()
+        userList = mySharedPreferences.getListUser()
 //        userAdapter = UserAdapter(this, userList)
 //
 //        recv.adapter = userAdapter
@@ -46,13 +47,13 @@ class MainActivity : AppCompatActivity(), UserListAdapter.DeleteClickInterface {
         userListAdapter.submitList(userList)
 
         creatBtn.setOnClickListener {
-            addUser()
+            addUser(mySharedPreferences)
         }
 
 
     }
 
-    private fun addUser() {
+    private fun addUser(mySharedPreferences: MySharedPreferences) {
         val inflater = LayoutInflater.from(this)
         val v = inflater.inflate(R.layout.add_item, null)
         val userName = v.findViewById<EditText>(R.id.userName)
@@ -68,7 +69,9 @@ class MainActivity : AppCompatActivity(), UserListAdapter.DeleteClickInterface {
             userListAdapter.submitList(userList)
             userListAdapter.notifyItemInserted(userList.size -1)
             recv.scrollToPosition(userList.size -1)
-            Toast.makeText(this, "Adding User Information Success", Toast.LENGTH_SHORT).show()
+
+//            Toast.makeText(this, "Adding User Information Success", Toast.LENGTH_SHORT).show()
+
             dialog.dismiss()
         }
 
@@ -79,6 +82,13 @@ class MainActivity : AppCompatActivity(), UserListAdapter.DeleteClickInterface {
 
         addDiaLog.create()
         addDiaLog.show()
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val mySharedPreferences = MySharedPreferences(this)
+        mySharedPreferences.seListtUser(userList)
 
     }
 
