@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phonebook.databinding.ActivityMainBinding
 import com.example.phonebook.model.UserData
+import com.example.phonebook.model.UserDataViewModel
 import com.example.phonebook.storage.MySharedPreferences
 import com.example.phonebook.view.UserAdapter
 import com.example.phonebook.view.UserListAdapter
@@ -21,39 +23,48 @@ class MainActivity : AppCompatActivity(), UserListAdapter.DeleteClickInterface {
     private lateinit var userList: MutableList<UserData>
     private lateinit var userAdapter: UserAdapter
     private lateinit var userListAdapter: UserListAdapter
+    private lateinit var userDataViewModel: UserDataViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val creatBtn: FloatingActionButton = binding.addingBtn
         setContentView(binding.root)
         val mySharedPreferences = MySharedPreferences(this)
+        userDataViewModel = ViewModelProvider(this)[UserDataViewModel::class.java]
+
+        userDataViewModel.userLiveData.value = mySharedPreferences.getListUser()
 
 
         recv = binding.mRecycler
         recv.setHasFixedSize(true)
         recv.layoutManager = LinearLayoutManager(this)
 
+
         // RecyclerView.adapter
-        userList = mySharedPreferences.getListUser()
+//        userList = mySharedPreferences.getListUser()
 //        userAdapter = UserAdapter(this, userList)
 //
 //        recv.adapter = userAdapter
 
         // ListAdapter
 
-        userListAdapter = UserListAdapter(this, userList,this)
+        userListAdapter = UserListAdapter(this,this)
 
         recv.adapter = userListAdapter
-        userListAdapter.submitList(userList)
+        userDataViewModel.userLiveData.observe(this) {
+            userList = it
+            userListAdapter.submitList(it)
+        }
+
 
         creatBtn.setOnClickListener {
-            addUser(mySharedPreferences)
+            addUser()
         }
 
 
     }
 
-    private fun addUser(mySharedPreferences: MySharedPreferences) {
+    private fun addUser() {
         val inflater = LayoutInflater.from(this)
         val v = inflater.inflate(R.layout.add_item, null)
         val userName = v.findViewById<EditText>(R.id.userName)
@@ -65,10 +76,8 @@ class MainActivity : AppCompatActivity(), UserListAdapter.DeleteClickInterface {
         addDiaLog.setPositiveButton("OK") { dialog, _ ->
             val name = userName.text.toString()
             val num = userNum.text.toString()
-            userList.add(UserData(name, num))
-            userListAdapter.submitList(userList)
-            userListAdapter.notifyItemInserted(userList.size -1)
-            recv.scrollToPosition(userList.size -1)
+            userDataViewModel.addUser(name,num)
+            recv.scrollToPosition(userDataViewModel.getSize() -1)
 
 //            Toast.makeText(this, "Adding User Information Success", Toast.LENGTH_SHORT).show()
 
@@ -88,13 +97,12 @@ class MainActivity : AppCompatActivity(), UserListAdapter.DeleteClickInterface {
     override fun onPause() {
         super.onPause()
         val mySharedPreferences = MySharedPreferences(this)
-        mySharedPreferences.seListtUser(userList)
+        mySharedPreferences.seListtUser(userDataViewModel.getUserList())
 
     }
 
     override fun onDelete(position: Int) {
-          userList.removeAt(position)
-          userListAdapter.submitList(userList)
+          userDataViewModel.removeUser(position)
     }
 
 

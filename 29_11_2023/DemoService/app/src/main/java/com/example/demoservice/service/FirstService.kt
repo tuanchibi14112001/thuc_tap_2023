@@ -110,7 +110,7 @@ class FirstService : Service() {
     }
 
     private fun getPendingIntent(context: Context, action: Int): PendingIntent {
-        val intent = Intent(this, MyReceiver::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         Log.d("CHECK", action.toString() + " 2")
         intent.putExtra("ACTION_MUSIC", action)
         return PendingIntent.getBroadcast(

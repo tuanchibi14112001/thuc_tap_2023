@@ -30,7 +30,7 @@ class MySharedPreferences(context: Context) {
         return user
     }
 
-    public fun seListtUser(listUserData: List<UserData>) {
+    public fun seListtUser(listUserData: MutableList<UserData>) {
         val gson = Gson()
         val jsonArray = gson.toJsonTree(listUserData).asJsonArray
         val strJsonListUser = jsonArray.toString()

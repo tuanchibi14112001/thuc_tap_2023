@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.phonebook.R
 import com.example.phonebook.model.UserData
 
-class UserListAdapter(val context: Context, val userList: MutableList<UserData>, val deleteClickInterface: DeleteClickInterface) :
+class UserListAdapter(val context: Context, val deleteClickInterface: DeleteClickInterface) :
     ListAdapter<UserData, UserListAdapter.UserViewHolder>(UserDiffUtilCallback()) {
 
 
