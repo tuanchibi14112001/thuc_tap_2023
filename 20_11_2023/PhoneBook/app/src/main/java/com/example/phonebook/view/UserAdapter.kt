@@ -11,23 +11,32 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phonebook.R
+import com.example.phonebook.databinding.ListItemBinding
 import com.example.phonebook.model.UserData
 
 
 class UserAdapter(val context: Context, val userList: ArrayList<UserData>) :
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
-    inner class UserViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+
+
+
+    inner class UserViewHolder(listItemBinding: ListItemBinding) : RecyclerView.ViewHolder(
+        listItemBinding.root
+    ) {
 
         var name: TextView
         var phone: TextView
         var mMenu: ImageView
+        var mlistItemBinding: ListItemBinding
 
         init {
-            name = v.findViewById<TextView>(R.id.mTitle)
-            phone = v.findViewById<TextView>(R.id.mSubTitle)
-            mMenu = v.findViewById<ImageView>(R.id.mMenus)
+            mlistItemBinding = listItemBinding
+            name = listItemBinding.mTitle
+            phone = listItemBinding.mSubTitle
+            mMenu = listItemBinding.mMenus
             mMenu.setOnClickListener {
                 popupMenu(it)
             }
@@ -118,7 +127,7 @@ class UserAdapter(val context: Context, val userList: ArrayList<UserData>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val v = inflater.inflate(R.layout.list_item, parent, false)
+        val v = ListItemBinding.inflate(inflater, parent,false)
         return UserViewHolder(v)
     }
 
@@ -128,7 +137,7 @@ class UserAdapter(val context: Context, val userList: ArrayList<UserData>) :
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val currentItem = userList[position]
-        holder.name.text = currentItem.userName
-        holder.phone.text = currentItem.userPhoneNum
+        holder.mlistItemBinding.user = currentItem
+
     }
 }

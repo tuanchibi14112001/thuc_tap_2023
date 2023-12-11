@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="user"
+            type="com.example.databinding.model.UserModel" />
+
+        <variable
+            name="animal"
+            type="com.example.databinding.model.Animal" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <!-- android:onClick="@{user::userModelOnClickUser}" : Basic -->
+        <!-- android:onClick="@{()->user.userModelOnClickNoParam()}" : NO PARAM-->
+
+        <TextView
+            android:id="@+id/mTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text= "@{animal.name}"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/mBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Click"
+            android:onClick="@{() -> animal.changeName()}"
+            app:layout_constraintTop_toBottomOf="@+id/mTxt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
