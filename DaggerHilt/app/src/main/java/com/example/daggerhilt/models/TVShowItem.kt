@@ -1,6 +1,6 @@
 package com.example.daggerhilt.models
 
-data class TVShowResponseItem(
+data class TVShowItem(
     val id: Int,
     val image: Image,
     val name: String,
