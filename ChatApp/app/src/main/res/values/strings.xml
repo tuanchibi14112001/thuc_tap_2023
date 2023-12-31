@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">ChatApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="awesome">Awesome</string>
+    <string name="chat">chat</string>
+    <string name="img_logo_app">Img_Logo_App</string>
+    <string name="screen_desc">Trải nghiệm Awesome chat</string>
+    <string name="login_screen_name">Đăng nhập</string>
+    <string name="txt_email_title">EMAIL</string>
+    <string name="input_email_hint">yourname@gmail.com</string>
+    <string name="password">MẬT KHẨU</string>
+    <string name="edit_pw_hint">********</string>
+    <string name="forgot_pw_txt">Quên mật khẩu?</string>
+    <string name="txt_login_btn">ĐĂNG NHẬP</string>
+    <string name="txt_no_account">Chưa có tài khoản?</string>
+    <string name="txt_btn_signIn">Đăng ký ngay</string>
 </resources>
