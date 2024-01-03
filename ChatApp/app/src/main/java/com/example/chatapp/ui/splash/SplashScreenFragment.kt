@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.chatapp.R
 import com.example.chatapp.databinding.FragmentSplashScreenBinding
+import com.example.chatapp.ui.base.BaseFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -26,31 +27,29 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 @SuppressLint("CustomSplashScreen")
-class SplashScreenFragment : Fragment() {
+class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding>() {
 
-    private lateinit var binding: FragmentSplashScreenBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+    ) = FragmentSplashScreenBinding.inflate(inflater, container, false)
+
+    override fun prepareView(savedInstanceState: Bundle?) {
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSplashScreenBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
-        return binding.root
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         GlobalScope.launch(Dispatchers.Main) {
-            delay(3000)
+            delay(1000)
             test()
         }
     }
 
-    suspend fun test(){
+    suspend fun test() {
         findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
     }
 

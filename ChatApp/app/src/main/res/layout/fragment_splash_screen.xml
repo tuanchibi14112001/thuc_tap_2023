@@ -43,7 +43,7 @@
             android:textSize="@dimen/txt_40"
             android:fontFamily="@font/lato_light"
             android:textColor="@color/white"
-            android:layout_marginStart="@dimen/mg_start_10"
+            android:layout_marginStart="@dimen/item_10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
