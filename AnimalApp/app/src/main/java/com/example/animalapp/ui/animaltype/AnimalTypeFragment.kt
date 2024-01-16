@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.example.animalapp.R
 import com.example.animalapp.api.ApiService
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentAnimalTypeBinding
@@ -24,7 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 @AndroidEntryPoint
 class AnimalTypeFragment : BaseFragment<FragmentAnimalTypeBinding>() {
 
-    private lateinit var listType: List<AnimalType>
     private val viewModel: AnimalTypeViewModel by viewModels()
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -32,10 +34,10 @@ class AnimalTypeFragment : BaseFragment<FragmentAnimalTypeBinding>() {
     ) = FragmentAnimalTypeBinding.inflate(inflater, container, false)
 
     override fun prepareView(savedInstanceState: Bundle?) {
-        listType = listOf()
         viewModel.getAllAnimalType()
         observeModel()
     }
+
     private fun observeModel() {
         viewModel.dataFlow.observe(viewLifecycleOwner) {
             when (it.status) {
@@ -46,43 +48,28 @@ class AnimalTypeFragment : BaseFragment<FragmentAnimalTypeBinding>() {
                     binding.txtReptiles.text = it.data?.get(3)?.name.toString()
                     binding.txtAmphibians.text = it.data?.get(4)?.name.toString()
                     binding.txtArthropods.text = it.data?.get(5)?.name.toString()
+                    setOnclick(binding.txtMammal.text.toString())
                     hideLoading()
                 }
+
                 Status.ERROR -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     hideLoading()
                 }
+
                 Status.LOADING -> {
                     showLoading()
                 }
             }
         }
     }
-//    private fun getAllType(){
-//        val api = Retrofit.Builder()
-//            .baseUrl(Constants.BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//            .create(ApiService::class.java)
-//        api.getAnimalType().enqueue(object : Callback<List<AnimalType>>{
-//            override fun onResponse(
-//                call: Call<List<AnimalType>>,
-//                response: Response<List<AnimalType>>
-//            ) {
-//                if(response.isSuccessful){
-//                    response.body()?.let {
-//                        for (type in it){
-//                            binding.txtPets.text = type.name
-//                            Log.d("CHECK_RESPONSE", type.name)
-//                        }
-//                    }
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<List<AnimalType>>, t: Throwable) {
-//                Log.d("CHECK_RESPONSE", t.message.toString())
-//            }
-//
-//        })
-//    }
+
+    private fun setOnclick(name: String) {
+        binding.btnPetAnimal.setOnClickListener{
+            val bundle = Bundle().apply {
+                putString("animal_type", name)
+            }
+            findNavController().navigate(R.id.action_animalTypeFragment_to_listAnimalFragment,bundle)
+        }
+    }
 }

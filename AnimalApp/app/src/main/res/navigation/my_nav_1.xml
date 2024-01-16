@@ -18,5 +18,18 @@
         android:id="@+id/animalTypeFragment"
         android:name="com.example.animalapp.ui.animaltype.AnimalTypeFragment"
         android:label="fragment_animal_type"
-        tools:layout="@layout/fragment_animal_type" />
+        tools:layout="@layout/fragment_animal_type" >
+        <action
+            android:id="@+id/action_animalTypeFragment_to_listAnimalFragment"
+            app:destination="@id/listAnimalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listAnimalFragment"
+        android:name="com.example.animalapp.ui.animal_family.ListAnimalFragment"
+        android:label="fragment_list_animal"
+        tools:layout="@layout/fragment_list_animal" >
+        <argument
+            android:name="animal_family_name"
+            app:argType="string" />
+    </fragment>
 </navigation>
