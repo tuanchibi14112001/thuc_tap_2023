@@ -49,6 +49,12 @@ class AnimalTypeFragment : BaseFragment<FragmentAnimalTypeBinding>() {
                     binding.txtAmphibians.text = it.data?.get(4)?.name.toString()
                     binding.txtArthropods.text = it.data?.get(5)?.name.toString()
                     setOnclick(binding.txtMammal.text.toString())
+                    binding.btnFish.setOnClickListener{
+                        val bundle = Bundle().apply {
+                            putString("animal_type", binding.txtFish.text.toString())
+                        }
+                        findNavController().navigate(R.id.action_animalTypeFragment_to_listAnimalFragment,bundle)
+                    }
                     hideLoading()
                 }
 
@@ -65,11 +71,12 @@ class AnimalTypeFragment : BaseFragment<FragmentAnimalTypeBinding>() {
     }
 
     private fun setOnclick(name: String) {
-        binding.btnPetAnimal.setOnClickListener{
+        binding.btnMammals.setOnClickListener{
             val bundle = Bundle().apply {
                 putString("animal_type", name)
             }
             findNavController().navigate(R.id.action_animalTypeFragment_to_listAnimalFragment,bundle)
         }
+
     }
 }

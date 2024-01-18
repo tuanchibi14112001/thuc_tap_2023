@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
@@ -49,7 +50,7 @@ class ListAnimalFragment : BaseFragment<FragmentListAnimalBinding>(), ItemClickL
             when (it.status) {
                 Status.SUCCESS -> {
                     listAnimalAdapter.submitList(it.data)
-                    Log.d("CHECK", it.data?.get(0).toString())
+                   // Log.d("CHECK", it.data?.get(0).toString())
                     hideLoading()
                 }
 
@@ -66,5 +67,9 @@ class ListAnimalFragment : BaseFragment<FragmentListAnimalBinding>(), ItemClickL
     }
 
     override fun animalFamilyOnClick(animalFamilyItem: AnimalFamilyItem) {
+        val bundle = Bundle().apply {
+            putSerializable("animal_family_item", animalFamilyItem)
+        }
+        findNavController().navigate(R.id.action_listAnimalFragment_to_familyDetailFragment, bundle)
     }
 }

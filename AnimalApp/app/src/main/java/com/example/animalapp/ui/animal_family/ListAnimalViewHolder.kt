@@ -16,7 +16,7 @@ class ListAnimalViewHolder(
             animalFamilyItem.img_url
         ) {
             crossfade(true)
-            crossfade(1000)
+            crossfade(500)
         }
         itemBinding.txtAnimalName.text = animalFamilyItem.name
         itemBinding.cvAnimalFamily.setOnClickListener {

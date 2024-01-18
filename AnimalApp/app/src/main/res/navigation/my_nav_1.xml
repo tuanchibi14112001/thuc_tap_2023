@@ -31,5 +31,13 @@
         <argument
             android:name="animal_family_name"
             app:argType="string" />
+        <action
+            android:id="@+id/action_listAnimalFragment_to_familyDetailFragment"
+            app:destination="@id/familyDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/familyDetailFragment"
+        android:name="com.example.animalapp.ui.animal_family_detail.FamilyDetailFragment"
+        android:label="fragment_family_detail"
+        tools:layout="@layout/fragment_family_detail" />
 </navigation>

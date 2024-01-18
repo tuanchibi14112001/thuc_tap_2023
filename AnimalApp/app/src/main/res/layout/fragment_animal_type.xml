@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/btnPetAnimal"
+            android:id="@+id/btnMammals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -23,7 +23,7 @@
             android:orientation="vertical"
             android:padding="20dp"
             app:layout_constraintBottom_toTopOf="@+id/btnWildAnimal"
-            app:layout_constraintEnd_toStartOf="@+id/btnFarmAnimal"
+            app:layout_constraintEnd_toStartOf="@+id/btnFish"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/btnFarmAnimal"
+            android:id="@+id/btnFish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -55,8 +55,8 @@
             android:padding="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnPetAnimal"
-            app:layout_constraintTop_toTopOf="@+id/btnPetAnimal">
+            app:layout_constraintStart_toEndOf="@+id/btnMammals"
+            app:layout_constraintTop_toTopOf="@+id/btnMammals">
 
             <ImageView
                 android:layout_width="100dp"
@@ -87,7 +87,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btnMammalAnimal"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnPetAnimal">
+            app:layout_constraintTop_toBottomOf="@+id/btnMammals">
 
             <ImageView
                 android:layout_width="100dp"
