@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingVertical="30dp"
+    android:layout_marginHorizontal="10dp"
+    tools:context=".ui.animal_specie_detail.AnimalSpeciesFragment">
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:gravity="center"
+            android:text="DOG"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imgAnimal"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dog_list"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+
+        <ScrollView
+            android:id="@+id/scrDesc"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/my_shape_2"
+            android:padding="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/imgAnimal"
+            tools:ignore="ScrollViewCount">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/atnName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: "
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/descName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/atnName"
+                app:layout_constraintTop_toTopOf="@+id/atnName"
+                android:textStyle="bold"
+                android:text="DOG"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/atnLength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Length: "
+                app:layout_constraintTop_toBottomOf="@+id/atnName"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/descLength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/atnLength"
+                app:layout_constraintTop_toTopOf="@+id/atnLength"
+                android:textStyle="bold"
+                android:text="61-74 cm"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/atnTail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tail: "
+                app:layout_constraintTop_toBottomOf="@+id/atnLength"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/descTail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/atnTail"
+                app:layout_constraintTop_toTopOf="@+id/atnTail"
+                android:textStyle="bold"
+                android:text="36-43 cm"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/atnWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight: "
+                app:layout_constraintTop_toBottomOf="@+id/atnTail"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/descWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/atnWeight"
+                app:layout_constraintTop_toTopOf="@+id/atnWeight"
+                android:textStyle="bold"
+                android:text="12-16 kg"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/atnLife"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Life-span: "
+                app:layout_constraintTop_toBottomOf="@+id/atnWeight"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/descLife"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/atnLife"
+                app:layout_constraintTop_toTopOf="@+id/atnLife"
+                android:textStyle="bold"
+                android:text="12-15 years"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/atnComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comments: "
+                app:layout_constraintTop_toBottomOf="@+id/atnLife"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/descComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/atnComment"
+                app:layout_constraintTop_toBottomOf="@+id/atnComment"
+                android:textStyle="bold"
+                android:text="originally used in hunting; now primarily a pet or show dog"
+                android:textSize="15sp"
+                />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

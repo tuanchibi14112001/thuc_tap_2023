@@ -39,5 +39,14 @@
         android:id="@+id/familyDetailFragment"
         android:name="com.example.animalapp.ui.animal_family_detail.FamilyDetailFragment"
         android:label="fragment_family_detail"
-        tools:layout="@layout/fragment_family_detail" />
+        tools:layout="@layout/fragment_family_detail" >
+        <action
+            android:id="@+id/action_familyDetailFragment_to_animalSpeciesFragment"
+            app:destination="@id/animalSpeciesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/animalSpeciesFragment"
+        android:name="com.example.animalapp.ui.animal_specie_detail.AnimalSpeciesFragment"
+        android:label="fragment_animal_species"
+        tools:layout="@layout/fragment_animal_species" />
 </navigation>

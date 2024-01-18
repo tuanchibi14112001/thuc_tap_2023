@@ -1,6 +1,5 @@
 package com.example.animalapp.ui.animal_family
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.animalapp.databinding.FamilyItemBinding
@@ -20,7 +19,7 @@ class ListAnimalViewHolder(
         }
         itemBinding.txtAnimalName.text = animalFamilyItem.name
         itemBinding.cvAnimalFamily.setOnClickListener {
-            itemClickListener.animalFamilyOnClick(animalFamilyItem)
+            itemClickListener.itemOnClick(animalFamilyItem)
         }
     }
 }

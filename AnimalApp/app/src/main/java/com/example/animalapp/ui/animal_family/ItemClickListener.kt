@@ -1,7 +1,8 @@
 package com.example.animalapp.ui.animal_family
 
 import com.example.animalapp.model.AnimalFamilyItem
+import com.example.animalapp.model.AnimalSpecieItem
 
 interface ItemClickListener {
-    fun animalFamilyOnClick (animalFamilyItem: AnimalFamilyItem)
+    fun itemOnClick (animalFamilyItem: AnimalFamilyItem)
 }
