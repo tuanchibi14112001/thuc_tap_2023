@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_game"
+    tools:context=".ui.memory_game.MemoryGameFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recvCardItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        />
+</FrameLayout>

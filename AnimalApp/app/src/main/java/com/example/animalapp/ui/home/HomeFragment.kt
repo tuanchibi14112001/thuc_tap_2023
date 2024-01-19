@@ -24,5 +24,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.btnInfo.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_animalTypeFragment)
         }
+        binding.btnGame.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_memoryGameFragment)
+        }
     }
 }

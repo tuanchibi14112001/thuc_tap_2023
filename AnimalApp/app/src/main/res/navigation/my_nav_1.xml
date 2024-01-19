@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_animalTypeFragment"
             app:destination="@id/animalTypeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_memoryGameFragment"
+            app:destination="@id/memoryGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/animalTypeFragment"
@@ -49,4 +52,9 @@
         android:name="com.example.animalapp.ui.animal_specie_detail.AnimalSpeciesFragment"
         android:label="fragment_animal_species"
         tools:layout="@layout/fragment_animal_species" />
+    <fragment
+        android:id="@+id/memoryGameFragment"
+        android:name="com.example.animalapp.ui.memory_game.MemoryGameFragment"
+        android:label="fragment_memory_game"
+        tools:layout="@layout/fragment_memory_game" />
 </navigation>

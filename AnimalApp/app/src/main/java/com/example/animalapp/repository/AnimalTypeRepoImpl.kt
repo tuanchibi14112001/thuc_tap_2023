@@ -4,6 +4,7 @@ import com.example.animalapp.api.ApiService
 import com.example.animalapp.model.AnimalFamily
 import com.example.animalapp.model.AnimalSpecie
 import com.example.animalapp.model.AnimalType
+import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.utils.Resource
 import retrofit2.await
 import javax.inject.Inject
@@ -32,6 +33,15 @@ class AnimalTypeRepoImpl @Inject constructor(private val apiService: ApiService)
     override suspend fun getAnimalBreeds(id: Int): Resource<AnimalSpecie> {
         return try {
             val result = apiService.getAnimalBreeds(id).await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+    override suspend fun getMemoryCard(): Resource<MemoryCard> {
+        return try {
+            val result = apiService.getMemoryCard().await()
             Resource.success(result)
         } catch (e: Exception) {
             e.printStackTrace()

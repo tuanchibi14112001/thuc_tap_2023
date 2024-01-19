@@ -3,6 +3,7 @@ package com.example.animalapp.api
 import com.example.animalapp.model.AnimalFamily
 import com.example.animalapp.model.AnimalSpecie
 import com.example.animalapp.model.AnimalType
+import com.example.animalapp.model.MemoryCard
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -17,4 +18,7 @@ interface ApiService {
 
     @GET("animal_family/{id}")
     fun getAnimalBreeds(@Path("id") id: Int): Call<AnimalSpecie>
+
+    @GET("play")
+    fun getMemoryCard(): Call<MemoryCard>
 }
