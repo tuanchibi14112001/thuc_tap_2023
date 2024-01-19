@@ -4,7 +4,7 @@ data class MemoryCardItem(
     val animal_family_id: Int,
     val id: Int,
     val img_url: String,
-    val is_checked: Int,
-    var is_clicked: Int,
+    var is_checked: Boolean,
+    var is_clicked: Boolean,
     val name: String
 )

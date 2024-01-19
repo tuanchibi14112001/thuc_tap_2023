@@ -56,5 +56,16 @@
         android:id="@+id/memoryGameFragment"
         android:name="com.example.animalapp.ui.memory_game.MemoryGameFragment"
         android:label="fragment_memory_game"
-        tools:layout="@layout/fragment_memory_game" />
+        tools:layout="@layout/fragment_memory_game" >
+        <action
+            android:id="@+id/action_memoryGameFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_memoryGameFragment_self"
+            app:destination="@id/memoryGameFragment"
+            app:popUpTo="@id/memoryGameFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -6,12 +6,33 @@
     android:background="@drawable/bg_game"
     tools:context=".ui.memory_game.MemoryGameFragment">
 
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SCORE: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="end"
+        android:layout_marginEnd="60dp"
+        />
+    <TextView
+        android:id="@+id/txtMove"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="end"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recvCardItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="10dp"
-        />
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp" />
 </FrameLayout>
