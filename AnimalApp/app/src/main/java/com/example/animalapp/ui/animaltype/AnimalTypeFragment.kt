@@ -55,6 +55,37 @@ class AnimalTypeFragment : BaseFragment<FragmentAnimalTypeBinding>() {
                         }
                         findNavController().navigate(R.id.action_animalTypeFragment_to_listAnimalFragment,bundle)
                     }
+                    binding.btnBird.setOnClickListener{
+                        val bundle = Bundle().apply {
+                            putString("animal_type", binding.txtBird.text.toString())
+                        }
+                        findNavController().navigate(R.id.action_animalTypeFragment_to_listAnimalFragment,bundle)
+                    }
+                    binding.btnFish.setOnClickListener{
+                        val bundle = Bundle().apply {
+                            putString("animal_type", binding.txtFish.text.toString())
+                        }
+                        findNavController().navigate(R.id.action_animalTypeFragment_to_listAnimalFragment,bundle)
+                    }
+                    binding.btnAmphibians.setOnClickListener{
+                        val bundle = Bundle().apply {
+                            putString("animal_type", binding.txtAmphibians.text.toString())
+                        }
+                        findNavController().navigate(R.id.action_animalTypeFragment_to_listAnimalFragment,bundle)
+                    }
+                    binding.btnArthropods.setOnClickListener{
+                        val bundle = Bundle().apply {
+                            putString("animal_type", binding.txtArthropods.text.toString())
+                        }
+                        findNavController().navigate(R.id.action_animalTypeFragment_to_listAnimalFragment,bundle)
+                    }
+                    binding.btnReptiles.setOnClickListener{
+                        val bundle = Bundle().apply {
+                            putString("animal_type", binding.txtReptiles.text.toString())
+                        }
+                        findNavController().navigate(R.id.action_animalTypeFragment_to_listAnimalFragment,bundle)
+                    }
+
                     hideLoading()
                 }
 
