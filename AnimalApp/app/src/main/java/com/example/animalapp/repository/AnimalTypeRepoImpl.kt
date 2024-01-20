@@ -3,6 +3,7 @@ package com.example.animalapp.repository
 import com.example.animalapp.api.ApiService
 import com.example.animalapp.model.AnimalFamily
 import com.example.animalapp.model.AnimalSpecie
+import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.utils.Resource
@@ -39,6 +40,17 @@ class AnimalTypeRepoImpl @Inject constructor(private val apiService: ApiService)
             Resource.error(e.toString())
         }
     }
+
+    override suspend fun getAnimalSpecies(id: Int): Resource<AnimalSpecieItem> {
+        return try {
+            val result = apiService.getAnimalSpecies(id).await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+
     override suspend fun getMemoryCard(): Resource<MemoryCard> {
         return try {
             val result = apiService.getMemoryCard().await()

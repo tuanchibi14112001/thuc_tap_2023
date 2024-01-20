@@ -58,14 +58,24 @@
         android:label="fragment_memory_game"
         tools:layout="@layout/fragment_memory_game" >
         <action
-            android:id="@+id/action_memoryGameFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_memoryGameFragment_self"
             app:destination="@id/memoryGameFragment"
             app:popUpTo="@id/memoryGameFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_memoryGameFragment_to_endGameFragment"
+            app:destination="@id/endGameFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/memoryGameFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/endGameFragment"
+        android:name="com.example.animalapp.ui.memory_game.end_game.EndGameFragment"
+        android:label="fragment_end_game"
+        tools:layout="@layout/fragment_end_game" >
+        <action
+            android:id="@+id/action_endGameFragment_to_animalSpeciesFragment"
+            app:destination="@id/animalSpeciesFragment" />
     </fragment>
 </navigation>

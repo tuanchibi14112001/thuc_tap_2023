@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentMemoryGameBinding
+import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.MemoryCardItem
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +27,7 @@ class MemoryGameFragment : BaseFragment<FragmentMemoryGameBinding>(), CardItemCl
     lateinit var memoryGameAdapter: MemoryGameAdapter
     private lateinit  var builder: AlertDialog.Builder
     var cardList: MutableList<MemoryCardItem> = mutableListOf()
+    private var animalList: MemoryCard ?= null
     private var indexOfSingleSelectedCard: Int? = null
     private var score: Int = 0
 
@@ -60,6 +62,7 @@ class MemoryGameFragment : BaseFragment<FragmentMemoryGameBinding>(), CardItemCl
         viewModel.dataFlow.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
+                    animalList = it.data
                     cardList = it.data!!
                     cardList.shuffle()
                     memoryGameAdapter.submitList(cardList)
@@ -148,8 +151,12 @@ class MemoryGameFragment : BaseFragment<FragmentMemoryGameBinding>(), CardItemCl
             ?.setPositiveButton("Replay") { dialogInterface: DialogInterface, i: Int ->
                 findNavController().navigate(R.id.action_memoryGameFragment_self)
             }
-            ?.setNegativeButton("Go Home") { dialogInterface: DialogInterface, i: Int ->
-                findNavController().navigate(R.id.action_memoryGameFragment_to_homeFragment)
+            ?.setNegativeButton("End Game") { dialogInterface: DialogInterface, i: Int ->
+                val bundle = Bundle().apply {
+                    putString("user_score", score.toString())
+                    putSerializable("animal_list", animalList)
+                }
+                findNavController().navigate(R.id.action_memoryGameFragment_to_endGameFragment, bundle)
             }
 
             ?.show()

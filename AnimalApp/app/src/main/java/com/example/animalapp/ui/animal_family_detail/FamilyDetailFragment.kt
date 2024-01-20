@@ -87,7 +87,7 @@ class FamilyDetailFragment : BaseFragment<FragmentFamilyDetailBinding>(), Specie
 
     override fun itemOnClick(animalSpecieItem: AnimalSpecieItem) {
         val bundle = Bundle().apply {
-            putSerializable("animal_species_detail", animalSpecieItem)
+            putInt("animal_species_detail", animalSpecieItem.id)
         }
         findNavController().navigate(R.id.action_familyDetailFragment_to_animalSpeciesFragment, bundle)
     }

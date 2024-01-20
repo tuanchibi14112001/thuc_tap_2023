@@ -22,12 +22,6 @@ class MemoryGameViewHolder(
         } else {
             itemBinding.imgSpeciesItem.load(R.drawable.ques_mark)
         }
-//        if (memoryCardItem.is_checked) {
-//            Handler(Looper.getMainLooper()).postDelayed({
-//                itemBinding.cvGameItem.isInvisible = true
-//
-//            }, 500)
-//        }
         itemBinding.cvGameItem.setOnClickListener {
             itemClickListener.itemOnClick(memoryCardItem)
         }

@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:background="@color/black"
             android:gravity="center"
-            android:text="DOG"
+            tools:text ="DOG"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/dog_list"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
@@ -58,7 +58,7 @@
                 app:layout_constraintStart_toEndOf="@+id/atnName"
                 app:layout_constraintTop_toTopOf="@+id/atnName"
                 android:textStyle="bold"
-                android:text="DOG"
+                tools:text="DOG"
                 android:textSize="15sp"
                 />
             <TextView
@@ -77,7 +77,7 @@
                 app:layout_constraintStart_toEndOf="@+id/atnLength"
                 app:layout_constraintTop_toTopOf="@+id/atnLength"
                 android:textStyle="bold"
-                android:text="61-74 cm"
+                tools:text="61-74 cm"
                 android:textSize="15sp"
                 />
             <TextView
@@ -96,7 +96,7 @@
                 app:layout_constraintStart_toEndOf="@+id/atnTail"
                 app:layout_constraintTop_toTopOf="@+id/atnTail"
                 android:textStyle="bold"
-                android:text="36-43 cm"
+                tools:text="36-43 cm"
                 android:textSize="15sp"
                 />
             <TextView
@@ -115,7 +115,7 @@
                 app:layout_constraintStart_toEndOf="@+id/atnWeight"
                 app:layout_constraintTop_toTopOf="@+id/atnWeight"
                 android:textStyle="bold"
-                android:text="12-16 kg"
+                tools:text="12-16 kg"
                 android:textSize="15sp"
                 />
             <TextView
@@ -134,7 +134,7 @@
                 app:layout_constraintStart_toEndOf="@+id/atnLife"
                 app:layout_constraintTop_toTopOf="@+id/atnLife"
                 android:textStyle="bold"
-                android:text="12-15 years"
+                tools:text="12-15 years"
                 android:textSize="15sp"
                 />
             <TextView
@@ -153,7 +153,7 @@
                 app:layout_constraintStart_toStartOf="@+id/atnComment"
                 app:layout_constraintTop_toBottomOf="@+id/atnComment"
                 android:textStyle="bold"
-                android:text="originally used in hunting; now primarily a pet or show dog"
+                tools:text="originally used in hunting; now primarily a pet or show dog"
                 android:textSize="15sp"
                 />
 
