@@ -6,10 +6,13 @@ import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.LoginResponse
+import com.example.animalapp.model.User
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -21,6 +24,9 @@ interface ApiService {
     fun loginUser(
         @Field("email") email: String,
         @Field("password") pwd: String): Call<LoginResponse>
+
+    @GET("user")
+    fun getUser(@Header("Authorization") auth:String): Call<User>
 
     @GET("animal_type")
     fun getAnimalType(): Call<List<AnimalType>>

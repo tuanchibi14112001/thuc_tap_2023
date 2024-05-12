@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentLoginBinding
@@ -67,6 +68,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             when (it.status) {
                 Status.SUCCESS -> {
                     Toast.makeText(requireContext(), it.data?.token, Toast.LENGTH_SHORT).show()
+                    val bundle = Bundle().apply {
+                        putString("user_token", it.data?.token)
+                    }
+                    findNavController().navigate(R.id.action_loginFragment_to_testFragment2, bundle)
                     hideLoading()
                 }
 
