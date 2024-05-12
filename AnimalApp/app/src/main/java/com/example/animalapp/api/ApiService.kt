@@ -5,12 +5,23 @@ import com.example.animalapp.model.AnimalSpecie
 import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
+import com.example.animalapp.model.LoginResponse
 import retrofit2.Call
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 
 interface ApiService {
+
+    @FormUrlEncoded
+    @POST("auth/login")
+    fun loginUser(
+        @Field("email") email: String,
+        @Field("password") pwd: String): Call<LoginResponse>
+
     @GET("animal_type")
     fun getAnimalType(): Call<List<AnimalType>>
 
