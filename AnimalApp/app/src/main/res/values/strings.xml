@@ -21,4 +21,13 @@
     <string name="txt_login">Đăng ký</string>
     <string name="str_name">HỌ VÀ TÊN</string>
     <string name="str_name_input_hint">Awesome Chat</string>
+
+    <!--    Signup-->
+    <string name="str_policy_1">Tôi đồng ý với các</string>
+    <string name="str_policy_2">chính sách</string>
+    <string name="str_policy_3">và</string>
+    <string name="str_policy_4">điều khoản</string>
+    <string name="str_signup_btn">ĐĂNG KÝ</string>
+    <string name="str_has_account">Đã có tài khoản?</string>
+    <string name="str_btn_signIn">Đăng nhập ngay</string>
 </resources>

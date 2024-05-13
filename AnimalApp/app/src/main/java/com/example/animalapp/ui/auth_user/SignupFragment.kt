@@ -9,28 +9,33 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
-import com.example.animalapp.databinding.FragmentLoginBinding
+import com.example.animalapp.databinding.FragmentSignupBinding
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
-    private val viewModel: LoginViewModel by viewModels()
+@AndroidEntryPoint
+class SignupFragment : BaseFragment<FragmentSignupBinding>() {
+    private val viewModel: SignupViewModel by viewModels()
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ) = FragmentLoginBinding.inflate(inflater, container, false)
+    ) = FragmentSignupBinding.inflate(inflater, container, false)
 
     override fun prepareView(savedInstanceState: Bundle?) {
-        binding.btnSignup.setOnClickListener{
-            findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
+        binding.btnBack.setOnClickListener {
+            it.findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
+        }
+        binding.btnSignIn.setOnClickListener {
+            findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
         }
         checkEnableSubmitBtn()
         observeModel()
+
     }
 
     private fun checkEnableSubmitBtn() {
@@ -47,34 +52,33 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         }
         binding.editMailInput.addTextChangedListener(textWatcher)
         binding.editPw.addTextChangedListener(textWatcher)
+        binding.editNameInput.addTextChangedListener(textWatcher)
+        binding.cbSignup.setOnCheckedChangeListener { _, _ -> checkEnableRequire() }
     }
 
     private fun checkEnableRequire() {
         val email = binding.editMailInput.text.toString().trim()
         val pwd = binding.editPw.text.toString().trim()
-        if (email.isNotEmpty() && pwd.isNotEmpty()) {
-            binding.btnLoginSubmit.isEnabled = true
-            binding.btnLoginSubmit.setBackgroundColor(resources.getColor(R.color.enable_btn))
-            binding.btnLoginSubmit.setOnClickListener {
-                viewModel.loginUser(email, pwd)
+        val name = binding.editNameInput.text.toString().trim()
+        val isChecked = binding.cbSignup.isChecked
+        if (name.isNotEmpty() && email.isNotEmpty() && pwd.isNotEmpty() && isChecked) {
+            binding.btnSignupSubmit.isEnabled = true
+            binding.btnSignupSubmit.setBackgroundColor(resources.getColor(R.color.enable_btn))
+            binding.btnSignupSubmit.setOnClickListener {
+                viewModel.registerUser(name, email, pwd)
             }
-        }
-        else{
-            binding.btnLoginSubmit.isEnabled = false
-            binding.btnLoginSubmit.setBackgroundColor(resources.getColor(R.color.disable_btn))
-            binding.btnLoginSubmit.setTextColor(resources.getColor(R.color.white))
+        } else {
+            binding.btnSignupSubmit.isEnabled = false
+            binding.btnSignupSubmit.setBackgroundColor(resources.getColor(R.color.disable_btn))
+            binding.btnSignupSubmit.setTextColor(resources.getColor(R.color.white))
         }
     }
-
     private fun observeModel() {
         viewModel.dataFlow.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-//                    Toast.makeText(requireContext(), it.data?.token, Toast.LENGTH_SHORT).show()
-//                    val bundle = Bundle().apply {
-//                        putString("user_token", it.data?.token)
-//                    }
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    Toast.makeText(requireContext(), it.data?.message, Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
                     hideLoading()
                 }
 
@@ -89,8 +93,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             }
         }
     }
-
-
 
 
 }

@@ -6,14 +6,14 @@ import com.example.animalapp.model.AnimalSpecie
 import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
-import com.example.animalapp.model.LoginResponse
+import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 import retrofit2.await
 import javax.inject.Inject
 
 class AnimalTypeRepoImpl @Inject constructor(private val apiService: ApiService) : AnimalTypeRepo {
-    override suspend fun loginUser(email: String, pwd: String): Resource<LoginResponse> {
+    override suspend fun loginUser(email: String, pwd: String): Resource<AuthResponse> {
         return try {
             val result = apiService.loginUser(email, pwd).await()
             if (result.status)
@@ -25,6 +25,23 @@ class AnimalTypeRepoImpl @Inject constructor(private val apiService: ApiService)
             Resource.error(e.toString())
         }
 
+    }
+
+    override suspend fun registerUser(
+        name: String,
+        email: String,
+        pwd: String
+    ): Resource<AuthResponse> {
+        return try {
+            val result = apiService.registerUser(name, email, pwd).await()
+            if (result.status)
+                Resource.success(result)
+            else
+                Resource.error(result.message)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
     }
 
     override suspend fun getUser(token: String): Resource<User> {

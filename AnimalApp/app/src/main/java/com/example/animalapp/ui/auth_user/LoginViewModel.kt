@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.animalapp.base.BaseViewModel
-import com.example.animalapp.model.LoginResponse
+import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.repository.AnimalTypeRepo
 import com.example.animalapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,8 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val repo: AnimalTypeRepo) : BaseViewModel() {
-    private val _dataFlow = MutableLiveData<Resource<LoginResponse>>()
-    val dataFlow : LiveData<Resource<LoginResponse>>
+    private val _dataFlow = MutableLiveData<Resource<AuthResponse>>()
+    val dataFlow : LiveData<Resource<AuthResponse>>
     get() = _dataFlow
 
     fun loginUser(email: String, pwd: String) = viewModelScope.launch {
