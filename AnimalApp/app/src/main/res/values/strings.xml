@@ -30,4 +30,7 @@
     <string name="str_signup_btn">ĐĂNG KÝ</string>
     <string name="str_has_account">Đã có tài khoản?</string>
     <string name="str_btn_signIn">Đăng nhập ngay</string>
+
+    <!--    Quizz Game-->
+    <string name="str_quizz">QUIZZ GAME</string>
 </resources>

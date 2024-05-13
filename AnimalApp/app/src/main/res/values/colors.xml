@@ -7,6 +7,7 @@
     <color name="gray_767">#676767</color>
     <color name="gray_2D2">#D2D2D2</color>
     <color name="gray_ACA">#CACACA</color>
+    <color name="orange">#FF5722</color>
 
     <color name="disable_btn">@color/gray_ACA</color>
     <color name="enable_btn">@color/blue_6B4</color>

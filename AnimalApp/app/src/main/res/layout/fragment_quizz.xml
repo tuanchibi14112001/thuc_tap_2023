@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_2D2"
+    tools:context=".ui.quizz_game.QuizzFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/item_24"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/btn_back"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_arr_back" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/item_10"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="@string/str_quizz"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/item_24"
+                android:layout_marginEnd="@dimen/item_24"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_question_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="Question 1/10"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/btn_back_quizz"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="@dimen/item_10"
+                    android:src="@drawable/ic_arr_left" />
+
+                <ImageView
+                    android:id="@+id/btn_next_quizz"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="@dimen/item_10"
+                    android:src="@drawable/ic_arr_right" />
+
+            </LinearLayout>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginStart="@dimen/item_24"
+                android:layout_marginTop="@dimen/item_15"
+                android:layout_marginEnd="@dimen/item_24"
+                android:indeterminateDuration="10"
+                android:max="10"
+                android:progress="4"
+                app:indicatorColor="@color/orange"
+                app:trackCornerRadius="@dimen/item_50"
+                app:trackThickness="@dimen/item_15" />
+
+            <TextView
+                android:id="@+id/txt_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/item_24"
+                android:fontFamily="@font/lato_bold"
+                android:text="-"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+
+                />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                app:cardCornerRadius="@dimen/item_15"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/item_24"
+                android:layout_marginTop="@dimen/item_10"
+                android:layout_marginRight="@dimen/item_24"
+                android:layout_marginBottom="@dimen/item_24">
+
+                <ImageView
+                    android:id="@+id/img_quizz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/dog_list" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recvAnswerList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
