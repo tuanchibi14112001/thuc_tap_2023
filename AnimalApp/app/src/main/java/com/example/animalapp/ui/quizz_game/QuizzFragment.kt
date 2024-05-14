@@ -67,15 +67,20 @@ class QuizzFragment : BaseFragment<FragmentQuizzBinding>(), QuizzItemClick {
 
     private fun loadAnswers() {
         var answers: MutableList<AnswerItem> = mutableListOf()
-
-        quizzList[position].answers.forEach{
+        var correctAns = quizzList[position].correctAnswer
+        quizzList[position].answers.forEach {
             var answerItem = AnswerItem("")
             answerItem.answer = it
             answers.add(answerItem)
-            Log.d("CHECK", answers.toString())
         }
-        quizzAdapter = QuizzAdapter(this)
+        if (quizzList[position].clickedAnswer != null) {
+            var answerItem = AnswerItem("")
+            answerItem.answer = quizzList[position].clickedAnswer.toString()
+            answers.add(answerItem)
+        }
+        quizzAdapter = QuizzAdapter(this, correctAns)
         quizzAdapter.submitList(answers)
+        Log.d("CHECK", answers.toString())
         binding.recvAnswerList.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = quizzAdapter
@@ -85,19 +90,31 @@ class QuizzFragment : BaseFragment<FragmentQuizzBinding>(), QuizzItemClick {
 
     private fun setQuizzView() {
         binding.apply {
-            btnBack.setOnClickListener{
+            btnBack.setOnClickListener {
                 findNavController().navigate(R.id.action_quizzFragment_to_homeFragment)
             }
             progressBar.progress = 1
             setQuizzItemView()
-            btnNextQuizz.setOnClickListener{
-                if(progressBar.progress == 10){
-                   finishQuizz()
+            btnNextQuizz.setOnClickListener {
+                if (progressBar.progress == 10) {
+                    finishQuizz()
                     return@setOnClickListener
                 }
                 position++
-                progressBar.progress +=1
-                var text =  "Question "+ progressBar.progress + "/10"
+                progressBar.progress += 1
+                var text = "Question " + progressBar.progress + "/10"
+                txtQuestionNum.text = text
+                setQuizzItemView()
+
+            }
+            btnBackQuizz.setOnClickListener {
+                if (progressBar.progress == 1) {
+                    finishQuizz()
+                    return@setOnClickListener
+                }
+                position--
+                progressBar.progress -= 1
+                var text = "Question " + progressBar.progress + "/10"
                 txtQuestionNum.text = text
                 setQuizzItemView()
 
@@ -106,22 +123,22 @@ class QuizzFragment : BaseFragment<FragmentQuizzBinding>(), QuizzItemClick {
         }
     }
 
-    private fun setQuizzItemView(){
+    private fun setQuizzItemView() {
         binding.txtQuestion.text = quizzList[position].correctAnswer
         binding.imgQuizz.load(quizzList[position].img_url)
         loadAnswers()
     }
 
-    private fun  finishQuizz(){
+    private fun finishQuizz() {
         findNavController().navigate(R.id.action_quizzFragment_to_homeFragment)
     }
 
     override fun itemOnClick(answerItem: AnswerItem) {
-        if(answerItem.answer == quizzList[position].correctAnswer){
-            correctViewUpdate()
-        }
+        quizzList[position].clickedAnswer = answerItem.answer
+        loadAnswers()
     }
-    private fun correctViewUpdate(){
+
+    private fun correctViewUpdate() {
 
     }
 
