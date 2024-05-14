@@ -7,6 +7,7 @@ import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
+import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 import retrofit2.await
@@ -97,6 +98,16 @@ class AnimalTypeRepoImpl @Inject constructor(private val apiService: ApiService)
     override suspend fun getMemoryCard(): Resource<MemoryCard> {
         return try {
             val result = apiService.getMemoryCard().await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+
+    override suspend fun getQuizz(): Resource<Quizz> {
+        return try {
+            val result = apiService.getQuizz().await()
             Resource.success(result)
         } catch (e: Exception) {
             e.printStackTrace()

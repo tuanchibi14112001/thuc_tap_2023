@@ -6,6 +6,7 @@ import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
+import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 
@@ -19,4 +20,6 @@ interface AnimalTypeRepo {
     suspend fun getAnimalBreeds(id: Int): Resource<AnimalSpecie>
     suspend fun getAnimalSpecies(id: Int): Resource<AnimalSpecieItem>
     suspend fun getMemoryCard(): Resource<MemoryCard>
+
+    suspend fun getQuizz(): Resource<Quizz>
 }

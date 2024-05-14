@@ -27,5 +27,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.btnGame.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_memoryGameFragment)
         }
+        binding.btnQuizz.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_quizzFragment2)
+        }
     }
 }

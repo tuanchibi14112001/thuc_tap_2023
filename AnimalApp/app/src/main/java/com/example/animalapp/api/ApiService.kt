@@ -6,6 +6,7 @@ import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
+import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.User
 import retrofit2.Call
 import retrofit2.http.Field
@@ -49,4 +50,7 @@ interface ApiService {
 
     @GET("play")
     fun getMemoryCard(): Call<MemoryCard>
+
+    @GET("quizz")
+    fun getQuizz(): Call<Quizz>
 }

@@ -1,60 +1,128 @@
 package com.example.animalapp.ui.quizz_game
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
 import com.example.animalapp.R
+import com.example.animalapp.base.BaseFragment
+import com.example.animalapp.databinding.FragmentQuizzBinding
+import com.example.animalapp.model.AnswerItem
+import com.example.animalapp.model.Quizz
+import com.example.animalapp.model.QuizzItem
+import com.example.animalapp.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [QuizzFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class QuizzFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+@AndroidEntryPoint
+class QuizzFragment : BaseFragment<FragmentQuizzBinding>(), QuizzItemClick {
+    private val viewModel: QuizzViewModel by viewModels()
+    lateinit var quizzAdapter: QuizzAdapter
+    private var quizzList: MutableList<QuizzItem> = mutableListOf()
+    private var quizz: Quizz? = null
+    private var scores: Int? = 0
+    private var position: Int = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentQuizzBinding.inflate(inflater, container, false)
+
+    override fun prepareView(savedInstanceState: Bundle?) {
+        viewModel.getQuizz()
+        observeModel()
+    }
+
+
+    private fun observeModel() {
+        viewModel.dataFlow.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    quizz = it.data
+                    if (quizz != null) {
+                        quizzList = quizz as Quizz
+                    }
+                    setQuizzView()
+                    hideLoading()
+                }
+
+                Status.ERROR -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    hideLoading()
+                }
+
+                Status.LOADING -> {
+                    showLoading()
+                }
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quizz, container, false)
+    private fun loadAnswers() {
+        var answers: MutableList<AnswerItem> = mutableListOf()
+
+        quizzList[position].answers.forEach{
+            var answerItem = AnswerItem("")
+            answerItem.answer = it
+            answers.add(answerItem)
+            Log.d("CHECK", answers.toString())
+        }
+        quizzAdapter = QuizzAdapter(this)
+        quizzAdapter.submitList(answers)
+        binding.recvAnswerList.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = quizzAdapter
+        }
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment QuizzFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            QuizzFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun setQuizzView() {
+        binding.apply {
+            btnBack.setOnClickListener{
+                findNavController().navigate(R.id.action_quizzFragment_to_homeFragment)
             }
+            progressBar.progress = 1
+            setQuizzItemView()
+            btnNextQuizz.setOnClickListener{
+                if(progressBar.progress == 10){
+                   finishQuizz()
+                    return@setOnClickListener
+                }
+                position++
+                progressBar.progress +=1
+                var text =  "Question "+ progressBar.progress + "/10"
+                txtQuestionNum.text = text
+                setQuizzItemView()
+
+            }
+
+        }
     }
+
+    private fun setQuizzItemView(){
+        binding.txtQuestion.text = quizzList[position].correctAnswer
+        binding.imgQuizz.load(quizzList[position].img_url)
+        loadAnswers()
+    }
+
+    private fun  finishQuizz(){
+        findNavController().navigate(R.id.action_quizzFragment_to_homeFragment)
+    }
+
+    override fun itemOnClick(answerItem: AnswerItem) {
+        if(answerItem.answer == quizzList[position].correctAnswer){
+            correctViewUpdate()
+        }
+    }
+    private fun correctViewUpdate(){
+
+    }
+
 }
