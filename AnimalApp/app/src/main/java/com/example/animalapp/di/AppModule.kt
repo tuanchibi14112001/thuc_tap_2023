@@ -1,5 +1,6 @@
 package com.example.animalapp.di
 
+import com.example.animalapp.api.ApiAiService
 import com.example.animalapp.api.ApiService
 import com.example.animalapp.repository.AnimalTypeRepo
 import com.example.animalapp.repository.AnimalTypeRepoImpl
@@ -29,6 +30,15 @@ class AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(): ApiAiService =
+        Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL_AI)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiAiService::class.java)
 
     @Provides
     fun provideAnimalTypeRepo(animalTypeRepoImpl: AnimalTypeRepoImpl): AnimalTypeRepo =

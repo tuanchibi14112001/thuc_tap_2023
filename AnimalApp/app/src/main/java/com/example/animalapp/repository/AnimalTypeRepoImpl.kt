@@ -1,5 +1,6 @@
 package com.example.animalapp.repository
 
+import com.example.animalapp.api.ApiAiService
 import com.example.animalapp.api.ApiService
 import com.example.animalapp.model.AnimalFamily
 import com.example.animalapp.model.AnimalSpecie
@@ -8,12 +9,13 @@ import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.Quizz
+import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 import retrofit2.await
 import javax.inject.Inject
 
-class AnimalTypeRepoImpl @Inject constructor(private val apiService: ApiService) : AnimalTypeRepo {
+class AnimalTypeRepoImpl @Inject constructor(private val apiService: ApiService, private val apiAiService: ApiAiService) : AnimalTypeRepo {
     override suspend fun loginUser(email: String, pwd: String): Resource<AuthResponse> {
         return try {
             val result = apiService.loginUser(email, pwd).await()
@@ -108,6 +110,16 @@ class AnimalTypeRepoImpl @Inject constructor(private val apiService: ApiService)
     override suspend fun getQuizz(): Resource<Quizz> {
         return try {
             val result = apiService.getQuizz().await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+
+    override suspend fun getTest(): Resource<TestModel> {
+        return try {
+            val result = apiAiService.getTest().await()
             Resource.success(result)
         } catch (e: Exception) {
             e.printStackTrace()
