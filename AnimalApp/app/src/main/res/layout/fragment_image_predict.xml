@@ -1,22 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.image_predict.ImagePredictFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/txtView"
+        android:id="@+id/txtTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-    <Button
-        android:id="@+id/btnNext"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/item_24"
+        android:fontFamily="@font/lato_bold"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/item_10"
+        android:text="@string/str_title"
+        android:textSize="@dimen/txt_26"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgPic"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="@dimen/item_24"
+        android:src="@drawable/ic_image_pic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnTakePic"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CLICK ME"
-        />
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/blue_6B4"
+        android:clickable="true"
+        android:contentDescription="TODO"
+        android:src="@drawable/ic_camera"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPic"
+        app:layout_constraintEnd_toEndOf="@+id/imgPic" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btnPredict"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_24"
+        android:fontFamily="@font/lato_bold"
+        android:text="Predict"
+        android:textSize="@dimen/txt_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPic" />
+
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_24"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="@dimen/txt_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPredict"
+        tools:text="Result: DOG" />
+</androidx.constraintlayout.widget.ConstraintLayout>
