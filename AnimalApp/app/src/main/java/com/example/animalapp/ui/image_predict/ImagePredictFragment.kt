@@ -2,6 +2,7 @@ package com.example.animalapp.ui.image_predict
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -20,11 +21,18 @@ import com.example.animalapp.databinding.FragmentImagePredictBinding
 import com.example.animalapp.utils.Status
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 
 @AndroidEntryPoint
 class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
     private val viewModel: ImagePredictViewModel by viewModels()
+    private var imgUri: Uri ?= null
+    private var file: File ?= null
     private val startForProfileImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val resultCode = result.resultCode
@@ -33,9 +41,10 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
             if (resultCode == Activity.RESULT_OK) {
                 //Image Uri will not be null for RESULT_OK
                 val fileUri = data?.data!!
-
-                val mProfileUri = fileUri
+                imgUri = fileUri
                 binding.imgPic.setImageURI(fileUri)
+                file = File(fileUri.path!!)
+
 
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT)
@@ -53,7 +62,7 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
     override fun prepareView(savedInstanceState: Bundle?) {
         binding.btnTakePic.setOnClickListener {
             ImagePicker.with(this)
-                .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                .crop()//Final image size will be less than 1 MB(Optional)
                 .maxResultSize(
                     1080,
                     1080
@@ -62,6 +71,20 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
                     startForProfileImageResult.launch(intent)
                 }
         }
+        binding.btnPredict.setOnClickListener{
+            if(file == null){
+                Toast.makeText(requireContext(), "Add your image", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                file?.let {
+                    val requestBody: RequestBody = it
+                        .asRequestBody("image/*".toMediaTypeOrNull())
+                    val part = MultipartBody.Part.createFormData("file", it.name,requestBody)
+                    viewModel.getAnimalNamePre(part)
+                }
+            }
+        }
+        observeModel()
     }
 
 
@@ -70,6 +93,8 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
             when (it.status) {
                 Status.SUCCESS -> {
                     Log.d("CHECK", it.data.toString())
+                    val result = "Result: " + it.data!!.result
+                    binding.txtResult.text =   result
                     hideLoading()
                 }
 
@@ -84,6 +109,12 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        imgUri = null
+        file = null
+        super.onDestroy()
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.animalapp.repository
 
 import com.example.animalapp.model.AnimalFamily
+import com.example.animalapp.model.AnimalPredictResult
 import com.example.animalapp.model.AnimalSpecie
 import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
@@ -10,6 +11,7 @@ import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
+import okhttp3.MultipartBody
 
 interface AnimalTypeRepo {
     suspend fun loginUser(email: String, pwd: String): Resource<AuthResponse>
@@ -25,4 +27,7 @@ interface AnimalTypeRepo {
     suspend fun getQuizz(): Resource<Quizz>
 
     suspend fun getTest(): Resource<TestModel>
+    suspend fun getFileName(part: MultipartBody.Part): Resource<TestModel>
+
+    suspend fun getAnimalNamePre(part: MultipartBody.Part): Resource<AnimalPredictResult>
 }
