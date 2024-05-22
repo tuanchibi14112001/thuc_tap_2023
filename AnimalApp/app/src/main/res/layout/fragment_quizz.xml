@@ -87,7 +87,7 @@
                 android:layout_marginEnd="@dimen/item_24"
                 android:indeterminateDuration="10"
                 android:max="10"
-                android:progress="4"
+                android:progress="1"
                 app:indicatorColor="@color/orange"
                 app:trackCornerRadius="@dimen/item_50"
                 app:trackThickness="@dimen/item_15" />
@@ -109,19 +109,19 @@
                 android:id="@+id/cardView"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
-                app:cardCornerRadius="@dimen/item_15"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/item_24"
                 android:layout_marginTop="@dimen/item_10"
                 android:layout_marginRight="@dimen/item_24"
-                android:layout_marginBottom="@dimen/item_24">
+                android:layout_marginBottom="@dimen/item_24"
+                app:cardCornerRadius="@dimen/item_15">
 
                 <ImageView
                     android:id="@+id/img_quizz"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/dog_list" />
+                    tools:src="@drawable/dog_list" />
             </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView

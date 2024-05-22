@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_quizzFragment2"
             app:destination="@id/quizzFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_imagePredictFragment"
+            app:destination="@id/imagePredictFragment" />
     </fragment>
     <fragment
         android:id="@+id/animalTypeFragment"
@@ -122,9 +125,5 @@
         android:id="@+id/imagePredictFragment"
         android:name="com.example.animalapp.ui.image_predict.ImagePredictFragment"
         android:label="fragment_image_predict"
-        tools:layout="@layout/fragment_image_predict" >
-        <action
-            android:id="@+id/action_imagePredictFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_image_predict" />
 </navigation>

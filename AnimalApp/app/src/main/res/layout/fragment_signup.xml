@@ -185,6 +185,7 @@
             android:id="@+id/txt2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/item_10"
             android:layout_marginEnd="@dimen/item_5"
             android:layout_marginBottom="@dimen/item_40"
             android:text="@string/str_has_account"

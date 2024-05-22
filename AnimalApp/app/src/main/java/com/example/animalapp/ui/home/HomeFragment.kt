@@ -30,5 +30,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.btnQuizz.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_quizzFragment2)
         }
+        binding.btnPredict.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_imagePredictFragment)
+        }
     }
 }
