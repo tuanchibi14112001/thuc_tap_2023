@@ -124,7 +124,8 @@ class QuizzFragment : BaseFragment<FragmentQuizzBinding>(), QuizzItemClick {
     }
 
     private fun setQuizzItemView() {
-        binding.txtQuestion.text = quizzList[position].correctAnswer
+        val txt = "Who am I"
+        binding.txtQuestion.text = txt
         binding.imgQuizz.load(quizzList[position].img_url)
         loadAnswers()
     }
