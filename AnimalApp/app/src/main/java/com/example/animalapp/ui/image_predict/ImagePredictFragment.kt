@@ -31,8 +31,8 @@ import java.io.File
 @AndroidEntryPoint
 class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
     private val viewModel: ImagePredictViewModel by viewModels()
-    private var imgUri: Uri ?= null
-    private var file: File ?= null
+    private var imgUri: Uri? = null
+    private var file: File? = null
     private val startForProfileImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val resultCode = result.resultCode
@@ -71,17 +71,24 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
                     startForProfileImageResult.launch(intent)
                 }
         }
-        binding.btnPredict.setOnClickListener{
-            if(file == null){
+        binding.btnPredict.setOnClickListener {
+            if (file == null) {
                 Toast.makeText(requireContext(), "Add your image", Toast.LENGTH_SHORT).show()
-            }
-            else{
+            } else {
                 file?.let {
                     val requestBody: RequestBody = it
                         .asRequestBody("image/*".toMediaTypeOrNull())
-                    val part = MultipartBody.Part.createFormData("file", it.name,requestBody)
+                    val part = MultipartBody.Part.createFormData("file", it.name, requestBody)
                     viewModel.getAnimalNamePre(part)
                 }
+//                imgUri?.let {
+//                    val bundle = Bundle().apply {
+//                        putString("img_uri", imgUri.toString())
+//                    }
+//                    findNavController().navigate(R.id.action_imagePredictFragment_to_resultInfoFragment, bundle)
+//                }
+
+
             }
         }
         observeModel()
@@ -94,7 +101,8 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
                 Status.SUCCESS -> {
                     Log.d("CHECK", it.data.toString())
                     val result = "Result: " + it.data!!.result
-                    binding.txtResult.text =   result
+                    Log.d("CHECK", it.data.similar.toString())
+                    binding.txtResult.text = result
                     hideLoading()
                 }
 

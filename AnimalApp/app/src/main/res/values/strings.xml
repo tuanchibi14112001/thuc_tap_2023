@@ -36,4 +36,6 @@
 
     <!--   Animal Prediction -->
     <string name="str_title">Choose a photo of an animal</string>
+    <string name="str_info">More Information: </string>
+
 </resources>
