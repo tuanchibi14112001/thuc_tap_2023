@@ -6,6 +6,7 @@ import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
+import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.User
 import retrofit2.Call
@@ -47,6 +48,9 @@ interface ApiService {
 
     @GET("animal_family/{id}")
     fun getAnimalBreeds(@Path("id") id: Int): Call<AnimalSpecie>
+
+    @GET("animal_family/detail/{animalf_name}")
+    fun getMoreInfo(@Path("animalf_name") animalf_name: String): Call<MoreInfo>
 
     @GET("play")
     fun getMemoryCard(): Call<MemoryCard>

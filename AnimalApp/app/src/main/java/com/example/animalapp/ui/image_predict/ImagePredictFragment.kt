@@ -80,18 +80,10 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
                         .asRequestBody("image/*".toMediaTypeOrNull())
                     val part = MultipartBody.Part.createFormData("file", it.name, requestBody)
                     viewModel.getAnimalNamePre(part)
+                    observeModel()
                 }
-//                imgUri?.let {
-//                    val bundle = Bundle().apply {
-//                        putString("img_uri", imgUri.toString())
-//                    }
-//                    findNavController().navigate(R.id.action_imagePredictFragment_to_resultInfoFragment, bundle)
-//                }
-
-
             }
         }
-        observeModel()
     }
 
 
@@ -100,9 +92,12 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
             when (it.status) {
                 Status.SUCCESS -> {
                     Log.d("CHECK", it.data.toString())
-                    val result = "Result: " + it.data!!.result
-                    Log.d("CHECK", it.data.similar.toString())
-                    binding.txtResult.text = result
+                    val result = it.data
+                    val bundle = Bundle().apply {
+                        putString("img_uri", imgUri.toString())
+                        putSerializable("predict_res", result)
+                    }
+                    findNavController().navigate(R.id.action_imagePredictFragment_to_resultInfoFragment, bundle)
                     hideLoading()
                 }
 
@@ -117,6 +112,13 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
                 }
             }
         }
+    }
+
+    override fun onStop() {
+        imgUri = null
+        file = null
+
+        super.onStop()
     }
 
     override fun onDestroy() {

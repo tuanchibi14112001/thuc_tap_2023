@@ -9,6 +9,7 @@ import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
+import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.User
@@ -82,6 +83,16 @@ class AnimalTypeRepoImpl @Inject constructor(private val apiService: ApiService,
     override suspend fun getAnimalBreeds(id: Int): Resource<AnimalSpecie> {
         return try {
             val result = apiService.getAnimalBreeds(id).await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+
+    override suspend fun getMoreInfo(animalf_name: String): Resource<MoreInfo> {
+        return try {
+            val result = apiService.getMoreInfo(animalf_name).await()
             Resource.success(result)
         } catch (e: Exception) {
             e.printStackTrace()
