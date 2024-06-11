@@ -1,5 +1,6 @@
 package com.example.animalapp.repository
 
+import android.util.Log
 import com.example.animalapp.api.ApiAiService
 import com.example.animalapp.api.ApiService
 import com.example.animalapp.model.AnimalFamily
@@ -10,6 +11,7 @@ import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.MoreInfo
+import com.example.animalapp.model.MoreInfoList
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.User
@@ -18,7 +20,10 @@ import okhttp3.MultipartBody
 import retrofit2.await
 import javax.inject.Inject
 
-class AnimalTypeRepoImpl @Inject constructor(private val apiService: ApiService, private val apiAiService: ApiAiService) : AnimalTypeRepo {
+class AnimalTypeRepoImpl @Inject constructor(
+    private val apiService: ApiService,
+    private val apiAiService: ApiAiService
+) : AnimalTypeRepo {
     override suspend fun loginUser(email: String, pwd: String): Resource<AuthResponse> {
         return try {
             val result = apiService.loginUser(email, pwd).await()
@@ -93,6 +98,16 @@ class AnimalTypeRepoImpl @Inject constructor(private val apiService: ApiService,
     override suspend fun getMoreInfo(animalf_name: String): Resource<MoreInfo> {
         return try {
             val result = apiService.getMoreInfo(animalf_name).await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+
+    override suspend fun getOtherResults(other_results: List<String>): Resource<MoreInfoList> {
+        return try {
+            val result = apiService.getOtherResults(other_results).await()
             Resource.success(result)
         } catch (e: Exception) {
             e.printStackTrace()

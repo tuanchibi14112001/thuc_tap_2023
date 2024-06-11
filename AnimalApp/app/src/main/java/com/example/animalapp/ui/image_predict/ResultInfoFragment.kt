@@ -18,12 +18,14 @@ import com.example.animalapp.databinding.FragmentResultInfoBinding
 import com.example.animalapp.model.AnimalFamilyItem
 import com.example.animalapp.model.AnimalPredictResult
 import com.example.animalapp.model.MoreInfo
+import com.example.animalapp.model.MoreInfoList
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>() {
     private val viewModel: ResultInfoViewModel by viewModels()
+    private var resultInfo: MoreInfoList? = null
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -46,10 +48,12 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>() {
 
         animalPredictResult?.let {
             val animefName = it.result
+            val results: MutableList<String> = it.similar.toMutableList()
             val resultTxt = "I think this is: " + animefName
             binding.resultTxt.text = resultTxt
-            viewModel.getMoreInfo(animefName)
-            observeModel()
+            results.add(0, it.result)
+            viewModel.getOtherResults(results)
+            observeOtherResultData()
         }
     }
 
@@ -62,23 +66,21 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>() {
         binding.txtDes.text = info.desc
     }
 
-    private fun observeModel() {
-        viewModel.dataFlow.observe(viewLifecycleOwner) {
+    private fun observeOtherResultData() {
+        viewModel.otherResultDataFlow.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-                    Log.d("CHECK", it.data.toString())
-                    val moreInfo: MoreInfo? = it.data
-                    moreInfo?.let { info ->
-                        if (info.is_exist == 1) {
-                            updateMoreInfoUi(info)
-                        }
+                    resultInfo = it.data
+                    resultInfo?.let { infoList ->
+                        val predictAnimalInfo = infoList[0]
+                        updateMoreInfoUi(predictAnimalInfo)
                     }
                     hideLoading()
                 }
 
                 Status.ERROR -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    it.message?.let { it1 -> Log.d("CHECK", it1) }
+                    it.message?.let { it1 -> Log.d("CHECK_ERR", it1) }
                     hideLoading()
                 }
 

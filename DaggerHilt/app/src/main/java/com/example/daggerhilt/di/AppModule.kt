@@ -18,13 +18,12 @@ object AppModule {
 
 
     @Provides
-    @Named("hsgd")
     fun provideBaseUrl() = Constants.BASE_URL
 
     @Provides
     @Singleton
-    @Named("1")
-    fun provideRetrofitInstance(@Named("jhsdf") BASE_URL: String): ApiService =
+
+    fun provideRetrofitInstance(BASE_URL: String): ApiService =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -33,7 +32,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRetrofitInstance2(@Named("jhsdf") BASE_URL: String): ApiService =
+    fun provideRetrofitInstance2(BASE_URL: String): ApiService =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

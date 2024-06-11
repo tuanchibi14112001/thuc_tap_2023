@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.animalapp.base.BaseViewModel
 import com.example.animalapp.model.AnimalPredictResult
 import com.example.animalapp.model.MoreInfo
+import com.example.animalapp.model.MoreInfoList
 import com.example.animalapp.repository.AnimalTypeRepo
 import com.example.animalapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,13 +17,22 @@ import javax.inject.Inject
 @HiltViewModel
 class ResultInfoViewModel @Inject constructor(private val repo: AnimalTypeRepo) : BaseViewModel() {
     private val _dataFlow = MutableLiveData<Resource<MoreInfo>>()
+    private val _otherResultDataFlow = MutableLiveData<Resource<MoreInfoList>>()
     val dataFlow: LiveData<Resource<MoreInfo>>
         get() = _dataFlow
+    val otherResultDataFlow: LiveData<Resource<MoreInfoList>>
+        get() = _otherResultDataFlow
 
     fun getMoreInfo(animalf_name: String) = viewModelScope.launch {
         _dataFlow.value = Resource.loading()
         val result = repo.getMoreInfo(animalf_name)
         _dataFlow.value = result
+    }
+
+    fun getOtherResults(other_results: List<String>) = viewModelScope.launch {
+        _otherResultDataFlow.value = Resource.loading()
+        val result = repo.getOtherResults(other_results)
+        _otherResultDataFlow.value = result
     }
 
 }

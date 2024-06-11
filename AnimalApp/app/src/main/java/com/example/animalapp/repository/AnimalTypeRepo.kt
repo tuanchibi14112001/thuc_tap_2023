@@ -8,6 +8,7 @@ import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.MoreInfo
+import com.example.animalapp.model.MoreInfoList
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.User
@@ -23,6 +24,7 @@ interface AnimalTypeRepo {
     suspend fun getAnimalFamily(name: String): Resource<AnimalFamily>
     suspend fun getAnimalBreeds(id: Int): Resource<AnimalSpecie>
     suspend fun getMoreInfo(animalf_name: String): Resource<MoreInfo>
+    suspend fun  getOtherResults(other_results: List<String>): Resource<MoreInfoList>
     suspend fun getAnimalSpecies(id: Int): Resource<AnimalSpecieItem>
     suspend fun getMemoryCard(): Resource<MemoryCard>
 
