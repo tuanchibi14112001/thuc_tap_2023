@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
@@ -18,14 +19,16 @@ import com.example.animalapp.databinding.FragmentResultInfoBinding
 import com.example.animalapp.model.AnimalFamilyItem
 import com.example.animalapp.model.AnimalPredictResult
 import com.example.animalapp.model.MoreInfo
-import com.example.animalapp.model.MoreInfoList
+import com.example.animalapp.model.AnimalFamily
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>() {
+class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResultItemClickListener {
     private val viewModel: ResultInfoViewModel by viewModels()
-    private var resultInfo: MoreInfoList? = null
+    private var resultInfo: AnimalFamily? = null
+    private lateinit var animalFamilyAdapter: AnimalFamilyAdapter
+
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -54,10 +57,11 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>() {
             results.add(0, it.result)
             viewModel.getOtherResults(results)
             observeOtherResultData()
+            setRv()
         }
     }
 
-    private fun updateMoreInfoUi(info: MoreInfo) {
+    private fun updateMoreInfoUi(info: AnimalFamilyItem) {
         binding.imgAnimal.visibility = View.VISIBLE
         binding.scrDesc.visibility = View.VISIBLE
         binding.imgAnimal.load(
@@ -66,6 +70,18 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>() {
         binding.txtDes.text = info.desc
     }
 
+    private fun setRv() {
+        animalFamilyAdapter = AnimalFamilyAdapter(this)
+        binding.recvOtherResults.apply {
+            adapter = animalFamilyAdapter
+            layoutManager = LinearLayoutManager(
+                requireContext(), LinearLayoutManager.HORIZONTAL, false
+            )
+            setHasFixedSize(true)
+        }
+    }
+
+
     private fun observeOtherResultData() {
         viewModel.otherResultDataFlow.observe(viewLifecycleOwner) {
             when (it.status) {
@@ -73,7 +89,10 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>() {
                     resultInfo = it.data
                     resultInfo?.let { infoList ->
                         val predictAnimalInfo = infoList[0]
-                        updateMoreInfoUi(predictAnimalInfo)
+                        if (predictAnimalInfo.is_exist == 1)
+                            updateMoreInfoUi(predictAnimalInfo)
+                        val otherResult = infoList.drop(1)
+                        animalFamilyAdapter.submitList(otherResult)
                     }
                     hideLoading()
                 }
@@ -88,6 +107,21 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>() {
                     showLoading()
                 }
             }
+        }
+    }
+
+    override fun itemOnClick(animalFamilyItem: AnimalFamilyItem) {
+        if (animalFamilyItem.is_exist == 1) {
+            val bundle = Bundle().apply {
+                putSerializable("animal_family_item", animalFamilyItem)
+            }
+            findNavController().navigate(
+                R.id.action_resultInfoFragment_to_familyDetailFragment,
+                bundle
+            )
+        } else {
+            Toast.makeText(requireContext(), "No information in the database", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 

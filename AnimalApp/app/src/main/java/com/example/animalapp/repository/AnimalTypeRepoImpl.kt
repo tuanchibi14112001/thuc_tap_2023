@@ -11,7 +11,6 @@ import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.MoreInfo
-import com.example.animalapp.model.MoreInfoList
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.User
@@ -105,7 +104,7 @@ class AnimalTypeRepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getOtherResults(other_results: List<String>): Resource<MoreInfoList> {
+    override suspend fun getOtherResults(other_results: List<String>): Resource<AnimalFamily> {
         return try {
             val result = apiService.getOtherResults(other_results).await()
             Resource.success(result)

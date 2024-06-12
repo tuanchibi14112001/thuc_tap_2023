@@ -134,5 +134,9 @@
         android:id="@+id/resultInfoFragment"
         android:name="com.example.animalapp.ui.image_predict.ResultInfoFragment"
         android:label="fragment_result_info"
-        tools:layout="@layout/fragment_result_info" />
+        tools:layout="@layout/fragment_result_info" >
+        <action
+            android:id="@+id/action_resultInfoFragment_to_familyDetailFragment"
+            app:destination="@id/familyDetailFragment" />
+    </fragment>
 </navigation>
