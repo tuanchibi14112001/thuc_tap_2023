@@ -8,14 +8,18 @@ import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
+import com.example.animalapp.model.UploadImageResponse
 import com.example.animalapp.model.User
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -62,4 +66,12 @@ interface ApiService {
 
     @GET("quizz")
     fun getQuizz(): Call<Quizz>
+
+    @Multipart
+    @POST("user/gallery-upload")
+    fun postImageToGallery(
+        @Header("Authorization") auth:String,
+        @Part("animal_family_id") animal_family_id: Int,
+        @Part image: MultipartBody.Part
+    ): Call<UploadImageResponse>
 }

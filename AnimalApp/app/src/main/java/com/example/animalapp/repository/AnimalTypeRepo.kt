@@ -10,6 +10,7 @@ import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.TestModel
+import com.example.animalapp.model.UploadImageResponse
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 import okhttp3.MultipartBody
@@ -19,11 +20,17 @@ interface AnimalTypeRepo {
     suspend fun registerUser(name: String, email: String, pwd: String): Resource<AuthResponse>
 
     suspend fun getUser(token: String): Resource<User>
+    suspend fun postImageToGallery(
+        token: String,
+        animal_family_id: Int,
+        part: MultipartBody.Part
+    ): Resource<UploadImageResponse>
+
     suspend fun getAnimalType(): Resource<List<AnimalType>>
     suspend fun getAnimalFamily(name: String): Resource<AnimalFamily>
     suspend fun getAnimalBreeds(id: Int): Resource<AnimalSpecie>
     suspend fun getMoreInfo(animalf_name: String): Resource<MoreInfo>
-    suspend fun  getOtherResults(other_results: List<String>): Resource<AnimalFamily>
+    suspend fun getOtherResults(other_results: List<String>): Resource<AnimalFamily>
     suspend fun getAnimalSpecies(id: Int): Resource<AnimalSpecieItem>
     suspend fun getMemoryCard(): Resource<MemoryCard>
 

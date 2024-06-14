@@ -13,6 +13,7 @@ import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.TestModel
+import com.example.animalapp.model.UploadImageResponse
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 import okhttp3.MultipartBody
@@ -63,6 +64,22 @@ class AnimalTypeRepoImpl @Inject constructor(
             Resource.error(e.toString())
         }
     }
+
+    override suspend fun postImageToGallery(
+        token: String,
+        animal_family_id: Int,
+        part: MultipartBody.Part
+    ): Resource<UploadImageResponse> {
+        return try {
+            val result =
+                apiService.postImageToGallery("Bearer $token", animal_family_id, part).await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+
 
     override suspend fun getAnimalType(): Resource<List<AnimalType>> {
         return try {

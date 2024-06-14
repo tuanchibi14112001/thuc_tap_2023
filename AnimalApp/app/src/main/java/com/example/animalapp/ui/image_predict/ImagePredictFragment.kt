@@ -62,10 +62,10 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
     override fun prepareView(savedInstanceState: Bundle?) {
         binding.btnTakePic.setOnClickListener {
             ImagePicker.with(this)
-                .crop()//Final image size will be less than 1 MB(Optional)
+                .crop()
                 .maxResultSize(
-                    1080,
-                    1080
+                    300,
+                    300
                 )
                 .createIntent { intent ->
                     startForProfileImageResult.launch(intent)
