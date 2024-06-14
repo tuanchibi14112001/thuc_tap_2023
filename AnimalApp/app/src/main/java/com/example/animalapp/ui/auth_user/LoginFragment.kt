@@ -13,20 +13,21 @@ import androidx.navigation.fragment.findNavController
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentLoginBinding
+import com.example.animalapp.utils.MySharedPreferences
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
-
     private val viewModel: LoginViewModel by viewModels()
+
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
     ) = FragmentLoginBinding.inflate(inflater, container, false)
 
     override fun prepareView(savedInstanceState: Bundle?) {
-        binding.btnSignup.setOnClickListener{
+        binding.btnSignup.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_signupFragment)
         }
         checkEnableSubmitBtn()
@@ -58,8 +59,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             binding.btnLoginSubmit.setOnClickListener {
                 viewModel.loginUser(email, pwd)
             }
-        }
-        else{
+        } else {
             binding.btnLoginSubmit.isEnabled = false
             binding.btnLoginSubmit.setBackgroundColor(resources.getColor(R.color.disable_btn))
             binding.btnLoginSubmit.setTextColor(resources.getColor(R.color.white))
@@ -70,10 +70,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         viewModel.dataFlow.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-//                    Toast.makeText(requireContext(), it.data?.token, Toast.LENGTH_SHORT).show()
-//                    val bundle = Bundle().apply {
-//                        putString("user_token", it.data?.token)
-//                    }
+                    val token = it.data?.token
+                    token?.let{strToken->
+                        val mySharedPreferences = MySharedPreferences(requireContext())
+                        mySharedPreferences.setUserToken(strToken)
+                    }
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     hideLoading()
                 }
@@ -89,8 +90,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             }
         }
     }
-
-
 
 
 }

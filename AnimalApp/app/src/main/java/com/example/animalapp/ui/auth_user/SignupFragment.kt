@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentSignupBinding
+import com.example.animalapp.utils.MySharedPreferences
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -78,6 +79,11 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>() {
             when (it.status) {
                 Status.SUCCESS -> {
                     Toast.makeText(requireContext(), it.data?.message, Toast.LENGTH_SHORT).show()
+                    val token = it.data?.token
+                    token?.let{strToken->
+                        val mySharedPreferences = MySharedPreferences(requireContext())
+                        mySharedPreferences.setUserToken(strToken)
+                    }
                     findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
                     hideLoading()
                 }
