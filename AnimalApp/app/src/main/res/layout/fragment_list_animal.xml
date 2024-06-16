@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.animal_family.ListAnimalFragment">
+    tools:context=".ui.animal_specie.ListAnimalFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="30dp"

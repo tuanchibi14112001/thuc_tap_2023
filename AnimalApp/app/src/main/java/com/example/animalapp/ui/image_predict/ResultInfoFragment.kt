@@ -151,7 +151,7 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
     override fun itemOnClick(animalSpecieItem: AnimalSpecieItem) {
         if (animalSpecieItem.is_exist == 1) {
             val bundle = Bundle().apply {
-                putSerializable("animal_family_item", animalSpecieItem)
+                putSerializable("animal_specie_item", animalSpecieItem)
             }
             findNavController().navigate(
                 R.id.action_resultInfoFragment_to_familyDetailFragment,

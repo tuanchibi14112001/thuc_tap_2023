@@ -46,10 +46,10 @@ interface ApiService {
     fun getAnimalType(): Call<List<AnimalType>>
 
     @GET("animal_type/{animal_name}")
-    fun getAnimalFamily(@Path("animal_name") animal_name: String): Call<AnimalSpecie>
+    fun getAnimalSpecies(@Path("animal_name") animal_name: String): Call<AnimalSpecie>
 
     @GET("animal_breed/{id}")
-    fun getAnimalSpecies(@Path("id") id: Int): Call<AnimalBreedItem>
+    fun getAnimalBreedDetail(@Path("id") id: Int): Call<AnimalBreedItem>
 
     @GET("animal_specie/get_breeds/{id}")
     fun getAnimalBreeds(@Path("id") id: Int): Call<AnimalBreed>

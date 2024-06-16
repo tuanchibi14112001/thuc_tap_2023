@@ -1,4 +1,4 @@
-package com.example.animalapp.ui.animal_family
+package com.example.animalapp.ui.animal_specie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,9 +17,9 @@ class ListAnimalViewModel @Inject constructor(private val repo: AnimalTypeRepo) 
     val dataFlow : LiveData<Resource<AnimalSpecie>>
         get() = _dataFlow
 
-    fun getAnimalFamily(name: String) = viewModelScope.launch {
+    fun getAnimalSpecies(name: String) = viewModelScope.launch {
         _dataFlow.value = Resource.loading()
-        val result = repo.getAnimalFamily(name)
+        val result = repo.getAnimalSpecies(name)
         _dataFlow.value = result
     }
 }

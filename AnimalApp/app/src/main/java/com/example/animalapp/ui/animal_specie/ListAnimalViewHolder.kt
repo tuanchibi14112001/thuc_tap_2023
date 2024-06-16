@@ -1,12 +1,12 @@
-package com.example.animalapp.ui.animal_family
+package com.example.animalapp.ui.animal_specie
 
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.animalapp.databinding.FamilyItemBinding
+import com.example.animalapp.databinding.SpecieItemBinding
 import com.example.animalapp.model.AnimalSpecieItem
 
 class ListAnimalViewHolder(
-    private val itemBinding: FamilyItemBinding,
+    private val itemBinding: SpecieItemBinding,
     private val itemClickListener: ItemClickListener
 ) :
     RecyclerView.ViewHolder(itemBinding.root) {
@@ -18,7 +18,7 @@ class ListAnimalViewHolder(
             crossfade(500)
         }
         itemBinding.txtAnimalName.text = animalSpecieItem.name
-        itemBinding.cvAnimalFamily.setOnClickListener {
+        itemBinding.cvAnimalSpecie.setOnClickListener {
             itemClickListener.itemOnClick(animalSpecieItem)
         }
     }

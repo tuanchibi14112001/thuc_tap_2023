@@ -27,7 +27,7 @@ class AnimalBreedFragment : BaseFragment<FragmentAnimalBreedBinding>() {
         val args = this.arguments
         val animalBreedItemId = args?.getInt("animal_breed_detail")
         if(animalBreedItemId != null){
-            viewModel.getAnimalSpecies(animalBreedItemId)
+            viewModel.getAnimalBreedDetail(animalBreedItemId)
         }
         observeModel()
 //        Log.d("CHECK", animalBreedItem.toString())

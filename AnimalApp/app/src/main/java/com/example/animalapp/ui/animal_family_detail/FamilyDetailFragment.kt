@@ -33,9 +33,9 @@ class FamilyDetailFragment : BaseFragment<FragmentFamilyDetailBinding>(), Specie
     override fun prepareView(savedInstanceState: Bundle?) {
         val args = this.arguments
         val familyItem: AnimalSpecieItem? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            args?.getSerializable("animal_family_item", AnimalSpecieItem::class.java)
+            args?.getSerializable("animal_specie_item", AnimalSpecieItem::class.java)
         } else {
-            args?.getSerializable("animal_family_item") as AnimalSpecieItem
+            args?.getSerializable("animal_specie_item") as AnimalSpecieItem
         }
         familyItem?.let {
             binding.txtName.text = it.name

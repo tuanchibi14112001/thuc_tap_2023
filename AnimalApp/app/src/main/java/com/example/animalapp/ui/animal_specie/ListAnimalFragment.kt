@@ -1,4 +1,4 @@
-package com.example.animalapp.ui.animal_family
+package com.example.animalapp.ui.animal_specie
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,7 +30,7 @@ class ListAnimalFragment : BaseFragment<FragmentListAnimalBinding>(), ItemClickL
     override fun prepareView(savedInstanceState: Bundle?) {
         val args = this.arguments
         val name = args?.getString("animal_type")
-        viewModel.getAnimalFamily(name?:"a")
+        viewModel.getAnimalSpecies(name?:"a")
         observeModel()
 
         listAnimalAdapter = ListAnimalAdapter(this)
@@ -65,7 +65,7 @@ class ListAnimalFragment : BaseFragment<FragmentListAnimalBinding>(), ItemClickL
 
     override fun itemOnClick(animalSpecieItem: AnimalSpecieItem) {
         val bundle = Bundle().apply {
-            putSerializable("animal_family_item", animalSpecieItem)
+            putSerializable("animal_specie_item", animalSpecieItem)
         }
         findNavController().navigate(R.id.action_listAnimalFragment_to_familyDetailFragment, bundle)
     }

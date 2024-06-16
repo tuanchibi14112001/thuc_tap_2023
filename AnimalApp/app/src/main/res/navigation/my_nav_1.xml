@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/listAnimalFragment"
-        android:name="com.example.animalapp.ui.animal_family.ListAnimalFragment"
+        android:name="com.example.animalapp.ui.animal_specie.ListAnimalFragment"
         android:label="fragment_list_animal"
         tools:layout="@layout/fragment_list_animal" >
         <action

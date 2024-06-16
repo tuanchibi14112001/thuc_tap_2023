@@ -6,7 +6,7 @@
     android:elevation="10dp"
     app:cardCornerRadius="5dp"
     android:layout_margin="10dp"
-    android:id="@+id/cvAnimalFamily"
+    android:id="@+id/cvAnimalSpecie"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout

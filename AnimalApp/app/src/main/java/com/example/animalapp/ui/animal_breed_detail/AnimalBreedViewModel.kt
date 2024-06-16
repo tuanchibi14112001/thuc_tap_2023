@@ -18,9 +18,9 @@ class AnimalBreedViewModel @Inject constructor(private val repo: AnimalTypeRepo)
     val dataFlow : LiveData<Resource<AnimalBreedItem>>
     get() = _dataFlow
 
-    fun getAnimalSpecies(id: Int) = viewModelScope.launch {
+    fun getAnimalBreedDetail(id: Int) = viewModelScope.launch {
         _dataFlow.value = Resource.loading()
-        val result = repo.getAnimalSpecies(id)
+        val result = repo.getAnimalBreedDetail(id)
         _dataFlow.value = result
     }
 }
