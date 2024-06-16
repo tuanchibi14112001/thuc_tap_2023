@@ -1,7 +1,7 @@
 package com.example.animalapp.model
 
 data class QuizzItem(
-    val animal_family_id: Int,
+    val animal_specie_id: Int,
     val answers: List<String>,
     var clickedAnswer: String?,
     val correctAnswer: String,

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingVertical="30dp"
     android:layout_marginHorizontal="10dp"
-    tools:context=".ui.animal_specie_detail.AnimalSpeciesFragment">
+    tools:context=".ui.animal_breed_detail.AnimalSpeciesFragment">
         <TextView
             android:id="@+id/txtName"
             android:layout_width="match_parent"

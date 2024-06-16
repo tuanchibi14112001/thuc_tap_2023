@@ -1,12 +1,11 @@
 package com.example.animalapp.repository
 
-import android.util.Log
 import com.example.animalapp.api.ApiAiService
 import com.example.animalapp.api.ApiService
-import com.example.animalapp.model.AnimalFamily
-import com.example.animalapp.model.AnimalPredictResult
 import com.example.animalapp.model.AnimalSpecie
-import com.example.animalapp.model.AnimalSpecieItem
+import com.example.animalapp.model.AnimalPredictResult
+import com.example.animalapp.model.AnimalBeed
+import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
@@ -67,12 +66,12 @@ class AnimalTypeRepoImpl @Inject constructor(
 
     override suspend fun postImageToGallery(
         token: String,
-        animal_family_id: Int,
+        animal_specie_id: Int,
         part: MultipartBody.Part
     ): Resource<UploadImageResponse> {
         return try {
             val result =
-                apiService.postImageToGallery("Bearer $token", animal_family_id, part).await()
+                apiService.postImageToGallery("Bearer $token", animal_specie_id, part).await()
             Resource.success(result)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -91,7 +90,7 @@ class AnimalTypeRepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAnimalFamily(name: String): Resource<AnimalFamily> {
+    override suspend fun getAnimalFamily(name: String): Resource<AnimalSpecie> {
         return try {
             val result = apiService.getAnimalFamily(name).await()
             Resource.success(result)
@@ -101,7 +100,7 @@ class AnimalTypeRepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAnimalBreeds(id: Int): Resource<AnimalSpecie> {
+    override suspend fun getAnimalBreeds(id: Int): Resource<AnimalBeed> {
         return try {
             val result = apiService.getAnimalBreeds(id).await()
             Resource.success(result)
@@ -121,7 +120,7 @@ class AnimalTypeRepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getOtherResults(other_results: List<String>): Resource<AnimalFamily> {
+    override suspend fun getOtherResults(other_results: List<String>): Resource<AnimalSpecie> {
         return try {
             val result = apiService.getOtherResults(other_results).await()
             Resource.success(result)
@@ -131,7 +130,7 @@ class AnimalTypeRepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAnimalSpecies(id: Int): Resource<AnimalSpecieItem> {
+    override suspend fun getAnimalSpecies(id: Int): Resource<AnimalBreedItem> {
         return try {
             val result = apiService.getAnimalSpecies(id).await()
             Resource.success(result)

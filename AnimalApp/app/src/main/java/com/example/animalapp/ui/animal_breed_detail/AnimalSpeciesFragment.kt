@@ -1,18 +1,14 @@
-package com.example.animalapp.ui.animal_specie_detail
+package com.example.animalapp.ui.animal_breed_detail
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import coil.load
-import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentAnimalSpeciesBinding
-import com.example.animalapp.model.AnimalSpecieItem
+import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,7 +25,7 @@ class AnimalSpeciesFragment : BaseFragment<FragmentAnimalSpeciesBinding>() {
 
     override fun prepareView(savedInstanceState: Bundle?) {
         val args = this.arguments
-        val animalSpecieItemId = args?.getInt("animal_species_detail")
+        val animalSpecieItemId = args?.getInt("animal_breed_detail")
         if(animalSpecieItemId != null){
             viewModel.getAnimalSpecies(animalSpecieItemId)
         }
@@ -38,7 +34,7 @@ class AnimalSpeciesFragment : BaseFragment<FragmentAnimalSpeciesBinding>() {
 
     }
 
-    private fun bindView(animalSpecieItem: AnimalSpecieItem?) {
+    private fun bindView(animalSpecieItem: AnimalBreedItem?) {
         binding.txtName.text = animalSpecieItem?.name
         binding.imgAnimal.load(animalSpecieItem?.img_url)
         binding.descName.text = animalSpecieItem?.name

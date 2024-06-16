@@ -1,8 +1,8 @@
 package com.example.animalapp.api
 
-import com.example.animalapp.model.AnimalFamily
 import com.example.animalapp.model.AnimalSpecie
-import com.example.animalapp.model.AnimalSpecieItem
+import com.example.animalapp.model.AnimalBeed
+import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
@@ -12,7 +12,6 @@ import com.example.animalapp.model.UploadImageResponse
 import com.example.animalapp.model.User
 import okhttp3.MultipartBody
 import retrofit2.Call
-import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -47,19 +46,19 @@ interface ApiService {
     fun getAnimalType(): Call<List<AnimalType>>
 
     @GET("animal_type/{animal_name}")
-    fun getAnimalFamily(@Path("animal_name") animal_name: String): Call<AnimalFamily>
+    fun getAnimalFamily(@Path("animal_name") animal_name: String): Call<AnimalSpecie>
 
-    @GET("animal_species/{id}")
-    fun getAnimalSpecies(@Path("id") id: Int): Call<AnimalSpecieItem>
+    @GET("animal_breed/{id}")
+    fun getAnimalSpecies(@Path("id") id: Int): Call<AnimalBreedItem>
 
-    @GET("animal_family/get_breeds/{id}")
-    fun getAnimalBreeds(@Path("id") id: Int): Call<AnimalSpecie>
+    @GET("animal_specie/get_breeds/{id}")
+    fun getAnimalBreeds(@Path("id") id: Int): Call<AnimalBeed>
 
-    @GET("animal_family/detail/{animalf_name}")
+    @GET("animal_specie/detail/{animalf_name}")
     fun getMoreInfo(@Path("animalf_name") animalf_name: String): Call<MoreInfo>
 
-    @GET("animal_family/result_detail")
-    fun getOtherResults(@Query("name[]") other_results: List<String>): Call<AnimalFamily>
+    @GET("animal_specie/result_detail")
+    fun getOtherResults(@Query("name[]") other_results: List<String>): Call<AnimalSpecie>
 
     @GET("play")
     fun getMemoryCard(): Call<MemoryCard>
@@ -71,7 +70,7 @@ interface ApiService {
     @POST("user/gallery-upload")
     fun postImageToGallery(
         @Header("Authorization") auth:String,
-        @Part("animal_family_id") animal_family_id: Int,
+        @Part("animal_specie_id") animal_specie_id: Int,
         @Part image: MultipartBody.Part
     ): Call<UploadImageResponse>
 }

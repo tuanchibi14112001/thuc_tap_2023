@@ -119,7 +119,7 @@ class MemoryGameFragment : BaseFragment<FragmentMemoryGameBinding>(), CardItemCl
         txtMove: TextView,
         builder: Builder
     ) {
-        if (cardList[position1].animal_family_id == cardList[position2].animal_family_id) {
+        if (cardList[position1].animal_specie_id == cardList[position2].animal_specie_id) {
             cardList[position1].is_checked = true
             cardList[position2].is_checked = true
             Toast.makeText(requireContext(), "Match found!", Toast.LENGTH_SHORT).show()

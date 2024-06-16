@@ -2,10 +2,7 @@ package com.example.animalapp.ui.animal_family_detail
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -15,8 +12,8 @@ import coil.load
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentFamilyDetailBinding
-import com.example.animalapp.model.AnimalFamilyItem
 import com.example.animalapp.model.AnimalSpecieItem
+import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,10 +32,10 @@ class FamilyDetailFragment : BaseFragment<FragmentFamilyDetailBinding>(), Specie
 
     override fun prepareView(savedInstanceState: Bundle?) {
         val args = this.arguments
-        val familyItem: AnimalFamilyItem? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            args?.getSerializable("animal_family_item", AnimalFamilyItem::class.java)
+        val familyItem: AnimalSpecieItem? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            args?.getSerializable("animal_family_item", AnimalSpecieItem::class.java)
         } else {
-            args?.getSerializable("animal_family_item") as AnimalFamilyItem
+            args?.getSerializable("animal_family_item") as AnimalSpecieItem
         }
         familyItem?.let {
             binding.txtName.text = it.name
@@ -85,9 +82,9 @@ class FamilyDetailFragment : BaseFragment<FragmentFamilyDetailBinding>(), Specie
         }
     }
 
-    override fun itemOnClick(animalSpecieItem: AnimalSpecieItem) {
+    override fun itemOnClick(animalSpecieItem: AnimalBreedItem) {
         val bundle = Bundle().apply {
-            putInt("animal_species_detail", animalSpecieItem.id)
+            putInt("animal_breed_detail", animalSpecieItem.id)
         }
         findNavController().navigate(R.id.action_familyDetailFragment_to_animalSpeciesFragment, bundle)
     }

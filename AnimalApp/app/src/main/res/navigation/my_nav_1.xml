@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/animalSpeciesFragment"
-        android:name="com.example.animalapp.ui.animal_specie_detail.AnimalSpeciesFragment"
+        android:name="com.example.animalapp.ui.animal_breed_detail.AnimalSpeciesFragment"
         android:label="fragment_animal_species"
         tools:layout="@layout/fragment_animal_species" />
     <fragment

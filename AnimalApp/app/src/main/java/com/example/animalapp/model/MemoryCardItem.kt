@@ -1,7 +1,7 @@
 package com.example.animalapp.model
 
 data class MemoryCardItem(
-    val animal_family_id: Int,
+    val animal_specie_id: Int,
     val id: Int,
     val img_url: String,
     var is_checked: Boolean,

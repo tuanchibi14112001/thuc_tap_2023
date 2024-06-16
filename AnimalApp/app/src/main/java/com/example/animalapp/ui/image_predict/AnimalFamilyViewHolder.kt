@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.animalapp.R
 import com.example.animalapp.databinding.BreedItemBinding
-import com.example.animalapp.model.AnimalFamilyItem
+import com.example.animalapp.model.AnimalSpecieItem
 
 
 class AnimalFamilyViewHolder (
@@ -13,10 +13,10 @@ class AnimalFamilyViewHolder (
     private val itemClickListener: OtherResultItemClickListener
 ) :
     RecyclerView.ViewHolder(itemBinding.root) {
-    fun bindAnimalFamily(animalFamilyItem: AnimalFamilyItem) {
-        if(animalFamilyItem.is_exist == 1) {
+    fun bindAnimalFamily(animalSpecieItem: AnimalSpecieItem) {
+        if(animalSpecieItem.is_exist == 1) {
             itemBinding.imgSpeciesItem.load(
-                animalFamilyItem.img_url
+                animalSpecieItem.img_url
             ) {
                 crossfade(true)
                 crossfade(500)
@@ -29,9 +29,9 @@ class AnimalFamilyViewHolder (
                 crossfade(500)
             }
         }
-        itemBinding.txtSpeciesItemName.text = animalFamilyItem.name
+        itemBinding.txtSpeciesItemName.text = animalSpecieItem.name
         itemBinding.cvSpecies.setOnClickListener {
-            itemClickListener.itemOnClick(animalFamilyItem)
+            itemClickListener.itemOnClick(animalSpecieItem)
         }
     }
 }

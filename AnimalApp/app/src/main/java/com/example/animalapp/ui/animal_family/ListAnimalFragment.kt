@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentListAnimalBinding
-import com.example.animalapp.model.AnimalFamilyItem
+import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -63,9 +63,9 @@ class ListAnimalFragment : BaseFragment<FragmentListAnimalBinding>(), ItemClickL
         }
     }
 
-    override fun itemOnClick(animalFamilyItem: AnimalFamilyItem) {
+    override fun itemOnClick(animalSpecieItem: AnimalSpecieItem) {
         val bundle = Bundle().apply {
-            putSerializable("animal_family_item", animalFamilyItem)
+            putSerializable("animal_family_item", animalSpecieItem)
         }
         findNavController().navigate(R.id.action_listAnimalFragment_to_familyDetailFragment, bundle)
     }

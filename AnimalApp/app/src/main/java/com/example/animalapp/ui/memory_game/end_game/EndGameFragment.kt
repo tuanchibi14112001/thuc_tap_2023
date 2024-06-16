@@ -46,7 +46,7 @@ class EndGameFragment : BaseFragment<FragmentEndGameBinding>(), EndCardItemClick
 
     override fun itemOnClick(memoryCardItem: MemoryCardItem) {
         val bundle = Bundle().apply {
-            putInt("animal_species_detail", memoryCardItem.id)
+            putInt("animal_breed_detail", memoryCardItem.id)
         }
         findNavController().navigate(R.id.action_endGameFragment_to_animalSpeciesFragment, bundle)
 

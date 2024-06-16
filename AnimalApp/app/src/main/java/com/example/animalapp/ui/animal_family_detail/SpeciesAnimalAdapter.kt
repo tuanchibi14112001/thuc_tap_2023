@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.animalapp.databinding.BreedItemBinding
-import com.example.animalapp.model.AnimalSpecieItem
+import com.example.animalapp.model.AnimalBreedItem
 
 class SpeciesAnimalAdapter(private val itemClickListener: SpeciesItemClickListener) :
-    ListAdapter<AnimalSpecieItem, SpeciesAnimalViewHolder>(AnimalDiffUtilCallBack()) {
+    ListAdapter<AnimalBreedItem, SpeciesAnimalViewHolder>(AnimalDiffUtilCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpeciesAnimalViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -20,17 +20,17 @@ class SpeciesAnimalAdapter(private val itemClickListener: SpeciesItemClickListen
         return holder.bindAnimal(getItem(position))
     }
 
-    class AnimalDiffUtilCallBack : DiffUtil.ItemCallback<AnimalSpecieItem>() {
+    class AnimalDiffUtilCallBack : DiffUtil.ItemCallback<AnimalBreedItem>() {
         override fun areItemsTheSame(
-            oldItem: AnimalSpecieItem,
-            newItem: AnimalSpecieItem
+            oldItem: AnimalBreedItem,
+            newItem: AnimalBreedItem
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: AnimalSpecieItem,
-            newItem: AnimalSpecieItem
+            oldItem: AnimalBreedItem,
+            newItem: AnimalBreedItem
         ): Boolean {
             return oldItem == newItem
         }

@@ -3,14 +3,14 @@ package com.example.animalapp.ui.animal_family_detail
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.animalapp.databinding.BreedItemBinding
-import com.example.animalapp.model.AnimalSpecieItem
+import com.example.animalapp.model.AnimalBreedItem
 
 class SpeciesAnimalViewHolder (
     private val itemBinding: BreedItemBinding,
     private val itemClickListener: SpeciesItemClickListener
 ) :
     RecyclerView.ViewHolder(itemBinding.root) {
-    fun bindAnimal(animalSpecieItem: AnimalSpecieItem) {
+    fun bindAnimal(animalSpecieItem: AnimalBreedItem) {
         itemBinding.imgSpeciesItem.load(
             animalSpecieItem.img_url
         ) {

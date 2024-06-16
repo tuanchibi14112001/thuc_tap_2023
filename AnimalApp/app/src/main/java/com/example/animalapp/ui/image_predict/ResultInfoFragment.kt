@@ -4,7 +4,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +15,9 @@ import coil.load
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentResultInfoBinding
-import com.example.animalapp.model.AnimalFamilyItem
+import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalPredictResult
-import com.example.animalapp.model.MoreInfo
-import com.example.animalapp.model.AnimalFamily
+import com.example.animalapp.model.AnimalSpecie
 import com.example.animalapp.utils.MySharedPreferences
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +30,7 @@ import java.io.File
 @AndroidEntryPoint
 class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResultItemClickListener {
     private val viewModel: ResultInfoViewModel by viewModels()
-    private var resultInfo: AnimalFamily? = null
+    private var resultInfo: AnimalSpecie? = null
     private lateinit var animalFamilyAdapter: AnimalFamilyAdapter
     private var file: File? = null
 
@@ -81,7 +79,7 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
         }
     }
 
-    private fun updateMoreInfoUi(info: AnimalFamilyItem) {
+    private fun updateMoreInfoUi(info: AnimalSpecieItem) {
         binding.imgAnimal.visibility = View.VISIBLE
         binding.scrDesc.visibility = View.VISIBLE
         binding.imgAnimal.load(
@@ -150,10 +148,10 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
         }
     }
 
-    override fun itemOnClick(animalFamilyItem: AnimalFamilyItem) {
-        if (animalFamilyItem.is_exist == 1) {
+    override fun itemOnClick(animalSpecieItem: AnimalSpecieItem) {
+        if (animalSpecieItem.is_exist == 1) {
             val bundle = Bundle().apply {
-                putSerializable("animal_family_item", animalFamilyItem)
+                putSerializable("animal_family_item", animalSpecieItem)
             }
             findNavController().navigate(
                 R.id.action_resultInfoFragment_to_familyDetailFragment,

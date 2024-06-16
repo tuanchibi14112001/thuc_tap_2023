@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.animalapp.databinding.FamilyItemBinding
-import com.example.animalapp.model.AnimalFamilyItem
+import com.example.animalapp.model.AnimalSpecieItem
 
 
-class ListAnimalAdapter(private val itemClickListener: ItemClickListener) : ListAdapter<AnimalFamilyItem, ListAnimalViewHolder>(AnimalDiffUtilCallBack()) {
+class ListAnimalAdapter(private val itemClickListener: ItemClickListener) : ListAdapter<AnimalSpecieItem, ListAnimalViewHolder>(AnimalDiffUtilCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAnimalViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -19,11 +19,11 @@ class ListAnimalAdapter(private val itemClickListener: ItemClickListener) : List
     override fun onBindViewHolder(holder: ListAnimalViewHolder, position: Int) {
         return holder.bindAnimal(getItem(position))
     }
-    class AnimalDiffUtilCallBack : DiffUtil.ItemCallback<AnimalFamilyItem>(){
-        override fun areItemsTheSame(oldItem: AnimalFamilyItem, newItem: AnimalFamilyItem): Boolean {
+    class AnimalDiffUtilCallBack : DiffUtil.ItemCallback<AnimalSpecieItem>(){
+        override fun areItemsTheSame(oldItem: AnimalSpecieItem, newItem: AnimalSpecieItem): Boolean {
             return oldItem.id == newItem.id
         }
-        override fun areContentsTheSame(oldItem: AnimalFamilyItem, newItem: AnimalFamilyItem): Boolean {
+        override fun areContentsTheSame(oldItem: AnimalSpecieItem, newItem: AnimalSpecieItem): Boolean {
             return oldItem == newItem
         }
 

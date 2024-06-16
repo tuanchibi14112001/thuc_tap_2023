@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.animalapp.base.BaseViewModel
-import com.example.animalapp.model.AnimalFamily
-import com.example.animalapp.model.AnimalSpecie
+import com.example.animalapp.model.AnimalBeed
 import com.example.animalapp.repository.AnimalTypeRepo
 import com.example.animalapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,8 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FamilyDetailViewModel @Inject constructor(private val repo: AnimalTypeRepo): BaseViewModel(){
-    private val _dataFlow = MutableLiveData<Resource<AnimalSpecie>>()
-    val dataFlow : LiveData<Resource<AnimalSpecie>>
+    private val _dataFlow = MutableLiveData<Resource<AnimalBeed>>()
+    val dataFlow : LiveData<Resource<AnimalBeed>>
         get() = _dataFlow
 
     fun getAnimalBreed(id: Int) = viewModelScope.launch {
