@@ -1,4 +1,4 @@
-package com.example.animalapp.ui.animal_family_detail
+package com.example.animalapp.ui.animal_specie_detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FamilyDetailViewModel @Inject constructor(private val repo: AnimalTypeRepo): BaseViewModel(){
+class SpecieDetailViewModel @Inject constructor(private val repo: AnimalTypeRepo): BaseViewModel(){
     private val _dataFlow = MutableLiveData<Resource<AnimalBreed>>()
     val dataFlow : LiveData<Resource<AnimalBreed>>
         get() = _dataFlow

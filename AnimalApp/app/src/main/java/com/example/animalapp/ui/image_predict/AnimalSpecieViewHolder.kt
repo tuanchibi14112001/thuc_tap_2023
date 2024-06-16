@@ -8,12 +8,12 @@ import com.example.animalapp.databinding.BreedItemBinding
 import com.example.animalapp.model.AnimalSpecieItem
 
 
-class AnimalFamilyViewHolder (
+class AnimalSpecieViewHolder (
     private val itemBinding: BreedItemBinding,
     private val itemClickListener: OtherResultItemClickListener
 ) :
     RecyclerView.ViewHolder(itemBinding.root) {
-    fun bindAnimalFamily(animalSpecieItem: AnimalSpecieItem) {
+    fun bindAnimalSpecie(animalSpecieItem: AnimalSpecieItem) {
         if(animalSpecieItem.is_exist == 1) {
             itemBinding.imgSpeciesItem.load(
                 animalSpecieItem.img_url

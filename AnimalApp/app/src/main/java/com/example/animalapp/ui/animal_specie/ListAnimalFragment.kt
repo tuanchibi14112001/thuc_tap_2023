@@ -67,6 +67,6 @@ class ListAnimalFragment : BaseFragment<FragmentListAnimalBinding>(), ItemClickL
         val bundle = Bundle().apply {
             putSerializable("animal_specie_item", animalSpecieItem)
         }
-        findNavController().navigate(R.id.action_listAnimalFragment_to_familyDetailFragment, bundle)
+        findNavController().navigate(R.id.action_listAnimalFragment_to_specieDetailFragment, bundle)
     }
 }

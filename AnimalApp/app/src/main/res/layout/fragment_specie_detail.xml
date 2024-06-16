@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingVertical="20dp"
-    tools:context=".ui.animal_family_detail.FamilyDetailFragment">
+    tools:context=".ui.animal_specie_detail.SpecieDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

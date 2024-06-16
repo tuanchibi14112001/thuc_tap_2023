@@ -31,7 +31,7 @@ import java.io.File
 class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResultItemClickListener {
     private val viewModel: ResultInfoViewModel by viewModels()
     private var resultInfo: AnimalSpecie? = null
-    private lateinit var animalFamilyAdapter: AnimalFamilyAdapter
+    private lateinit var animalSpecieAdapter: AnimalSpecieAdapter
     private var file: File? = null
 
     override fun getViewBinding(
@@ -89,9 +89,9 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
     }
 
     private fun setRv() {
-        animalFamilyAdapter = AnimalFamilyAdapter(this)
+        animalSpecieAdapter = AnimalSpecieAdapter(this)
         binding.recvOtherResults.apply {
-            adapter = animalFamilyAdapter
+            adapter = animalSpecieAdapter
             layoutManager = LinearLayoutManager(
                 requireContext(), LinearLayoutManager.HORIZONTAL, false
             )
@@ -110,7 +110,7 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
                         if (predictAnimalInfo.is_exist == 1)
                             updateMoreInfoUi(predictAnimalInfo)
                         val otherResult = infoList.drop(1)
-                        animalFamilyAdapter.submitList(otherResult)
+                        animalSpecieAdapter.submitList(otherResult)
                     }
                     hideLoading()
                 }
@@ -154,7 +154,7 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
                 putSerializable("animal_specie_item", animalSpecieItem)
             }
             findNavController().navigate(
-                R.id.action_resultInfoFragment_to_familyDetailFragment,
+                R.id.action_resultInfoFragment_to_specieDetailFragment,
                 bundle
             )
         } else {

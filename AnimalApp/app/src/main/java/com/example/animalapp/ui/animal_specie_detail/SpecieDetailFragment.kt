@@ -1,4 +1,4 @@
-package com.example.animalapp.ui.animal_family_detail
+package com.example.animalapp.ui.animal_specie_detail
 
 import android.os.Build
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
-import com.example.animalapp.databinding.FragmentFamilyDetailBinding
+import com.example.animalapp.databinding.FragmentSpecieDetailBinding
 import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.utils.Status
@@ -19,15 +19,15 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class FamilyDetailFragment : BaseFragment<FragmentFamilyDetailBinding>(), SpeciesItemClickListener {
-    private val viewModel: FamilyDetailViewModel by viewModels()
-    private lateinit var speciesAnimalAdapter: SpeciesAnimalAdapter
+class SpecieDetailFragment : BaseFragment<FragmentSpecieDetailBinding>(), BreedItemClickListener {
+    private val viewModel: SpecieDetailViewModel by viewModels()
+    private lateinit var breedsAnimalAdapter: BreedsAnimalAdapter
 
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentFamilyDetailBinding {
-        return FragmentFamilyDetailBinding.inflate(inflater, container, false)
+    ): FragmentSpecieDetailBinding {
+        return FragmentSpecieDetailBinding.inflate(inflater, container, false)
     }
 
     override fun prepareView(savedInstanceState: Bundle?) {
@@ -51,9 +51,9 @@ class FamilyDetailFragment : BaseFragment<FragmentFamilyDetailBinding>(), Specie
     }
 
     private fun setRv(){
-        speciesAnimalAdapter = SpeciesAnimalAdapter(this)
+        breedsAnimalAdapter = BreedsAnimalAdapter(this)
         binding.recvBreedItem.apply {
-            adapter = speciesAnimalAdapter
+            adapter = breedsAnimalAdapter
             layoutManager = LinearLayoutManager(
                 requireContext(), LinearLayoutManager.HORIZONTAL, false
             )
@@ -65,7 +65,7 @@ class FamilyDetailFragment : BaseFragment<FragmentFamilyDetailBinding>(), Specie
         viewModel.dataFlow.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
-                    speciesAnimalAdapter.submitList(it.data)
+                    breedsAnimalAdapter.submitList(it.data)
 //                    Log.d("CHECK", it.data.toString())
                     hideLoading()
                 }
@@ -86,7 +86,7 @@ class FamilyDetailFragment : BaseFragment<FragmentFamilyDetailBinding>(), Specie
         val bundle = Bundle().apply {
             putInt("animal_breed_detail", animalSpecieItem.id)
         }
-        findNavController().navigate(R.id.action_familyDetailFragment_to_animalBreedFragment, bundle)
+        findNavController().navigate(R.id.action_specieDetailFragment_to_animalBreedFragment, bundle)
     }
 
 

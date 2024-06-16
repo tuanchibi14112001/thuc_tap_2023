@@ -8,18 +8,18 @@ import com.example.animalapp.databinding.BreedItemBinding
 import com.example.animalapp.model.AnimalSpecieItem
 
 
-class AnimalFamilyAdapter(private val itemClickListener: OtherResultItemClickListener) :
-    ListAdapter<AnimalSpecieItem, AnimalFamilyViewHolder>(
+class AnimalSpecieAdapter(private val itemClickListener: OtherResultItemClickListener) :
+    ListAdapter<AnimalSpecieItem, AnimalSpecieViewHolder>(
         AnimalDiffUtilCallBack()
     ) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalFamilyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalSpecieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = BreedItemBinding.inflate(inflater, parent, false)
-        return AnimalFamilyViewHolder(binding, itemClickListener)
+        return AnimalSpecieViewHolder(binding, itemClickListener)
     }
 
-    override fun onBindViewHolder(holder: AnimalFamilyViewHolder, position: Int) {
-        return holder.bindAnimalFamily(getItem(position))
+    override fun onBindViewHolder(holder: AnimalSpecieViewHolder, position: Int) {
+        return holder.bindAnimalSpecie(getItem(position))
     }
     class AnimalDiffUtilCallBack : DiffUtil.ItemCallback<AnimalSpecieItem>() {
         override fun areItemsTheSame(

@@ -38,16 +38,16 @@
         android:label="fragment_list_animal"
         tools:layout="@layout/fragment_list_animal" >
         <action
-            android:id="@+id/action_listAnimalFragment_to_familyDetailFragment"
-            app:destination="@id/familyDetailFragment" />
+            android:id="@+id/action_listAnimalFragment_to_specieDetailFragment"
+            app:destination="@id/specieDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/familyDetailFragment"
-        android:name="com.example.animalapp.ui.animal_family_detail.FamilyDetailFragment"
+        android:id="@+id/specieDetailFragment"
+        android:name="com.example.animalapp.ui.animal_specie_detail.SpecieDetailFragment"
         android:label="fragment_family_detail"
-        tools:layout="@layout/fragment_family_detail" >
+        tools:layout="@layout/fragment_specie_detail" >
         <action
-            android:id="@+id/action_familyDetailFragment_to_animalBreedFragment"
+            android:id="@+id/action_specieDetailFragment_to_animalBreedFragment"
             app:destination="@id/animalBreedFragment" />
     </fragment>
     <fragment
@@ -133,7 +133,7 @@
         android:label="fragment_result_info"
         tools:layout="@layout/fragment_result_info" >
         <action
-            android:id="@+id/action_resultInfoFragment_to_familyDetailFragment"
-            app:destination="@id/familyDetailFragment" />
+            android:id="@+id/action_resultInfoFragment_to_specieDetailFragment"
+            app:destination="@id/specieDetailFragment" />
     </fragment>
 </navigation>
