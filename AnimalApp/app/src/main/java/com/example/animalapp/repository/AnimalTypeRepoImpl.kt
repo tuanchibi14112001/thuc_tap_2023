@@ -4,7 +4,7 @@ import com.example.animalapp.api.ApiAiService
 import com.example.animalapp.api.ApiService
 import com.example.animalapp.model.AnimalSpecie
 import com.example.animalapp.model.AnimalPredictResult
-import com.example.animalapp.model.AnimalBeed
+import com.example.animalapp.model.AnimalBreed
 import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
@@ -100,7 +100,7 @@ class AnimalTypeRepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAnimalBreeds(id: Int): Resource<AnimalBeed> {
+    override suspend fun getAnimalBreeds(id: Int): Resource<AnimalBreed> {
         return try {
             val result = apiService.getAnimalBreeds(id).await()
             Resource.success(result)

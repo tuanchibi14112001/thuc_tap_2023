@@ -86,7 +86,7 @@ class FamilyDetailFragment : BaseFragment<FragmentFamilyDetailBinding>(), Specie
         val bundle = Bundle().apply {
             putInt("animal_breed_detail", animalSpecieItem.id)
         }
-        findNavController().navigate(R.id.action_familyDetailFragment_to_animalSpeciesFragment, bundle)
+        findNavController().navigate(R.id.action_familyDetailFragment_to_animalBreedFragment, bundle)
     }
 
 

@@ -1,7 +1,7 @@
 package com.example.animalapp.api
 
 import com.example.animalapp.model.AnimalSpecie
-import com.example.animalapp.model.AnimalBeed
+import com.example.animalapp.model.AnimalBreed
 import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
@@ -52,7 +52,7 @@ interface ApiService {
     fun getAnimalSpecies(@Path("id") id: Int): Call<AnimalBreedItem>
 
     @GET("animal_specie/get_breeds/{id}")
-    fun getAnimalBreeds(@Path("id") id: Int): Call<AnimalBeed>
+    fun getAnimalBreeds(@Path("id") id: Int): Call<AnimalBreed>
 
     @GET("animal_specie/detail/{animalf_name}")
     fun getMoreInfo(@Path("animalf_name") animalf_name: String): Call<MoreInfo>

@@ -7,42 +7,42 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import coil.load
 import com.example.animalapp.base.BaseFragment
-import com.example.animalapp.databinding.FragmentAnimalSpeciesBinding
+import com.example.animalapp.databinding.FragmentAnimalBreedBinding
 import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class AnimalSpeciesFragment : BaseFragment<FragmentAnimalSpeciesBinding>() {
-    private val viewModel: AnimalSpeciesViewModel by viewModels()
+class AnimalBreedFragment : BaseFragment<FragmentAnimalBreedBinding>() {
+    private val viewModel: AnimalBreedViewModel by viewModels()
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentAnimalSpeciesBinding {
-        return FragmentAnimalSpeciesBinding.inflate(inflater, container, false)
+    ): FragmentAnimalBreedBinding {
+        return FragmentAnimalBreedBinding.inflate(inflater, container, false)
     }
 
     override fun prepareView(savedInstanceState: Bundle?) {
         val args = this.arguments
-        val animalSpecieItemId = args?.getInt("animal_breed_detail")
-        if(animalSpecieItemId != null){
-            viewModel.getAnimalSpecies(animalSpecieItemId)
+        val animalBreedItemId = args?.getInt("animal_breed_detail")
+        if(animalBreedItemId != null){
+            viewModel.getAnimalSpecies(animalBreedItemId)
         }
         observeModel()
-//        Log.d("CHECK", animalSpecieItem.toString())
+//        Log.d("CHECK", animalBreedItem.toString())
 
     }
 
-    private fun bindView(animalSpecieItem: AnimalBreedItem?) {
-        binding.txtName.text = animalSpecieItem?.name
-        binding.imgAnimal.load(animalSpecieItem?.img_url)
-        binding.descName.text = animalSpecieItem?.name
-        binding.descLength.text = animalSpecieItem?.animal_length
-        binding.descComment.text = animalSpecieItem?.comments
-        binding.descLife.text = animalSpecieItem?.average_lifespan
-        binding.descWeight.text = animalSpecieItem?.animal_weight
-        binding.descTail.text = animalSpecieItem?.animal_tail
+    private fun bindView(animalBreedItem: AnimalBreedItem?) {
+        binding.txtName.text = animalBreedItem?.name
+        binding.imgAnimal.load(animalBreedItem?.img_url)
+        binding.descName.text = animalBreedItem?.name
+        binding.descLength.text = animalBreedItem?.animal_length
+        binding.descComment.text = animalBreedItem?.comments
+        binding.descLife.text = animalBreedItem?.average_lifespan
+        binding.descWeight.text = animalBreedItem?.animal_weight
+        binding.descTail.text = animalBreedItem?.animal_tail
     }
 
     private fun observeModel() {

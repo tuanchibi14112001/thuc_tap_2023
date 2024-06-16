@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class AnimalSpeciesViewModel @Inject constructor(private val repo: AnimalTypeRepo): BaseViewModel(){
+class AnimalBreedViewModel @Inject constructor(private val repo: AnimalTypeRepo): BaseViewModel(){
     private val _dataFlow = MutableLiveData<Resource<AnimalBreedItem>>()
     val dataFlow : LiveData<Resource<AnimalBreedItem>>
     get() = _dataFlow

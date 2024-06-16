@@ -48,7 +48,7 @@ class EndGameFragment : BaseFragment<FragmentEndGameBinding>(), EndCardItemClick
         val bundle = Bundle().apply {
             putInt("animal_breed_detail", memoryCardItem.id)
         }
-        findNavController().navigate(R.id.action_endGameFragment_to_animalSpeciesFragment, bundle)
+        findNavController().navigate(R.id.action_endGameFragment_to_animalBreedFragment, bundle)
 
     }
 

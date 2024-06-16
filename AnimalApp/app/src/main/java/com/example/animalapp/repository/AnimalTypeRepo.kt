@@ -2,7 +2,7 @@ package com.example.animalapp.repository
 
 import com.example.animalapp.model.AnimalSpecie
 import com.example.animalapp.model.AnimalPredictResult
-import com.example.animalapp.model.AnimalBeed
+import com.example.animalapp.model.AnimalBreed
 import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
@@ -28,7 +28,7 @@ interface AnimalTypeRepo {
 
     suspend fun getAnimalType(): Resource<List<AnimalType>>
     suspend fun getAnimalFamily(name: String): Resource<AnimalSpecie>
-    suspend fun getAnimalBreeds(id: Int): Resource<AnimalBeed>
+    suspend fun getAnimalBreeds(id: Int): Resource<AnimalBreed>
     suspend fun getMoreInfo(animalf_name: String): Resource<MoreInfo>
     suspend fun getOtherResults(other_results: List<String>): Resource<AnimalSpecie>
     suspend fun getAnimalSpecies(id: Int): Resource<AnimalBreedItem>

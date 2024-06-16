@@ -37,9 +37,6 @@
         android:name="com.example.animalapp.ui.animal_family.ListAnimalFragment"
         android:label="fragment_list_animal"
         tools:layout="@layout/fragment_list_animal" >
-        <argument
-            android:name="animal_family_name"
-            app:argType="string" />
         <action
             android:id="@+id/action_listAnimalFragment_to_familyDetailFragment"
             app:destination="@id/familyDetailFragment" />
@@ -50,14 +47,14 @@
         android:label="fragment_family_detail"
         tools:layout="@layout/fragment_family_detail" >
         <action
-            android:id="@+id/action_familyDetailFragment_to_animalSpeciesFragment"
-            app:destination="@id/animalSpeciesFragment" />
+            android:id="@+id/action_familyDetailFragment_to_animalBreedFragment"
+            app:destination="@id/animalBreedFragment" />
     </fragment>
     <fragment
-        android:id="@+id/animalSpeciesFragment"
-        android:name="com.example.animalapp.ui.animal_breed_detail.AnimalSpeciesFragment"
+        android:id="@+id/animalBreedFragment"
+        android:name="com.example.animalapp.ui.animal_breed_detail.AnimalBreedFragment"
         android:label="fragment_animal_species"
-        tools:layout="@layout/fragment_animal_species" />
+        tools:layout="@layout/fragment_animal_breed" />
     <fragment
         android:id="@+id/memoryGameFragment"
         android:name="com.example.animalapp.ui.memory_game.MemoryGameFragment"
@@ -81,8 +78,8 @@
         android:label="fragment_end_game"
         tools:layout="@layout/fragment_end_game" >
         <action
-            android:id="@+id/action_endGameFragment_to_animalSpeciesFragment"
-            app:destination="@id/animalSpeciesFragment" />
+            android:id="@+id/action_endGameFragment_to_animalBreedFragment"
+            app:destination="@id/animalBreedFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
