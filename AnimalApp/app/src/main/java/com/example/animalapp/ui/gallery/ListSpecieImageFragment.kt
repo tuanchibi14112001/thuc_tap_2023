@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
@@ -68,7 +69,10 @@ class ListSpecieImageFragment : BaseFragment<FragmentListSpecieImageBinding>(),
     }
 
     override fun itemOnClick(specieGalleryItem: SpecieGalleryItem) {
-        Toast.makeText(requireContext(), "OKE", Toast.LENGTH_SHORT).show()
+        val bundle = Bundle().apply {
+            putString("specie_detail_name", specieGalleryItem.animal_specie_name)
+        }
+        findNavController().navigate(R.id.action_listSpecieImageFragment_to_galleryDetailFragment, bundle)
     }
 
 }

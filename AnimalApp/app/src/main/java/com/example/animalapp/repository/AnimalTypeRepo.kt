@@ -7,6 +7,7 @@ import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
+import com.example.animalapp.model.GalleryDetail
 import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
@@ -23,6 +24,7 @@ interface AnimalTypeRepo {
 
     suspend fun getUser(token: String): Resource<User>
     suspend fun getUserGallery(token: String): Resource<SpecieGallery>
+    suspend fun getGalleryDetail(token: String, animal_specie_name: String): Resource<GalleryDetail>
 
     suspend fun postImageToGallery(
         token: String,

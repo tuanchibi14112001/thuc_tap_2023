@@ -41,6 +41,7 @@
 
     <!--    Gallery -->
     <string name="str_gallery">Gallery</string>
+    <string name="str_photos">Photos</string>
 
 
 </resources>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.gallery.ListSpecieImageFragment">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.gallery.gallery_detail.GalleryDetailFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,13 +33,26 @@
 
             android:layout_weight="1"
             android:fontFamily="@font/lato_bold"
-            android:text="@string/str_gallery"
+            tools:text="@string/str_photos"
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/txt_numPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_light"
+        android:layout_marginStart="@dimen/item_24"
+        android:layout_marginEnd="@dimen/item_24"
+        android:layout_marginBottom="@dimen/item_15"
+        tools:text="20 photos"
+        android:textAlignment="center"
+        android:textColor="@color/gray_2D2"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recvSpecieList"
+        android:id="@+id/recvList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbarStyle="outsideInset"

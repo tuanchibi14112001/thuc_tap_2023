@@ -143,5 +143,14 @@
         android:id="@+id/listSpecieImageFragment"
         android:name="com.example.animalapp.ui.gallery.ListSpecieImageFragment"
         android:label="fragment_list_specie_image"
-        tools:layout="@layout/fragment_list_specie_image" />
+        tools:layout="@layout/fragment_list_specie_image" >
+        <action
+            android:id="@+id/action_listSpecieImageFragment_to_galleryDetailFragment"
+            app:destination="@id/galleryDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/galleryDetailFragment"
+        android:name="com.example.animalapp.ui.gallery.gallery_detail.GalleryDetailFragment"
+        android:label="fragment_gallery_detail"
+        tools:layout="@layout/fragment_gallery_detail" />
 </navigation>

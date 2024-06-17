@@ -6,6 +6,7 @@ import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
+import com.example.animalapp.model.GalleryDetail
 import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
@@ -31,7 +32,8 @@ interface ApiService {
     @POST("auth/login")
     fun loginUser(
         @Field("email") email: String,
-        @Field("password") pwd: String): Call<AuthResponse>
+        @Field("password") pwd: String
+    ): Call<AuthResponse>
 
     @FormUrlEncoded
     @POST("auth/register")
@@ -42,10 +44,16 @@ interface ApiService {
     ): Call<AuthResponse>
 
     @GET("user")
-    fun getUser(@Header("Authorization") auth:String): Call<User>
+    fun getUser(@Header("Authorization") auth: String): Call<User>
 
     @GET("user/gallery")
-    fun getUserGallery(@Header("Authorization") auth:String): Call<SpecieGallery>
+    fun getUserGallery(@Header("Authorization") auth: String): Call<SpecieGallery>
+
+    @GET("user/gallery-detail")
+    fun getGalleryDetail(
+        @Header("Authorization") auth: String,
+        @Query("animal_specie_name") animal_specie_name: String
+    ): Call<GalleryDetail>
 
     @GET("animal_type")
     fun getAnimalType(): Call<List<AnimalType>>
@@ -74,7 +82,7 @@ interface ApiService {
     @Multipart
     @POST("user/gallery-upload")
     fun postImageToGallery(
-        @Header("Authorization") auth:String,
+        @Header("Authorization") auth: String,
         @Part("animal_specie_name") animal_specie_name: RequestBody,
         @Part image: MultipartBody.Part
     ): Call<UploadImageResponse>
