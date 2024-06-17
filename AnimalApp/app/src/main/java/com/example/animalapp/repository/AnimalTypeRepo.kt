@@ -22,7 +22,7 @@ interface AnimalTypeRepo {
     suspend fun getUser(token: String): Resource<User>
     suspend fun postImageToGallery(
         token: String,
-        animal_specie_id: Int,
+        animal_specie_name: String,
         part: MultipartBody.Part
     ): Resource<UploadImageResponse>
 

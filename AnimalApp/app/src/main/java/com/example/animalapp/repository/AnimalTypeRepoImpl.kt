@@ -66,12 +66,12 @@ class AnimalTypeRepoImpl @Inject constructor(
 
     override suspend fun postImageToGallery(
         token: String,
-        animal_specie_id: Int,
+        animal_specie_name: String,
         part: MultipartBody.Part
     ): Resource<UploadImageResponse> {
         return try {
             val result =
-                apiService.postImageToGallery("Bearer $token", animal_specie_id, part).await()
+                apiService.postImageToGallery("Bearer $token", animal_specie_name, part).await()
             Resource.success(result)
         } catch (e: Exception) {
             e.printStackTrace()

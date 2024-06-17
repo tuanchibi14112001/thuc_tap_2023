@@ -70,7 +70,7 @@ interface ApiService {
     @POST("user/gallery-upload")
     fun postImageToGallery(
         @Header("Authorization") auth:String,
-        @Part("animal_specie_id") animal_specie_id: Int,
+        @Part("animal_specie_name") animal_specie_name: String,
         @Part image: MultipartBody.Part
     ): Call<UploadImageResponse>
 }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,7 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
     private var resultInfo: AnimalSpecie? = null
     private lateinit var animalSpecieAdapter: AnimalSpecieAdapter
     private var file: File? = null
+    private var isSave: Int = 0
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -58,24 +60,33 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
         }
 
         animalPredictResult?.let {
-            val animefName = it.result
+            val animalName = it.result
             val results: MutableList<String> = it.similar.toMutableList()
-            val resultTxt = "I think this is: " + animefName
+            val resultTxt = "I think this is: $animalName"
             binding.resultTxt.text = resultTxt
             results.add(0, it.result)
             viewModel.getOtherResults(results)
             observeOtherResultData()
             setRv()
         }
-        binding.btnAddGallery.setOnClickListener {
-            file?.let { imageFile ->
-                val requestBody: RequestBody = imageFile
-                    .asRequestBody("image/*".toMediaTypeOrNull())
-                val part =
-                    MultipartBody.Part.createFormData("image", imageFile.name, requestBody)
-                viewModel.postImageToGallery(token,1,part)
-                observeUploadImageResultData()
+        if (isSave == 0) {
+            binding.btnAddGallery.setOnClickListener {
+                file?.let { imageFile ->
+                    val requestBody: RequestBody = imageFile
+                        .asRequestBody("image/*".toMediaTypeOrNull())
+                    val part =
+                        MultipartBody.Part.createFormData("image", imageFile.name, requestBody)
+                    animalPredictResult?.result?.let { animalName ->
+                        viewModel.postImageToGallery(
+                            token,
+                            animalName, part
+                        )
+                    }
+                    observeUploadImageResultData()
+                }
             }
+        } else {
+            disableBtnAddGallery()
         }
     }
 
@@ -87,6 +98,17 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
         )
         binding.txtDes.text = info.desc
     }
+
+    private fun disableBtnAddGallery() {
+        binding.btnAddGallery.setImageDrawable(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.ic_photo
+            )
+        )
+        binding.btnAddGallery.isClickable = false
+    }
+
 
     private fun setRv() {
         animalSpecieAdapter = AnimalSpecieAdapter(this)
@@ -127,11 +149,14 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
             }
         }
     }
+
     private fun observeUploadImageResultData() {
         viewModel.uploadImageDataFlow.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     Toast.makeText(requireContext(), it.data?.result, Toast.LENGTH_SHORT).show()
+                    isSave = 1
+                    disableBtnAddGallery()
                     hideLoading()
                 }
 

@@ -41,11 +41,11 @@ class ResultInfoViewModel @Inject constructor(private val repo: AnimalTypeRepo) 
 
     fun postImageToGallery(
         token: String,
-        animal_specie_id: Int,
+        animal_specie_name: String,
         part: MultipartBody.Part
     ) = viewModelScope.launch {
         _uploadResultDataFlow.value = Resource.loading()
-        val result = repo.postImageToGallery(token, animal_specie_id, part)
+        val result = repo.postImageToGallery(token, animal_specie_name, part)
         _uploadResultDataFlow.value = result
     }
 
