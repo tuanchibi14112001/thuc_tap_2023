@@ -12,6 +12,7 @@ import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
+import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.UploadImageResponse
 import com.example.animalapp.model.User
@@ -59,6 +60,16 @@ class AnimalTypeRepoImpl @Inject constructor(
     override suspend fun getUser(token: String): Resource<User> {
         return try {
             val result = apiService.getUser("Bearer $token").await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+
+    override suspend fun getUserGallery(token: String): Resource<SpecieGallery> {
+        return try {
+            val result = apiService.getUserGallery("Bearer $token").await()
             Resource.success(result)
         } catch (e: Exception) {
             e.printStackTrace()

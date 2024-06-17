@@ -9,6 +9,7 @@ import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
+import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.UploadImageResponse
 import com.example.animalapp.model.User
@@ -21,6 +22,8 @@ interface AnimalTypeRepo {
     suspend fun registerUser(name: String, email: String, pwd: String): Resource<AuthResponse>
 
     suspend fun getUser(token: String): Resource<User>
+    suspend fun getUserGallery(token: String): Resource<SpecieGallery>
+
     suspend fun postImageToGallery(
         token: String,
         animal_specie_name: RequestBody,

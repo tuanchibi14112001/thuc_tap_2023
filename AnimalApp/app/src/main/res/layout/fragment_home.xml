@@ -54,10 +54,20 @@
         android:paddingEnd="25dp"
         android:text="Memory Game"
         android:textSize="30sp"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintEnd_toEndOf="@+id/btnPredict"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/btnPredict"
         app:layout_constraintTop_toBottomOf="@+id/btnPredict" />
+
+    <Button
+        android:id="@+id/btnGallery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="Gallery"
+        app:layout_constraintBottom_toTopOf="@+id/btnInfo"
+        app:layout_constraintEnd_toEndOf="@id/btnPredict"
+        app:layout_constraintStart_toStartOf="@id/btnPredict" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

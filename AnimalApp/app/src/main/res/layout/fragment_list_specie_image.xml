@@ -54,6 +54,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recvSpecieList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="vertical"
+        android:layout_marginBottom="@dimen/item_10"
+        />
 
 </LinearLayout>

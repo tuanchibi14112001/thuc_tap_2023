@@ -39,5 +39,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.btnPredict.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_imagePredictFragment)
         }
+        binding.btnGallery.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_listSpecieImageFragment)
+        }
     }
 }

@@ -8,6 +8,7 @@ import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
+import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.UploadImageResponse
 import com.example.animalapp.model.User
 import okhttp3.MultipartBody
@@ -43,6 +44,9 @@ interface ApiService {
     @GET("user")
     fun getUser(@Header("Authorization") auth:String): Call<User>
 
+    @GET("user/gallery")
+    fun getUserGallery(@Header("Authorization") auth:String): Call<SpecieGallery>
+
     @GET("animal_type")
     fun getAnimalType(): Call<List<AnimalType>>
 
@@ -74,4 +78,6 @@ interface ApiService {
         @Part("animal_specie_name") animal_specie_name: RequestBody,
         @Part image: MultipartBody.Part
     ): Call<UploadImageResponse>
+
+
 }

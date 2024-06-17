@@ -1,60 +1,74 @@
 package com.example.animalapp.ui.gallery
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.animalapp.R
+import com.example.animalapp.base.BaseFragment
+import com.example.animalapp.databinding.FragmentListSpecieImageBinding
+import com.example.animalapp.model.SpecieGalleryItem
+import com.example.animalapp.utils.MySharedPreferences
+import com.example.animalapp.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@AndroidEntryPoint
+class ListSpecieImageFragment : BaseFragment<FragmentListSpecieImageBinding>(),
+    SpecieImageViewListener {
+    private val viewModel: ListSpecieImageViewModel by viewModels()
+    private lateinit var listSpecieImageAdapter: ListSpecieImageAdapter
+    private var specieGallery: MutableList<SpecieGalleryItem> = mutableListOf()
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ListSpecieImageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ListSpecieImageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentListSpecieImageBinding.inflate(inflater, container, false)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun prepareView(savedInstanceState: Bundle?) {
+        val mySharedPreferences = MySharedPreferences(requireContext())
+        val token = mySharedPreferences.getUserToken()
+        viewModel.getUserGallery(token)
+        observeModel()
+        setRv()
+    }
+
+    private fun setRv() {
+        listSpecieImageAdapter = ListSpecieImageAdapter(this)
+        binding.recvSpecieList.apply {
+            adapter = listSpecieImageAdapter
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            setHasFixedSize(true)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_specie_image, container, false)
-    }
+    private fun observeModel() {
+        viewModel.dataFlow.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let { listGallery ->
+                        specieGallery = listGallery
+                        listSpecieImageAdapter.submitList(specieGallery)
+                    }
+                    hideLoading()
+                }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ListSpecieImageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ListSpecieImageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                Status.ERROR -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    hideLoading()
+                }
+
+                Status.LOADING -> {
+                    showLoading()
                 }
             }
+        }
     }
+
+    override fun itemOnClick(specieGalleryItem: SpecieGalleryItem) {
+        Toast.makeText(requireContext(), "OKE", Toast.LENGTH_SHORT).show()
+    }
+
 }
