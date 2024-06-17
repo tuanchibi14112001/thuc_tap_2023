@@ -39,4 +39,8 @@
     <string name="str_info">More Information: </string>
     <string name="str_other">Other Results: </string>
 
+    <!--    Gallery -->
+    <string name="str_gallery">Gallery</string>
+
+
 </resources>
