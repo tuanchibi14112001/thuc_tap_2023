@@ -26,6 +26,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 @AndroidEntryPoint
@@ -74,12 +75,16 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
                 file?.let { imageFile ->
                     val requestBody: RequestBody = imageFile
                         .asRequestBody("image/*".toMediaTypeOrNull())
-                    val part =
-                        MultipartBody.Part.createFormData("image", imageFile.name, requestBody)
                     animalPredictResult?.result?.let { animalName ->
+                        val animalSpecieNameRequestBody =
+                            animalName.toRequestBody("text/plain".toMediaTypeOrNull())
+                        val part =
+                            MultipartBody.Part.createFormData("image", imageFile.name, requestBody)
+
                         viewModel.postImageToGallery(
                             token,
-                            animalName, part
+                            animalSpecieNameRequestBody,
+                             part
                         )
                     }
                     observeUploadImageResultData()

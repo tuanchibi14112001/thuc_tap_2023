@@ -1,5 +1,6 @@
 package com.example.animalapp.repository
 
+import android.util.Log
 import com.example.animalapp.api.ApiAiService
 import com.example.animalapp.api.ApiService
 import com.example.animalapp.model.AnimalSpecie
@@ -16,6 +17,7 @@ import com.example.animalapp.model.UploadImageResponse
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.await
 import javax.inject.Inject
 
@@ -66,7 +68,7 @@ class AnimalTypeRepoImpl @Inject constructor(
 
     override suspend fun postImageToGallery(
         token: String,
-        animal_specie_name: String,
+        animal_specie_name: RequestBody,
         part: MultipartBody.Part
     ): Resource<UploadImageResponse> {
         return try {

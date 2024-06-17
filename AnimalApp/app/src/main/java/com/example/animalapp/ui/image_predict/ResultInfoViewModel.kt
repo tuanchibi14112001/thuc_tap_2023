@@ -12,6 +12,7 @@ import com.example.animalapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -41,7 +42,7 @@ class ResultInfoViewModel @Inject constructor(private val repo: AnimalTypeRepo) 
 
     fun postImageToGallery(
         token: String,
-        animal_specie_name: String,
+        animal_specie_name: RequestBody,
         part: MultipartBody.Part
     ) = viewModelScope.launch {
         _uploadResultDataFlow.value = Resource.loading()

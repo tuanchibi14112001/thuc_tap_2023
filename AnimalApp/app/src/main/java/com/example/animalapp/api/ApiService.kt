@@ -11,6 +11,7 @@ import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.UploadImageResponse
 import com.example.animalapp.model.User
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -70,7 +71,7 @@ interface ApiService {
     @POST("user/gallery-upload")
     fun postImageToGallery(
         @Header("Authorization") auth:String,
-        @Part("animal_specie_name") animal_specie_name: String,
+        @Part("animal_specie_name") animal_specie_name: RequestBody,
         @Part image: MultipartBody.Part
     ): Call<UploadImageResponse>
 }

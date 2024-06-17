@@ -14,6 +14,7 @@ import com.example.animalapp.model.UploadImageResponse
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 interface AnimalTypeRepo {
     suspend fun loginUser(email: String, pwd: String): Resource<AuthResponse>
@@ -22,7 +23,7 @@ interface AnimalTypeRepo {
     suspend fun getUser(token: String): Resource<User>
     suspend fun postImageToGallery(
         token: String,
-        animal_specie_name: String,
+        animal_specie_name: RequestBody,
         part: MultipartBody.Part
     ): Resource<UploadImageResponse>
 
