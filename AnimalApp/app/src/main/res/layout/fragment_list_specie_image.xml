@@ -45,7 +45,7 @@
         android:layout_height="match_parent"
         android:scrollbarStyle="outsideInset"
         android:scrollbars="vertical"
-        android:layout_marginBottom="@dimen/item_10"
+        android:layout_marginBottom="@dimen/item_50"
         />
 
 </LinearLayout>

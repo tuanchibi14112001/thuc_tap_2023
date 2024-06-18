@@ -152,5 +152,14 @@
         android:id="@+id/galleryDetailFragment"
         android:name="com.example.animalapp.ui.gallery.gallery_detail.GalleryDetailFragment"
         android:label="fragment_gallery_detail"
-        tools:layout="@layout/fragment_gallery_detail" />
+        tools:layout="@layout/fragment_gallery_detail" >
+        <action
+            android:id="@+id/action_galleryDetailFragment_to_imageFullFragment"
+            app:destination="@id/imageFullFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageFullFragment"
+        android:name="com.example.animalapp.ui.gallery.gallery_detail.ImageFullFragment"
+        android:label="fragment_image_full"
+        tools:layout="@layout/fragment_image_full" />
 </navigation>

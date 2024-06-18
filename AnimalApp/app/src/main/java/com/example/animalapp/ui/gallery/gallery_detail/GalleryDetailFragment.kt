@@ -1,13 +1,16 @@
 package com.example.animalapp.ui.gallery.gallery_detail
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import coil.load
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentGalleryDetailBinding
@@ -18,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class GalleryDetailFragment : BaseFragment<FragmentGalleryDetailBinding>(), GalleryDetailListener {
-    private  val viewModel: GalleryDetailViewModel by viewModels()
+    private val viewModel: GalleryDetailViewModel by viewModels()
     private lateinit var galleryDetailAdapter: GalleryDetailAdapter
     private var galleryDetail: MutableList<GalleryDetailItem> = mutableListOf()
 
@@ -32,10 +35,10 @@ class GalleryDetailFragment : BaseFragment<FragmentGalleryDetailBinding>(), Gall
         val animal_specie_name = args?.getString("specie_detail_name")
         val mySharedPreferences = MySharedPreferences(requireContext())
         val token = mySharedPreferences.getUserToken()
-        binding.btnBack.setOnClickListener{
+        binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
-        animal_specie_name?.let{
+        animal_specie_name?.let {
             val txt = "${animal_specie_name} Photos"
             binding.textView.text = txt
             viewModel.getGalleryDetail(token, it)
@@ -61,11 +64,11 @@ class GalleryDetailFragment : BaseFragment<FragmentGalleryDetailBinding>(), Gall
                         galleryDetail = data
                         galleryDetailAdapter.submitList(galleryDetail)
                         val numsPhoto = galleryDetail.size
-                        if(numsPhoto > 1){
-                            val txt  = "$numsPhoto Photos"
+                        if (numsPhoto > 1) {
+                            val txt = "$numsPhoto Photos"
                             binding.txtNumPhoto.text = txt
                         } else {
-                            val txt  = "$numsPhoto Photo"
+                            val txt = "$numsPhoto Photo"
                             binding.txtNumPhoto.text = txt
                         }
 
@@ -85,8 +88,29 @@ class GalleryDetailFragment : BaseFragment<FragmentGalleryDetailBinding>(), Gall
         }
     }
 
+//    private fun showDialogImage(galleryDetailItem: GalleryDetailItem) {
+//        val dialog  = Dialog(requireContext())
+//        dialog.setContentView(R.layout.custom_dialog_zoom)
+//        val imageView = dialog.findViewById(R.id.imageViewDiaLog) as ImageView
+//        imageView.load(galleryDetailItem.img_url){
+//            error(R.drawable.ques_mark)
+//        }
+//        val buttonClose = dialog.findViewById<ImageView>(R.id.btnImageClose)
+//        buttonClose.setOnClickListener{
+//            dialog.dismiss()
+//        }
+//
+//        dialog.show()
+//
+//    }
+
     override fun itemOnClick(galleryDetailItem: GalleryDetailItem) {
-        Toast.makeText(requireContext(), galleryDetailItem.img_url, Toast.LENGTH_SHORT).show()
+        val bundle = Bundle().apply {
+            putString("img_url", galleryDetailItem.img_url)
+        }
+        findNavController().navigate(R.id.action_galleryDetailFragment_to_imageFullFragment, bundle)
+//        Toast.makeText(requireContext(), galleryDetailItem.img_url, Toast.LENGTH_SHORT).show()
     }
+
 
 }
