@@ -1,6 +1,6 @@
 package com.example.animalapp.model
 
-data class UploadImageResponse(
+data class ImageResponse(
     val result: String,
     val status: Boolean
 )

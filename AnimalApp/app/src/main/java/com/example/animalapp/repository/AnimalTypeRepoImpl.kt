@@ -1,6 +1,5 @@
 package com.example.animalapp.repository
 
-import android.util.Log
 import com.example.animalapp.api.ApiAiService
 import com.example.animalapp.api.ApiService
 import com.example.animalapp.model.AnimalSpecie
@@ -15,7 +14,7 @@ import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.TestModel
-import com.example.animalapp.model.UploadImageResponse
+import com.example.animalapp.model.ImageResponse
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 import okhttp3.MultipartBody
@@ -95,10 +94,21 @@ class AnimalTypeRepoImpl @Inject constructor(
         token: String,
         animal_specie_name: RequestBody,
         part: MultipartBody.Part
-    ): Resource<UploadImageResponse> {
+    ): Resource<ImageResponse> {
         return try {
             val result =
                 apiService.postImageToGallery("Bearer $token", animal_specie_name, part).await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+
+    override suspend fun deleteImageGallery(token: String, image_id: Int): Resource<ImageResponse> {
+        return try {
+            val result =
+                apiService.deleteImageGallery("Bearer $token", image_id).await()
             Resource.success(result)
         } catch (e: Exception) {
             e.printStackTrace()

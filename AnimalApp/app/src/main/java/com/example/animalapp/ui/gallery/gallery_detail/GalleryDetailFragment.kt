@@ -107,6 +107,7 @@ class GalleryDetailFragment : BaseFragment<FragmentGalleryDetailBinding>(), Gall
     override fun itemOnClick(galleryDetailItem: GalleryDetailItem) {
         val bundle = Bundle().apply {
             putString("img_url", galleryDetailItem.img_url)
+            putInt("img_id", galleryDetailItem.id)
         }
         findNavController().navigate(R.id.action_galleryDetailFragment_to_imageFullFragment, bundle)
 //        Toast.makeText(requireContext(), galleryDetailItem.img_url, Toast.LENGTH_SHORT).show()

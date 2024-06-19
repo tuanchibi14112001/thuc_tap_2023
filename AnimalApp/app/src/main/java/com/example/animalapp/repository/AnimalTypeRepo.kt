@@ -12,7 +12,7 @@ import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.TestModel
-import com.example.animalapp.model.UploadImageResponse
+import com.example.animalapp.model.ImageResponse
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 import okhttp3.MultipartBody
@@ -30,7 +30,12 @@ interface AnimalTypeRepo {
         token: String,
         animal_specie_name: RequestBody,
         part: MultipartBody.Part
-    ): Resource<UploadImageResponse>
+    ): Resource<ImageResponse>
+
+    suspend fun deleteImageGallery(
+        token: String,
+        image_id: Int
+    ): Resource<ImageResponse>
 
     suspend fun getAnimalType(): Resource<List<AnimalType>>
     suspend fun getAnimalSpecies(name: String): Resource<AnimalSpecie>

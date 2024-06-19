@@ -10,7 +10,7 @@ import com.example.animalapp.model.GalleryDetail
 import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
-import com.example.animalapp.model.UploadImageResponse
+import com.example.animalapp.model.ImageResponse
 import com.example.animalapp.model.User
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -55,6 +55,13 @@ interface ApiService {
         @Query("animal_specie_name") animal_specie_name: String
     ): Call<GalleryDetail>
 
+    @FormUrlEncoded
+    @POST("user/gallery-delete")
+    fun deleteImageGallery(
+        @Header("Authorization") auth: String,
+        @Field("image_id") image_id: Int
+    ): Call<ImageResponse>
+
     @GET("animal_type")
     fun getAnimalType(): Call<List<AnimalType>>
 
@@ -85,7 +92,7 @@ interface ApiService {
         @Header("Authorization") auth: String,
         @Part("animal_specie_name") animal_specie_name: RequestBody,
         @Part image: MultipartBody.Part
-    ): Call<UploadImageResponse>
+    ): Call<ImageResponse>
 
 
 }
