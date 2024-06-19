@@ -10,17 +10,18 @@
 
     <Button
         android:id="@+id/btnQuizz"
-        android:layout_width="0dp"
+        android:layout_width="291dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:paddingStart="25dp"
         android:paddingEnd="25dp"
         android:text="Quizz"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="@+id/btnPredict"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@id/btnGame"
-        app:layout_constraintTop_toBottomOf="@+id/btnPredict" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGame"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/btnPredict"
@@ -29,45 +30,67 @@
 
         android:text="Animal Prediction"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGame"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/btnInfo"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/btnInfo"
-        android:layout_width="0dp"
+        android:layout_width="291dp"
         android:layout_height="wrap_content"
         android:text="Animal Wiki"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/btnGame"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/btnGame"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintBottom_toTopOf="@+id/btnPredict"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGallery"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/btnGame"
-        android:layout_width="0dp"
+        android:layout_width="291dp"
         android:layout_height="wrap_content"
         android:paddingStart="25dp"
         android:paddingEnd="25dp"
         android:text="Memory Game"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="@+id/btnPredict"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/btnPredict"
-        app:layout_constraintTop_toBottomOf="@+id/btnPredict" />
+        app:layout_constraintBottom_toTopOf="@+id/btnQuizz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPredict"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
         android:id="@+id/btnGallery"
-        android:layout_width="0dp"
+        android:layout_width="291dp"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
         android:text="Gallery"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/btnInfo"
-        app:layout_constraintEnd_toEndOf="@id/btnPredict"
-        app:layout_constraintStart_toStartOf="@id/btnPredict" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="291dp"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGallery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_chainStyle="packed" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

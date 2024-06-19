@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_listSpecieImageFragment"
             app:destination="@id/listSpecieImageFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/animalTypeFragment"
@@ -162,4 +165,9 @@
         android:name="com.example.animalapp.ui.gallery.gallery_detail.ImageFullFragment"
         android:label="fragment_image_full"
         tools:layout="@layout/fragment_image_full" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.animalapp.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
 </navigation>

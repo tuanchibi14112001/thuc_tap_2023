@@ -42,5 +42,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.btnGallery.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_listSpecieImageFragment)
         }
+        binding.btnSearch.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
     }
 }
