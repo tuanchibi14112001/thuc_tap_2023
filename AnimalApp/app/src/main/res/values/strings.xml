@@ -44,4 +44,7 @@
     <string name="str_photos">Photos</string>
 
 
+    <!--    Search-->
+    <string name="str_search">Search</string>
+
 </resources>
