@@ -3,11 +3,11 @@ package com.example.animalapp.api
 import com.example.animalapp.model.AnimalSpecie
 import com.example.animalapp.model.AnimalBreed
 import com.example.animalapp.model.AnimalBreedItem
+import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.GalleryDetail
-import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.ImageResponse
@@ -76,7 +76,7 @@ interface ApiService {
     fun getAnimalBreeds(@Path("id") id: Int): Call<AnimalBreed>
 
     @GET("animal_specie/detail/{animalf_name}")
-    fun getMoreInfo(@Path("animalf_name") animalf_name: String): Call<MoreInfo>
+    fun getMoreInfo(@Path("animalf_name") animalf_name: String): Call<AnimalSpecieItem>
 
     @GET("animal_specie/result_detail")
     fun getOtherResults(@Query("name[]") other_results: List<String>): Call<AnimalSpecie>

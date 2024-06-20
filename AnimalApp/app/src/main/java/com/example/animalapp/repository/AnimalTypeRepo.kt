@@ -4,6 +4,7 @@ import com.example.animalapp.model.AnimalSpecie
 import com.example.animalapp.model.AnimalPredictResult
 import com.example.animalapp.model.AnimalBreed
 import com.example.animalapp.model.AnimalBreedItem
+import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
@@ -41,7 +42,7 @@ interface AnimalTypeRepo {
     suspend fun getAnimalType(): Resource<List<AnimalType>>
     suspend fun getAnimalSpecies(name: String): Resource<AnimalSpecie>
     suspend fun getAnimalBreeds(id: Int): Resource<AnimalBreed>
-    suspend fun getMoreInfo(animalf_name: String): Resource<MoreInfo>
+    suspend fun getMoreInfo(animalf_name: String): Resource<AnimalSpecieItem>
     suspend fun getOtherResults(other_results: List<String>): Resource<AnimalSpecie>
     suspend fun getAnimalBreedDetail(id: Int): Resource<AnimalBreedItem>
     suspend fun getMemoryCard(): Resource<MemoryCard>

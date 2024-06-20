@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalapp.R
@@ -33,6 +34,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), SearchItemListener
         viewModel.getPrepareSearch()
         observeModel()
         setRv()
+        binding.btnBack.setOnClickListener{
+            findNavController().popBackStack()
+        }
     }
 
     private fun setSearchView() {
@@ -112,8 +116,51 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), SearchItemListener
         }
     }
 
+    private fun observeSpecieDataModel() {
+        viewModel.dataSpecieFlow.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let { animalSpecieItem ->
+                        val bundle = Bundle().apply {
+                            putSerializable("animal_specie_item", animalSpecieItem)
+                        }
+                        findNavController().navigate(
+                            R.id.action_searchFragment_to_specieDetailFragment,
+                            bundle
+                        )
+
+                    }
+                    hideLoading()
+                }
+
+                Status.ERROR -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    hideLoading()
+                }
+
+                Status.LOADING -> {
+                    showLoading()
+                }
+            }
+        }
+    }
+
     override fun itemOnclick(searchDetailItem: SearchDetailItem) {
-        Toast.makeText(requireContext(), searchDetailItem.name, Toast.LENGTH_SHORT).show()
+        if (searchDetailItem.type == 1) {
+            viewModel.getAnimalSpecie(searchDetailItem.name)
+            observeSpecieDataModel()
+        }
+        if (searchDetailItem.type == 2) {
+            val bundle = Bundle().apply {
+                putInt("animal_breed_detail", searchDetailItem.id)
+            }
+            findNavController().navigate(R.id.action_searchFragment_to_animalBreedFragment, bundle)
+        }
+    }
+
+    override fun onResume() {
+        binding.searchView.setQuery("", false);
+        super.onResume()
     }
 
 }

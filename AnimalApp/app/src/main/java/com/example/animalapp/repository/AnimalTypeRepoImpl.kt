@@ -6,11 +6,11 @@ import com.example.animalapp.model.AnimalSpecie
 import com.example.animalapp.model.AnimalPredictResult
 import com.example.animalapp.model.AnimalBreed
 import com.example.animalapp.model.AnimalBreedItem
+import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalType
 import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.AuthResponse
 import com.example.animalapp.model.GalleryDetail
-import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.TestModel
@@ -148,7 +148,7 @@ class AnimalTypeRepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getMoreInfo(animalf_name: String): Resource<MoreInfo> {
+    override suspend fun getMoreInfo(animalf_name: String): Resource<AnimalSpecieItem> {
         return try {
             val result = apiService.getMoreInfo(animalf_name).await()
             Resource.success(result)

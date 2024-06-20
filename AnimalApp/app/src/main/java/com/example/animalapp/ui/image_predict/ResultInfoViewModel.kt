@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.animalapp.base.BaseViewModel
-import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.AnimalSpecie
+import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.ImageResponse
 import com.example.animalapp.repository.AnimalTypeRepo
 import com.example.animalapp.utils.Resource
@@ -17,11 +17,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ResultInfoViewModel @Inject constructor(private val repo: AnimalTypeRepo) : BaseViewModel() {
-    private val _dataFlow = MutableLiveData<Resource<MoreInfo>>()
+    private val _dataFlow = MutableLiveData<Resource<AnimalSpecieItem>>()
     private val _otherResultDataFlow = MutableLiveData<Resource<AnimalSpecie>>()
     private val _uploadResultDataFlow = MutableLiveData<Resource<ImageResponse>>()
 
-    val dataFlow: LiveData<Resource<MoreInfo>>
+    val dataFlow: LiveData<Resource<AnimalSpecieItem>>
         get() = _dataFlow
     val otherResultDataFlow: LiveData<Resource<AnimalSpecie>>
         get() = _otherResultDataFlow
