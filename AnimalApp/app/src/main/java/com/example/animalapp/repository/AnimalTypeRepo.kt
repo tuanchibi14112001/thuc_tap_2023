@@ -13,6 +13,7 @@ import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.ImageResponse
+import com.example.animalapp.model.SearchDetail
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 import okhttp3.MultipartBody
@@ -51,4 +52,6 @@ interface AnimalTypeRepo {
     suspend fun getFileName(part: MultipartBody.Part): Resource<TestModel>
 
     suspend fun getAnimalNamePre(part: MultipartBody.Part): Resource<AnimalPredictResult>
+
+    suspend fun getPrepareSearch(): Resource<SearchDetail>
 }

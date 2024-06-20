@@ -15,6 +15,7 @@ import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.ImageResponse
+import com.example.animalapp.model.SearchDetail
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
 import okhttp3.MultipartBody
@@ -220,6 +221,16 @@ class AnimalTypeRepoImpl @Inject constructor(
     override suspend fun getAnimalNamePre(part: MultipartBody.Part): Resource<AnimalPredictResult> {
         return try {
             val result = apiAiService.getAnimalNamePre(part).await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+
+    override suspend fun getPrepareSearch(): Resource<SearchDetail> {
+        return try {
+            val result = apiService.getPrepareSearch().await()
             Resource.success(result)
         } catch (e: Exception) {
             e.printStackTrace()

@@ -34,6 +34,8 @@
             android:layout_marginEnd="@dimen/item_10"
             android:layout_marginStart="@dimen/item_5"
             android:textSize="15sp"
+            android:textColor="@color/gray_2D2"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="@id/txtName"
             app:layout_constraintTop_toTopOf="@id/txtName"
             app:layout_constraintStart_toStartOf="@+id/guideline"

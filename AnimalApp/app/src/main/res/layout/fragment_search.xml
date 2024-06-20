@@ -56,6 +56,8 @@
             android:layout_height="match_parent"
             android:background="@drawable/edit_text_corner"
             android:elevation="@dimen/item_5"
+            android:clickable="true"
+            android:focusable="true"
             android:iconifiedByDefault="false"
             android:queryBackground="@android:color/transparent"
             android:queryHint="@string/str_search" />
@@ -72,9 +74,13 @@
         app:layout_constraintTop_toBottomOf="@+id/linear2">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/specieRcv"
+            android:id="@+id/rcvDetail"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:paddingBottom="@dimen/item_50"
             android:layout_marginTop="@dimen/item_10" />
     </LinearLayout>
 

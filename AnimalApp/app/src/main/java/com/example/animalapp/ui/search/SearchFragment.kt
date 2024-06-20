@@ -1,60 +1,119 @@
 package com.example.animalapp.ui.search
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalapp.R
+import com.example.animalapp.base.BaseFragment
+import com.example.animalapp.databinding.FragmentSearchBinding
+import com.example.animalapp.model.SearchDetailItem
+import com.example.animalapp.ui.gallery.ListSpecieImageAdapter
+import com.example.animalapp.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@AndroidEntryPoint
+class SearchFragment : BaseFragment<FragmentSearchBinding>(), SearchItemListener {
+    private val viewModel: SearchViewModel by viewModels()
+    private lateinit var searchViewAdapter: SearchViewAdapter
+    private var searchDetail: MutableList<SearchDetailItem> = mutableListOf()
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SearchFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentSearchBinding.inflate(inflater, container, false)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun prepareView(savedInstanceState: Bundle?) {
+        viewModel.getPrepareSearch()
+        observeModel()
+        setRv()
+    }
+
+    private fun setSearchView() {
+        binding.searchView.requestFocusFromTouch()
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.searchView.clearFocus()
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+
+        })
+    }
+
+    private fun filterList(query: String?) {
+        query?.let {
+            val filteredList = mutableListOf<SearchDetailItem>()
+            for (searchItem in searchDetail) {
+                if (searchItem.name.lowercase().contains(it.lowercase())) {
+                    filteredList.add(searchItem)
+                }
+            }
+            if (filteredList.isEmpty()) {
+                Toast.makeText(requireContext(), "No Data found", Toast.LENGTH_SHORT).show()
+            }
+            searchViewAdapter.queryText = it
+            setFilteredList(filteredList)
+        }
+        if (query.isNullOrEmpty()) {
+            binding.rcvDetail.layoutManager?.scrollToPosition(0)
+
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+    private fun setFilteredList(mList: MutableList<SearchDetailItem>) {
+        searchViewAdapter.submitList(mList)
+        searchViewAdapter.notifyDataSetChanged()
+        binding.rcvDetail.layoutManager?.scrollToPosition(0)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SearchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun setRv() {
+        searchViewAdapter = SearchViewAdapter(this)
+        binding.rcvDetail.apply {
+            adapter = searchViewAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            (layoutManager as LinearLayoutManager).scrollToPosition(0)
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun observeModel() {
+        viewModel.dataFlow.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    it.data?.let { list ->
+                        searchDetail = list
+                        searchViewAdapter.submitList(searchDetail)
+                        searchViewAdapter.notifyDataSetChanged()
+                        setSearchView()
+                    }
+                    hideLoading()
+                }
+
+                Status.ERROR -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    hideLoading()
+                }
+
+                Status.LOADING -> {
+                    showLoading()
                 }
             }
+        }
     }
+
+    override fun itemOnclick(searchDetailItem: SearchDetailItem) {
+        Toast.makeText(requireContext(), searchDetailItem.name, Toast.LENGTH_SHORT).show()
+    }
+
 }

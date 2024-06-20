@@ -11,6 +11,7 @@ import com.example.animalapp.model.MoreInfo
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.ImageResponse
+import com.example.animalapp.model.SearchDetail
 import com.example.animalapp.model.User
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -85,6 +86,9 @@ interface ApiService {
 
     @GET("quizz")
     fun getQuizz(): Call<Quizz>
+
+    @GET("search/prepare")
+    fun getPrepareSearch(): Call<SearchDetail>
 
     @Multipart
     @POST("user/gallery-upload")
