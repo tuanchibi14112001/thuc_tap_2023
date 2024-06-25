@@ -1,5 +1,7 @@
 package com.example.animalapp.model
 
+import java.io.Serializable
+
 data class QuizzItem(
     val animal_specie_id: Int,
     val answers: List<String>,
@@ -10,4 +12,4 @@ data class QuizzItem(
     val name: String,
     val score: Int,
     val type: Int
-)
+): Serializable

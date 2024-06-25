@@ -31,6 +31,13 @@
     <string name="str_has_account">Đã có tài khoản?</string>
     <string name="str_btn_signIn">Đăng nhập ngay</string>
 
+    <!--    Home-->
+    <string name="str_home_dashboard">Dashboard Menu</string>
+    <string name="str_home_subtitle">Welcome to Animal App</string>
+    <string name="str_btn_category">Categories</string>
+
+
+
     <!--    Quizz Game-->
     <string name="str_quizz">QUIZZ GAME</string>
 
