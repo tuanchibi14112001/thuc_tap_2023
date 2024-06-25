@@ -3,7 +3,6 @@ package com.example.animalapp.model
 import java.io.Serializable
 
 data class QuizzItem(
-    val animal_specie_id: Int,
     val answers: List<String>,
     var clickedAnswer: String?,
     val correctAnswer: String,

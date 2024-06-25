@@ -4,17 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.memory_game.end_game.EndGameFragment"
+    tools:context=".ui.quizz_game.end_quizz.EndQuizzFragment"
     android:background="@drawable/bg_game"
     >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/msgScore"
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "YOUR SCORE: "
+        android:text = "CORRECT: "
         android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +26,7 @@
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "30"
+        tools:text = "5"
         android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/msgScore"
@@ -47,13 +46,14 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recvGameItem"
+        android:id="@+id/recvQuizzItem"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="20dp"
         android:paddingBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtAnimal" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

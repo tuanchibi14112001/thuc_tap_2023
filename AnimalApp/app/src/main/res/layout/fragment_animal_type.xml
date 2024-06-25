@@ -10,13 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gray"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-33dp">
 
         <LinearLayout
             android:id="@+id/btnMammals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:layout_weight="1"
             android:background="@drawable/my_shape"
             android:gravity="center_vertical|center_horizontal"
@@ -24,8 +25,6 @@
             android:padding="20dp"
             app:layout_constraintBottom_toTopOf="@+id/btnFish"
             app:layout_constraintEnd_toStartOf="@+id/btnBird"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -53,10 +52,11 @@
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical"
             android:padding="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnReptiles"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnMammals"
-            app:layout_constraintTop_toTopOf="@+id/btnMammals">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="231dp">
 
             <ImageView
                 android:layout_width="100dp"
@@ -77,16 +77,14 @@
             android:id="@+id/btnFish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:layout_weight="1"
             android:background="@drawable/my_shape"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical"
             android:padding="20dp"
             app:layout_constraintBottom_toTopOf="@+id/btnAmphibians"
-            app:layout_constraintEnd_toStartOf="@+id/btnReptiles"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnMammals"
+            app:layout_constraintStart_toStartOf="@+id/btnMammals"
             app:layout_constraintTop_toBottomOf="@+id/btnMammals">
 
             <ImageView
@@ -113,10 +111,10 @@
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical"
             android:padding="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnFish"
-            app:layout_constraintTop_toTopOf="@+id/btnFish">
+            app:layout_constraintBottom_toTopOf="@+id/btnArthropods"
+            app:layout_constraintEnd_toEndOf="@+id/btnBird"
+            app:layout_constraintStart_toStartOf="@+id/btnBird"
+            app:layout_constraintTop_toBottomOf="@+id/btnBird">
 
             <ImageView
                 android:layout_width="100dp"
@@ -137,16 +135,14 @@
             android:id="@+id/btnAmphibians"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:layout_weight="1"
             android:background="@drawable/my_shape"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical"
             android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnArthropods"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnFish"
+            app:layout_constraintStart_toStartOf="@+id/btnFish"
             app:layout_constraintTop_toBottomOf="@+id/btnFish">
 
             <ImageView
@@ -173,9 +169,8 @@
             android:gravity="center_vertical|center_horizontal"
             android:orientation="vertical"
             android:padding="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnAmphibians"
+            app:layout_constraintEnd_toEndOf="@+id/btnReptiles"
+            app:layout_constraintStart_toStartOf="@+id/btnReptiles"
             app:layout_constraintTop_toTopOf="@+id/btnAmphibians">
 
             <ImageView

@@ -27,7 +27,7 @@ class QuizzFragment : BaseFragment<FragmentQuizzBinding>(), QuizzItemClick {
     lateinit var quizzAdapter: QuizzAdapter
     private var quizzList: MutableList<QuizzItem> = mutableListOf()
     private var quizz: Quizz? = null
-    private var scores: Int? = 0
+    private var scores: Int = 0
     private var position: Int = 0
 
     override fun getViewBinding(
@@ -91,7 +91,7 @@ class QuizzFragment : BaseFragment<FragmentQuizzBinding>(), QuizzItemClick {
     private fun setQuizzView() {
         binding.apply {
             btnBack.setOnClickListener {
-                findNavController().navigate(R.id.action_quizzFragment_to_homeFragment)
+                findNavController().popBackStack()
             }
             progressBar.progress = 1
             setQuizzItemView()
@@ -109,7 +109,7 @@ class QuizzFragment : BaseFragment<FragmentQuizzBinding>(), QuizzItemClick {
             }
             btnBackQuizz.setOnClickListener {
                 if (progressBar.progress == 1) {
-                    finishQuizz()
+                    findNavController().popBackStack()
                     return@setOnClickListener
                 }
                 position--
@@ -131,16 +131,20 @@ class QuizzFragment : BaseFragment<FragmentQuizzBinding>(), QuizzItemClick {
     }
 
     private fun finishQuizz() {
-        findNavController().navigate(R.id.action_quizzFragment_to_homeFragment)
+        quizz = quizzList as Quizz
+        val bundle = Bundle().apply {
+            putString("quizz_score", scores.toString())
+            putSerializable("quizz", quizz)
+        }
+        findNavController().navigate(R.id.action_quizzFragment_to_endQuizzFragment, bundle)
     }
 
     override fun itemOnClick(answerItem: AnswerItem) {
         quizzList[position].clickedAnswer = answerItem.answer
+        if(quizzList[position].clickedAnswer == quizzList[position].correctAnswer){
+            scores += 1
+        }
         loadAnswers()
-    }
-
-    private fun correctViewUpdate() {
-
     }
 
 }

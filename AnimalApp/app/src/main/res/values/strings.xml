@@ -35,11 +35,14 @@
     <string name="str_home_dashboard">Dashboard Menu</string>
     <string name="str_home_subtitle">Welcome to Animal App</string>
     <string name="str_btn_category">Categories</string>
-
+    <string name="str_btn_prediction">Prediction</string>
+    <string name="str_btn_game">Game</string>
+    <string name="str_btn_quiz">Quiz</string>
+    <string name="str_btn_logout">Log Out</string>
 
 
     <!--    Quizz Game-->
-    <string name="str_quizz">QUIZZ GAME</string>
+    <string name="str_quizz">QUIZ GAME</string>
 
     <!--   Animal Prediction -->
     <string name="str_title">Choose a photo of an animal</string>

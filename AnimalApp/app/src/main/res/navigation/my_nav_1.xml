@@ -121,8 +121,10 @@
         android:label="fragment_quizz"
         tools:layout="@layout/fragment_quizz" >
         <action
-            android:id="@+id/action_quizzFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_quizzFragment_to_endQuizzFragment"
+            app:destination="@id/endQuizzFragment"
+            app:popUpTo="@id/quizzFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/imagePredictFragment"
@@ -175,6 +177,15 @@
             app:destination="@id/specieDetailFragment" />
         <action
             android:id="@+id/action_searchFragment_to_animalBreedFragment"
+            app:destination="@id/animalBreedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/endQuizzFragment"
+        android:name="com.example.animalapp.ui.quizz_game.end_quizz.EndQuizzFragment"
+        android:label="fragment_end_quiz"
+        tools:layout="@layout/fragment_end_quiz" >
+        <action
+            android:id="@+id/action_endQuizzFragment_to_animalBreedFragment"
             app:destination="@id/animalBreedFragment" />
     </fragment>
 </navigation>

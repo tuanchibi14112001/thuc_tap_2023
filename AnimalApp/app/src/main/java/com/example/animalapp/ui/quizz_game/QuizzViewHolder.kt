@@ -4,10 +4,8 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animalapp.R
-import com.example.animalapp.databinding.CardGameItemBinding
 import com.example.animalapp.databinding.QuestionItemBinding
 import com.example.animalapp.model.AnswerItem
-import com.example.animalapp.ui.memory_game.CardItemClickListener
 
 
 class QuizzViewHolder(
@@ -45,7 +43,7 @@ class QuizzViewHolder(
     }
 
 
-    fun correctAnsView() {
+    private fun correctAnsView() {
         itemBinding.cardAnswerItem.setBackgroundResource(R.drawable.green_background)
         itemBinding.txtAnswer.setTextColor(
             ContextCompat.getColor(
@@ -62,7 +60,7 @@ class QuizzViewHolder(
         )
     }
 
-    fun errorAnsView(){
+    private fun errorAnsView(){
         itemBinding.cardAnswerItem.setBackgroundResource(R.drawable.red_background)
         itemBinding.txtAnswer.setTextColor(
             ContextCompat.getColor(

@@ -19,15 +19,16 @@ import com.example.animalapp.model.MemoryCard
 import com.example.animalapp.model.MemoryCardItem
 import com.example.animalapp.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 
 @AndroidEntryPoint
 class MemoryGameFragment : BaseFragment<FragmentMemoryGameBinding>(), CardItemClickListener {
     private val viewModel: MemoryGameViewModel by viewModels()
     lateinit var memoryGameAdapter: MemoryGameAdapter
-    private lateinit  var builder: AlertDialog.Builder
+    private lateinit var builder: AlertDialog.Builder
     var cardList: MutableList<MemoryCardItem> = mutableListOf()
-    private var animalList: MemoryCard ?= null
+    private var animalList: MemoryCard? = null
     private var indexOfSingleSelectedCard: Int? = null
     private var score: Int = 0
 
@@ -156,7 +157,10 @@ class MemoryGameFragment : BaseFragment<FragmentMemoryGameBinding>(), CardItemCl
                     putString("user_score", score.toString())
                     putSerializable("animal_list", animalList)
                 }
-                findNavController().navigate(R.id.action_memoryGameFragment_to_endGameFragment, bundle)
+                findNavController().navigate(
+                    R.id.action_memoryGameFragment_to_endGameFragment,
+                    bundle
+                )
             }
 
             ?.show()

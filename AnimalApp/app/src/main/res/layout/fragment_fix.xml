@@ -58,6 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/layout1" />
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -73,16 +74,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:baselineAligned="false"
             android:layout_margin="16dp"
             android:orientation="horizontal">
 
             <LinearLayout
+                android:baselineAligned="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnInfo"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
@@ -90,7 +94,7 @@
                     android:background="@drawable/bg_home_btn">
 
                     <ImageView
-                        android:id="@+id/img_search"
+                        android:id="@+id/img1"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:background="@drawable/round_button"
@@ -103,14 +107,14 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:src="@drawable/ic_category"
-                        app:layout_constraintBottom_toBottomOf="@id/img_search"
-                        app:layout_constraintEnd_toEndOf="@id/img_search"
-                        app:layout_constraintStart_toStartOf="@id/img_search"
-                        app:layout_constraintTop_toTopOf="@id/img_search" />
+                        app:layout_constraintBottom_toBottomOf="@id/img1"
+                        app:layout_constraintEnd_toEndOf="@id/img1"
+                        app:layout_constraintStart_toStartOf="@id/img1"
+                        app:layout_constraintTop_toTopOf="@id/img1" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView4"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato_bold"
@@ -130,6 +134,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnGallery"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
@@ -137,7 +142,7 @@
                     android:background="@drawable/bg_home_btn">
 
                     <ImageView
-                        android:id="@+id/img_search"
+                        android:id="@+id/img2"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:background="@drawable/round_button"
@@ -147,21 +152,21 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_camera"
-                        app:layout_constraintBottom_toBottomOf="@id/img_search"
-                        app:layout_constraintEnd_toEndOf="@id/img_search"
-                        app:layout_constraintStart_toStartOf="@id/img_search"
-                        app:layout_constraintTop_toTopOf="@id/img_search" />
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/ic_photo_library"
+                        app:layout_constraintBottom_toBottomOf="@id/img2"
+                        app:layout_constraintEnd_toEndOf="@id/img2"
+                        app:layout_constraintStart_toStartOf="@id/img2"
+                        app:layout_constraintTop_toTopOf="@id/img2" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView4"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato_bold"
-                    android:text="TextView"
+                    android:text="@string/str_gallery"
                     android:textAlignment="center"
                     android:textColor="#34346E"
                     android:textSize="@dimen/txt_16"
@@ -177,6 +182,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnPredict"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
@@ -184,7 +190,7 @@
                     android:background="@drawable/bg_home_btn">
 
                     <ImageView
-                        android:id="@+id/img_search"
+                        android:id="@+id/img3"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:background="@drawable/round_button"
@@ -194,21 +200,21 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:src="@drawable/ic_camera"
-                        app:layout_constraintBottom_toBottomOf="@id/img_search"
-                        app:layout_constraintEnd_toEndOf="@id/img_search"
-                        app:layout_constraintStart_toStartOf="@id/img_search"
-                        app:layout_constraintTop_toTopOf="@id/img_search" />
+                        app:layout_constraintBottom_toBottomOf="@id/img3"
+                        app:layout_constraintEnd_toEndOf="@id/img3"
+                        app:layout_constraintStart_toStartOf="@id/img3"
+                        app:layout_constraintTop_toTopOf="@id/img3" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView4"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato_bold"
-                    android:text="TextView"
+                    android:text="@string/str_btn_prediction"
                     android:textAlignment="center"
                     android:textColor="#34346E"
                     android:textSize="@dimen/txt_16"
@@ -220,6 +226,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -232,6 +239,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnGame"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
@@ -239,7 +247,7 @@
                     android:background="@drawable/bg_home_btn">
 
                     <ImageView
-                        android:id="@+id/img_search"
+                        android:id="@+id/img4"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:background="@drawable/round_button"
@@ -249,21 +257,67 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_camera"
-                        app:layout_constraintBottom_toBottomOf="@id/img_search"
-                        app:layout_constraintEnd_toEndOf="@id/img_search"
-                        app:layout_constraintStart_toStartOf="@id/img_search"
-                        app:layout_constraintTop_toTopOf="@id/img_search" />
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/ic_games"
+                        app:layout_constraintBottom_toBottomOf="@id/img4"
+                        app:layout_constraintEnd_toEndOf="@id/img4"
+                        app:layout_constraintStart_toStartOf="@id/img4"
+                        app:layout_constraintTop_toTopOf="@id/img4" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView4"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato_bold"
-                    android:text="TextView"
+                    android:text="@string/str_btn_game"
+                    android:textAlignment="center"
+                    android:textColor="#34346E"
+                    android:textSize="@dimen/txt_16" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnQuizz"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/item_10"
+                    android:background="@drawable/bg_home_btn">
+
+                    <ImageView
+                        android:id="@+id/img_5"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/round_button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/ic_quiz"
+                        app:layout_constraintBottom_toBottomOf="@id/img_5"
+                        app:layout_constraintEnd_toEndOf="@id/img_5"
+                        app:layout_constraintStart_toStartOf="@id/img_5"
+                        app:layout_constraintTop_toTopOf="@id/img_5" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="@string/str_btn_quiz"
                     android:textAlignment="center"
                     android:textColor="#34346E"
                     android:textSize="@dimen/txt_16"
@@ -286,7 +340,7 @@
                     android:background="@drawable/bg_home_btn">
 
                     <ImageView
-                        android:id="@+id/img_search"
+                        android:id="@+id/img6"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:background="@drawable/round_button"
@@ -296,68 +350,21 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_camera"
-                        app:layout_constraintBottom_toBottomOf="@id/img_search"
-                        app:layout_constraintEnd_toEndOf="@id/img_search"
-                        app:layout_constraintStart_toStartOf="@id/img_search"
-                        app:layout_constraintTop_toTopOf="@id/img_search" />
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/ic_logout"
+                        app:layout_constraintBottom_toBottomOf="@id/img6"
+                        app:layout_constraintEnd_toEndOf="@id/img6"
+                        app:layout_constraintStart_toStartOf="@id/img6"
+                        app:layout_constraintTop_toTopOf="@id/img6" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView4"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato_bold"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textColor="#34346E"
-                    android:textSize="@dimen/txt_16"
-
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/item_10"
-                    android:background="@drawable/bg_home_btn">
-
-                    <ImageView
-                        android:id="@+id/img_search"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/round_button"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_camera"
-                        app:layout_constraintBottom_toBottomOf="@id/img_search"
-                        app:layout_constraintEnd_toEndOf="@id/img_search"
-                        app:layout_constraintStart_toStartOf="@id/img_search"
-                        app:layout_constraintTop_toTopOf="@id/img_search" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/lato_bold"
-                    android:text="TextView"
+                    android:text="@string/str_btn_logout"
                     android:textAlignment="center"
                     android:textColor="#34346E"
                     android:textSize="@dimen/txt_16"

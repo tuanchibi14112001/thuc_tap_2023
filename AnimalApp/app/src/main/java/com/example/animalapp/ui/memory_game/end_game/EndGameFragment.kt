@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
@@ -32,8 +33,8 @@ class EndGameFragment : BaseFragment<FragmentEndGameBinding>(), EndCardItemClick
         endGameAdapter = EndGameAdapter(this)
         binding.recvGameItem.apply {
             adapter = endGameAdapter
-            layoutManager = LinearLayoutManager(
-                requireContext(), LinearLayoutManager.HORIZONTAL, false
+            layoutManager = GridLayoutManager(
+                requireContext(), 2
             )
             setHasFixedSize(true)
         }

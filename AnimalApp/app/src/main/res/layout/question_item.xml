@@ -10,17 +10,19 @@
     app:cardCornerRadius="@dimen/item_15"
     android:elevation="@dimen/item_3"
     android:id="@+id/cardAnswerItem"
+
     >
     <TextView
         android:id="@+id/txtAnswer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:text="answer"
         android:textSize="@dimen/txt_16"
         android:fontFamily="@font/lato"
         android:paddingStart="@dimen/item_15"
         android:paddingEnd="@dimen/item_15"
+        android:drawableEnd="@drawable/ic_tick"
         />
 
 </androidx.cardview.widget.CardView>
