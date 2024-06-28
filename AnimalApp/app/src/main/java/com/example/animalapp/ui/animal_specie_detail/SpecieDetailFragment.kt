@@ -38,6 +38,9 @@ class SpecieDetailFragment : BaseFragment<FragmentSpecieDetailBinding>(), BreedI
             args?.getSerializable("animal_specie_item") as AnimalSpecieItem
         }
         familyItem?.let {
+            binding.btnBack.setOnClickListener{
+                findNavController().popBackStack()
+            }
             binding.txtName.text = it.name
             binding.txtDes.text = it.desc
             binding.imgAnimal.load(

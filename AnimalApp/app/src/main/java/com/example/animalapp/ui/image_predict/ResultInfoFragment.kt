@@ -63,7 +63,7 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
         animalPredictResult?.let {
             val animalName = it.result
             val results: MutableList<String> = it.similar.toMutableList()
-            val resultTxt = "I think this is: $animalName"
+            val resultTxt = "We believe this is a member of the species: $animalName"
             binding.resultTxt.text = resultTxt
             results.add(0, it.result)
             viewModel.getOtherResults(results)

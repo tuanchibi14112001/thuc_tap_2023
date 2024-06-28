@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import coil.load
+import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentAnimalBreedBinding
 import com.example.animalapp.model.AnimalBreedItem
@@ -28,6 +31,12 @@ class AnimalBreedFragment : BaseFragment<FragmentAnimalBreedBinding>() {
         val animalBreedItemId = args?.getInt("animal_breed_detail")
         if(animalBreedItemId != null){
             viewModel.getAnimalBreedDetail(animalBreedItemId)
+        }
+        binding.btnBack.setOnClickListener{
+            findNavController().popBackStack()
+        }
+        binding.floatingActionButton2.setOnClickListener{
+            binding.floatingActionButton2.setColorFilter(ContextCompat.getColor(requireContext(), R.color.red))
         }
         observeModel()
 //        Log.d("CHECK", animalBreedItem.toString())

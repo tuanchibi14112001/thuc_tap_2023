@@ -30,8 +30,16 @@ class ListAnimalFragment : BaseFragment<FragmentListAnimalBinding>(), ItemClickL
     override fun prepareView(savedInstanceState: Bundle?) {
         val args = this.arguments
         val name = args?.getString("animal_type")
-        viewModel.getAnimalSpecies(name?:"a")
-        observeModel()
+        binding.btnBack.setOnClickListener{
+            findNavController().popBackStack()
+        }
+        name?.let {
+            binding.textView.text = it
+            viewModel.getAnimalSpecies(it)
+            observeModel()
+
+        }
+
 
         listAnimalAdapter = ListAnimalAdapter(this)
         binding.mRecyclerView.apply {
