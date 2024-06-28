@@ -22,6 +22,9 @@ class MemoryGameViewHolder(
         } else {
             itemBinding.imgSpeciesItem.load(R.drawable.ques_mark)
         }
+        if(memoryCardItem.is_checked){
+            itemBinding.imgSpeciesItem.alpha = 0.7f
+        }
         itemBinding.cvGameItem.setOnClickListener {
             itemClickListener.itemOnClick(memoryCardItem)
         }

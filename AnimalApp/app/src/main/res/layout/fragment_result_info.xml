@@ -35,7 +35,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/userImg"
-            tools:text="We believe this is a member of the species: dog" />
+            tools:text="We believe this is a: "/>
 
         <TextView
             android:id="@+id/txtName"
