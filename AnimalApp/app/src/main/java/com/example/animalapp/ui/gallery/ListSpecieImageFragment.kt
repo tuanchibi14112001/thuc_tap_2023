@@ -33,6 +33,9 @@ class ListSpecieImageFragment : BaseFragment<FragmentListSpecieImageBinding>(),
         val token = mySharedPreferences.getUserToken()
         viewModel.getUserGallery(token)
         observeModel()
+        binding.btnBack.setOnClickListener{
+            findNavController().popBackStack()
+        }
         setRv()
     }
 

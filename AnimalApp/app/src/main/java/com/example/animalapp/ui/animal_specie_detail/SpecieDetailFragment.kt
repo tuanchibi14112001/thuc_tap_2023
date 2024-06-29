@@ -1,10 +1,16 @@
 package com.example.animalapp.ui.animal_specie_detail
 
+import android.app.Dialog
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import android.widget.Toast
+import android.widget.VideoView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +18,7 @@ import coil.load
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentSpecieDetailBinding
+import com.example.animalapp.databinding.FragmentVideoBinding
 import com.example.animalapp.model.AnimalSpecieItem
 import com.example.animalapp.model.AnimalBreedItem
 import com.example.animalapp.utils.Status
@@ -32,13 +39,14 @@ class SpecieDetailFragment : BaseFragment<FragmentSpecieDetailBinding>(), BreedI
 
     override fun prepareView(savedInstanceState: Bundle?) {
         val args = this.arguments
-        val familyItem: AnimalSpecieItem? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            args?.getSerializable("animal_specie_item", AnimalSpecieItem::class.java)
-        } else {
-            args?.getSerializable("animal_specie_item") as AnimalSpecieItem
-        }
+        val familyItem: AnimalSpecieItem? =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                args?.getSerializable("animal_specie_item", AnimalSpecieItem::class.java)
+            } else {
+                args?.getSerializable("animal_specie_item") as AnimalSpecieItem
+            }
         familyItem?.let {
-            binding.btnBack.setOnClickListener{
+            binding.btnBack.setOnClickListener {
                 findNavController().popBackStack()
             }
             binding.txtName.text = it.name
@@ -46,14 +54,25 @@ class SpecieDetailFragment : BaseFragment<FragmentSpecieDetailBinding>(), BreedI
             binding.imgAnimal.load(
                 it.img_url
             )
+            if (it.video_url != null) {
+                binding.btnShowVideo.visibility = View.VISIBLE
+                val videoUrl = it.video_url
+                binding.btnShowVideo.setOnClickListener{
+                    val bundle = Bundle().apply {
+                        putString("video_url", videoUrl)
+                    }
+                    findNavController().navigate(R.id.action_specieDetailFragment_to_videoFragment, bundle)
+                }
+            }
             viewModel.getAnimalBreed(it.id)
             observeModel()
             setRv()
+            Log.d("CHECK", it.toString())
         }
 
     }
 
-    private fun setRv(){
+    private fun setRv() {
         breedsAnimalAdapter = BreedsAnimalAdapter(this)
         binding.recvBreedItem.apply {
             adapter = breedsAnimalAdapter
@@ -89,7 +108,10 @@ class SpecieDetailFragment : BaseFragment<FragmentSpecieDetailBinding>(), BreedI
         val bundle = Bundle().apply {
             putInt("animal_breed_detail", animalSpecieItem.id)
         }
-        findNavController().navigate(R.id.action_specieDetailFragment_to_animalBreedFragment, bundle)
+        findNavController().navigate(
+            R.id.action_specieDetailFragment_to_animalBreedFragment,
+            bundle
+        )
     }
 
 

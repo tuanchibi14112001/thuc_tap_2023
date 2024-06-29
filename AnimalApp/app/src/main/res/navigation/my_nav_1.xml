@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_specieDetailFragment_to_animalBreedFragment"
             app:destination="@id/animalBreedFragment" />
+        <action
+            android:id="@+id/action_specieDetailFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
     </fragment>
     <fragment
         android:id="@+id/animalBreedFragment"
@@ -188,4 +191,9 @@
             android:id="@+id/action_endQuizzFragment_to_animalBreedFragment"
             app:destination="@id/animalBreedFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="com.example.animalapp.ui.animal_specie_detail.VideoFragment"
+        android:label="fragment_video"
+        tools:layout="@layout/fragment_video" />
 </navigation>

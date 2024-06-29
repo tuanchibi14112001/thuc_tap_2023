@@ -45,6 +45,7 @@
         android:layout_height="match_parent"
         android:scrollbarStyle="outsideInset"
         android:scrollbars="vertical"
+        android:paddingBottom="50dp"
         android:layout_marginBottom="@dimen/item_50"
         />
 
