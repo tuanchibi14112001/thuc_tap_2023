@@ -32,7 +32,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginBottom="20dp"
-                android:src="@drawable/pest_animal" />
+                android:src="@drawable/ic_mammals" />
 
             <TextView
                 android:id="@+id/txtMammal"
@@ -62,7 +62,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginBottom="20dp"
-                android:src="@drawable/bird" />
+                android:src="@drawable/ic_birds" />
 
             <TextView
                 android:id="@+id/txtBird"
@@ -91,7 +91,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginBottom="20dp"
-                android:src="@drawable/fish" />
+                android:src="@drawable/ic_fish" />
 
             <TextView
                 android:id="@+id/txtFish"
@@ -120,7 +120,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginBottom="20dp"
-                android:src="@drawable/reptile" />
+                android:src="@drawable/ic_reptiles" />
 
             <TextView
                 android:id="@+id/txtReptiles"
@@ -149,7 +149,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginBottom="20dp"
-                android:src="@drawable/amphibian" />
+                android:src="@drawable/ic_frog" />
 
             <TextView
                 android:id="@+id/txtAmphibians"
@@ -177,7 +177,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginBottom="20dp"
-                android:src="@drawable/arthropods" />
+                android:src="@drawable/ic_spider" />
 
             <TextView
                 android:id="@+id/txtArthropods"

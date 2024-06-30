@@ -17,9 +17,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginTop="@dimen/item_61"
+            android:layout_marginTop="51dp"
             android:contentDescription="@string/img_logo_app"
-            android:src="@drawable/ic_logo_app2"
+            android:src="@drawable/ic_logo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,6 +30,7 @@
             android:fontFamily="@font/lato_light"
             android:text="@string/screen_desc"
             android:textSize="@dimen/txt_26"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@+id/img_app_logo"
             app:layout_constraintTop_toBottomOf="@+id/img_app_logo" />
 
@@ -39,7 +40,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/lato_bold"
             android:text="@string/login_screen_name"
-            android:textColor="@color/blue_6B4"
+            android:textColor="@color/red"
             android:textSize="@dimen/txt_32"
             app:layout_constraintStart_toStartOf="@+id/txt_screen_desc"
             app:layout_constraintTop_toBottomOf="@+id/txt_screen_desc" />
@@ -116,7 +117,7 @@
             android:layout_marginTop="@dimen/item_15"
             android:fontFamily="@font/lato_bold"
             android:text="@string/forgot_pw_txt"
-            android:textColor="@color/blue_6B4"
+            android:textColor="@color/red"
             app:layout_constraintEnd_toEndOf="@+id/edit_pw"
             app:layout_constraintTop_toBottomOf="@+id/edit_pw" />
 
@@ -146,7 +147,7 @@
             android:paddingBottom="@dimen/item_10"
             android:paddingStart="0dp"
             android:text="@string/txt_btn_signup"
-            android:textColor="@color/blue_6B4"
+            android:textColor="@color/red"
             android:textSize="@dimen/txt_14"
             app:layout_constraintEnd_toEndOf="@+id/btn_login_submit"
             app:layout_constraintStart_toEndOf="@+id/txt2"

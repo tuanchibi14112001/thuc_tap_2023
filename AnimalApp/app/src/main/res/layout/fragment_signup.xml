@@ -31,7 +31,7 @@
             android:layout_marginTop="@dimen/item_48"
             android:fontFamily="@font/lato_bold"
             android:text="@string/txt_login"
-            android:textColor="@color/blue_6B4"
+            android:textColor="@color/red"
             android:textSize="@dimen/txt_32"
             app:layout_constraintStart_toStartOf="@+id/btn_back"
             app:layout_constraintTop_toBottomOf="@+id/btn_back" />
@@ -153,32 +153,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/str_policy_1"
                 android:textColor="@color/gray" />
-
-            <TextView
-                android:id="@+id/txt_policy_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/item_3"
-                android:fontFamily="@font/lato_bold"
-                android:text="@string/str_policy_2"
-                android:textColor="@color/blue_6B4" />
-
-            <TextView
-                android:id="@+id/txt_policy_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/item_3"
-                android:fontFamily="@font/lato"
-                android:text="@string/str_policy_3" />
-
-            <TextView
-                android:id="@+id/txt_policy_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/item_3"
-                android:fontFamily="@font/lato_bold"
-                android:text="@string/str_policy_4"
-                android:textColor="@color/blue_6B4" />
         </LinearLayout>
 
         <TextView
@@ -206,7 +180,7 @@
             android:paddingBottom="@dimen/item_10"
             android:paddingEnd="@dimen/item_10"
             android:text="@string/str_btn_signIn"
-            android:textColor="@color/blue_6B4"
+            android:textColor="@color/red"
             android:textSize="@dimen/txt_14"
             app:layout_constraintEnd_toEndOf="@+id/btn_signup_submit"
             app:layout_constraintStart_toEndOf="@+id/txt2"

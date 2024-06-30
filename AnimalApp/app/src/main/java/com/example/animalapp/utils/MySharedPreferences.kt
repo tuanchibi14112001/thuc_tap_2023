@@ -17,4 +17,8 @@ class MySharedPreferences(context: Context) {
     fun getUserToken(): String {
         return sharedPreferences.getString("USER_TOKEN", null).toString()
     }
+
+    fun removeTokern(): Boolean{
+        return sharedPreferences.edit().remove("MyPreferences").commit()
+    }
 }

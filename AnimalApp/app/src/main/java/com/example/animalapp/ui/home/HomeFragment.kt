@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.animalapp.R
 import com.example.animalapp.base.BaseFragment
 import com.example.animalapp.databinding.FragmentHomeBinding
+import com.example.animalapp.ui.auth_user.LoginFragment
 import com.example.animalapp.utils.MySharedPreferences
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,30 +22,35 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?
     ): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(inflater,container,false)
+        return FragmentHomeBinding.inflate(inflater, container, false)
     }
 
     override fun prepareView(savedInstanceState: Bundle?) {
-//        val mySharedPreferences = MySharedPreferences(requireContext())
+        val mySharedPreferences = MySharedPreferences(requireContext())
 //        val token = mySharedPreferences.getUserToken()
 
-        binding.btnInfo.setOnClickListener{
+        binding.btnInfo.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_animalTypeFragment)
         }
-        binding.btnGame.setOnClickListener{
+        binding.btnGame.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_memoryGameFragment)
         }
-        binding.btnQuizz.setOnClickListener{
+        binding.btnQuizz.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_quizzFragment2)
         }
-        binding.btnPredict.setOnClickListener{
+        binding.btnPredict.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_imagePredictFragment)
         }
-        binding.btnGallery.setOnClickListener{
+        binding.btnGallery.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_listSpecieImageFragment)
         }
-        binding.btnSearch.setOnClickListener{
+        binding.btnSearch.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
         }
+        binding.btnLogout.setOnClickListener {
+            mySharedPreferences.removeTokern()
+            it.findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+        }
+
     }
 }

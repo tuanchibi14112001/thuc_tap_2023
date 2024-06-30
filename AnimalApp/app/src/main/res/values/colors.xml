@@ -14,6 +14,6 @@
 
 
     <color name="disable_btn">@color/gray_ACA</color>
-    <color name="enable_btn">@color/blue_6B4</color>
+    <color name="enable_btn">@color/red</color>
 
 </resources>

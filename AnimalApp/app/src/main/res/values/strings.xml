@@ -7,7 +7,7 @@
 
     <!--    Login -->
     <string name="img_logo_app">Img_Logo_App</string>
-    <string name="screen_desc">Trải nghiệm Animal Wiki</string>
+    <string name="screen_desc">Trải nghiệm Animal App</string>
     <string name="login_screen_name">Đăng nhập</string>
     <string name="txt_email_title">EMAIL</string>
     <string name="input_email_hint">yourname@gmail.com</string>
@@ -23,7 +23,7 @@
     <string name="str_name_input_hint">your name</string>
 
     <!--    Signup-->
-    <string name="str_policy_1">Tôi đồng ý với các</string>
+    <string name="str_policy_1">Tôi xác nhận thông tin trên </string>
     <string name="str_policy_2">chính sách</string>
     <string name="str_policy_3">và</string>
     <string name="str_policy_4">điều khoản</string>

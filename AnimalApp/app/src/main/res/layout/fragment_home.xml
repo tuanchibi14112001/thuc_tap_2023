@@ -335,6 +335,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnLogout"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
