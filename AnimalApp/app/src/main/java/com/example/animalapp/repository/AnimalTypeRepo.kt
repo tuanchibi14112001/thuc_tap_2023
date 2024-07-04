@@ -14,6 +14,7 @@ import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.ImageResponse
+import com.example.animalapp.model.LikeResponse
 import com.example.animalapp.model.SearchDetail
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
@@ -44,7 +45,9 @@ interface AnimalTypeRepo {
     suspend fun getAnimalBreeds(id: Int): Resource<AnimalBreed>
     suspend fun getMoreInfo(animalf_name: String): Resource<AnimalSpecieItem>
     suspend fun getOtherResults(other_results: List<String>): Resource<AnimalSpecie>
-    suspend fun getAnimalBreedDetail(id: Int): Resource<AnimalBreedItem>
+    suspend fun getAnimalBreedDetail(token: String, id: Int): Resource<AnimalBreedItem>
+    suspend fun postLikeBreed(token: String, animal_breed_id: Int): Resource<LikeResponse>
+    suspend fun postUnlikeBreed(token: String, animal_breed_id: Int): Resource<LikeResponse>
     suspend fun getMemoryCard(): Resource<MemoryCard>
 
     suspend fun getQuizz(): Resource<Quizz>

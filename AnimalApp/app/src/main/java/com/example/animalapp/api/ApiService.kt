@@ -11,6 +11,7 @@ import com.example.animalapp.model.GalleryDetail
 import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.ImageResponse
+import com.example.animalapp.model.LikeResponse
 import com.example.animalapp.model.SearchDetail
 import com.example.animalapp.model.User
 import okhttp3.MultipartBody
@@ -70,7 +71,24 @@ interface ApiService {
     fun getAnimalSpecies(@Path("animal_name") animal_name: String): Call<AnimalSpecie>
 
     @GET("animal_breed/{id}")
-    fun getAnimalBreedDetail(@Path("id") id: Int): Call<AnimalBreedItem>
+    fun getAnimalBreedDetail(
+        @Header("Authorization") auth: String,
+        @Path("id") id: Int
+    ): Call<AnimalBreedItem>
+
+    @FormUrlEncoded
+    @POST("user/favourite-like")
+    fun postLikeBreed(
+        @Header("Authorization") auth: String,
+        @Field("animal_breed_id") animal_breed_id: Int
+    ) : Call<LikeResponse>
+
+    @FormUrlEncoded
+    @POST("user/favourite-unlike")
+    fun postUnlikeBreed(
+        @Header("Authorization") auth: String,
+        @Field("animal_breed_id") animal_breed_id: Int
+    ) : Call<LikeResponse>
 
     @GET("animal_specie/get_breeds/{id}")
     fun getAnimalBreeds(@Path("id") id: Int): Call<AnimalBreed>

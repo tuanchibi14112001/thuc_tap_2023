@@ -12,4 +12,5 @@ data class AnimalBreedItem(
     val id: Int,
     val img_url: String,
     val name: String,
+    val is_liked: Boolean,
 ) : Serializable

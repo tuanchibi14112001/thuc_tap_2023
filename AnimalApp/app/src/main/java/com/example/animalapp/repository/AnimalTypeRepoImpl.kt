@@ -15,6 +15,7 @@ import com.example.animalapp.model.Quizz
 import com.example.animalapp.model.SpecieGallery
 import com.example.animalapp.model.TestModel
 import com.example.animalapp.model.ImageResponse
+import com.example.animalapp.model.LikeResponse
 import com.example.animalapp.model.SearchDetail
 import com.example.animalapp.model.User
 import com.example.animalapp.utils.Resource
@@ -168,9 +169,35 @@ class AnimalTypeRepoImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAnimalBreedDetail(id: Int): Resource<AnimalBreedItem> {
+    override suspend fun getAnimalBreedDetail(token: String, id: Int): Resource<AnimalBreedItem> {
         return try {
-            val result = apiService.getAnimalBreedDetail(id).await()
+            val result = apiService.getAnimalBreedDetail("Bearer $token", id).await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+
+    override suspend fun postLikeBreed(
+        token: String,
+        animal_breed_id: Int
+    ): Resource<LikeResponse> {
+        return try {
+            val result = apiService.postLikeBreed("Bearer $token", animal_breed_id).await()
+            Resource.success(result)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Resource.error(e.toString())
+        }
+    }
+
+    override suspend fun postUnlikeBreed(
+        token: String,
+        animal_breed_id: Int
+    ): Resource<LikeResponse> {
+        return try {
+            val result = apiService.postUnlikeBreed("Bearer $token", animal_breed_id).await()
             Resource.success(result)
         } catch (e: Exception) {
             e.printStackTrace()
