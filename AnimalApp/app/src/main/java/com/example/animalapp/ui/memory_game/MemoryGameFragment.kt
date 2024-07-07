@@ -43,6 +43,7 @@ class MemoryGameFragment : BaseFragment<FragmentMemoryGameBinding>(), CardItemCl
         builder = AlertDialog.Builder(requireContext())
         viewModel.getMemoryCard()
         observeModel()
+        showDialogRule(builder)
         binding.txtMove.text = score.toString()
         setRv()
 
@@ -126,6 +127,7 @@ class MemoryGameFragment : BaseFragment<FragmentMemoryGameBinding>(), CardItemCl
             Toast.makeText(requireContext(), "Match found!", Toast.LENGTH_SHORT).show()
             plushPoint(txtMove)
         } else {
+            Toast.makeText(requireContext(), "Not match!", Toast.LENGTH_SHORT).show()
             minusPont(txtMove)
         }
 
@@ -163,6 +165,14 @@ class MemoryGameFragment : BaseFragment<FragmentMemoryGameBinding>(), CardItemCl
                 )
             }
 
+            ?.show()
+    }
+
+    private fun showDialogRule(builder: Builder) {
+        val show = builder.setTitle("Rule!")?.setMessage("Find two cards with animals of the same species to earn 10 points, otherwise lose 1 point.")
+            ?.setPositiveButton("OK") { dialogInterface: DialogInterface, i: Int ->
+                dialogInterface.dismiss()
+            }
             ?.show()
     }
 
