@@ -64,8 +64,8 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
             ImagePicker.with(this)
                 .crop()
                 .maxResultSize(
-                    300,
-                    300
+                    1080,
+                    1080
                 )
                 .createIntent { intent ->
                     startForProfileImageResult.launch(intent)

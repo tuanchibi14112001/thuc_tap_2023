@@ -4,5 +4,6 @@ import java.io.Serializable
 
 data class AnimalPredictResult(
     val result: String,
-    val similar: List<String>
+    val similar: List<String>,
+    val accuracy: Float
 ) : Serializable

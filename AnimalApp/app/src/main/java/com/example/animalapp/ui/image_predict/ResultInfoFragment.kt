@@ -49,7 +49,7 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
         val token = mySharedPreferences.getUserToken()
         imgUri = Uri.parse(args?.getString("img_uri"))
 
-        binding.btnBack.setOnClickListener{
+        binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
         val animalPredictResult: AnimalPredictResult? =
@@ -67,10 +67,22 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
         animalPredictResult?.let {
             val animalName = it.result
             val results: MutableList<String> = it.similar.toMutableList()
-            val resultTxt = "We believe this is a: $animalName"
+            var resultTxt = ""
+            if (it.accuracy >= 0.75f) {
+                resultTxt = "We believe this is a: $animalName"
+                results.add(0, it.result)
+                viewModel.getOtherResults(results)
+            } else if (it.accuracy >= 0.4f) {
+                resultTxt = "We are not sure, but we think this is a : $animalName"
+                results.add(0, it.result)
+                viewModel.getOtherResults(results)
+            } else {
+                resultTxt = "We weren't able to identify this photo."
+                binding.txtOther.visibility = View.GONE
+                binding.btnAddGallery.visibility = View.GONE
+
+            }
             binding.resultTxt.text = resultTxt
-            results.add(0, it.result)
-            viewModel.getOtherResults(results)
             observeOtherResultData()
             setRv()
         }
@@ -88,7 +100,7 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
                         viewModel.postImageToGallery(
                             token,
                             animalSpecieNameRequestBody,
-                             part
+                            part
                         )
                     }
                     observeUploadImageResultData()
