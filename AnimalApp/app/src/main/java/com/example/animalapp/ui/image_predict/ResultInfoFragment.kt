@@ -48,6 +48,10 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
         val mySharedPreferences = MySharedPreferences(requireContext())
         val token = mySharedPreferences.getUserToken()
         imgUri = Uri.parse(args?.getString("img_uri"))
+
+        binding.btnBack.setOnClickListener{
+            findNavController().popBackStack()
+        }
         val animalPredictResult: AnimalPredictResult? =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 args?.getSerializable("predict_res", AnimalPredictResult::class.java)
@@ -96,6 +100,7 @@ class ResultInfoFragment : BaseFragment<FragmentResultInfoBinding>(), OtherResul
     }
 
     private fun updateMoreInfoUi(info: AnimalSpecieItem) {
+        binding.txtName.visibility = View.VISIBLE
         binding.imgAnimal.visibility = View.VISIBLE
         binding.scrDesc.visibility = View.VISIBLE
         binding.imgAnimal.load(

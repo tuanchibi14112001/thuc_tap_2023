@@ -71,6 +71,9 @@ class ImagePredictFragment : BaseFragment<FragmentImagePredictBinding>() {
                     startForProfileImageResult.launch(intent)
                 }
         }
+        binding.btnBack.setOnClickListener{
+            findNavController().popBackStack()
+        }
         binding.btnPredict.setOnClickListener {
             if (file == null) {
                 Toast.makeText(requireContext(), "Add your image", Toast.LENGTH_SHORT).show()
