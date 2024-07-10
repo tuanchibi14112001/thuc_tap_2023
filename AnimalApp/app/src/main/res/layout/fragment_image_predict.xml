@@ -71,14 +71,13 @@
         style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/blue_6B4"
         android:clickable="true"
         android:contentDescription="TODO"
         android:src="@drawable/ic_camera"
         android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/imgPic"
+        app:layout_constraintStart_toStartOf="@id/imgPic"
         app:layout_constraintEnd_toEndOf="@+id/imgPic" />
 
     <Button
